@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="1024"
+   height="1024"
+   id="svg2553"
+   sodipodi:docname="icon.svg"
+   xml:space="preserve"
+   viewBox="0 0 731.42857 731.42857"
+   inkscape:export-filename="icon-full.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview12"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     showborder="true"
+     inkscape:zoom="0.41700495"
+     inkscape:cx="39.567876"
+     inkscape:cy="438.84371"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1192"
+     inkscape:window-y="699"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2553" /><defs
+     id="defs2555" /><rect
+     width="731.42859"
+     height="731.42859"
+     x="0"
+     y="-1.3552527e-20"
+     id="back"
+     style="display:inline;fill:#f0d723;stroke-width:1.0211"
+     inkscape:label="Background" /><style
+     type="text/css"
+     id="style2">
+	.st0{fill:none;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#F0D722;}
+	.st3{fill:#252424;}
+</style><g
+     id="g455"
+     transform="matrix(0.8539597,0,0,0.8539597,262.50361,446.7932)"
+     inkscape:label="Foreground"><text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:285.505px;font-family:'Bebas Neue Rounded';-inkscape-font-specification:'Bebas Neue Rounded, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.714319"
+       x="-68.355576"
+       y="-3.4999423"
+       id="text3133"
+       inkscape:label="INFO"><tspan
+         sodipodi:role="line"
+         id="tspan3131"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:285.505px;font-family:'Bebas Neue Rounded';-inkscape-font-specification:'Bebas Neue Rounded, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.714319"
+         x="-68.355576"
+         y="-3.4999423">INFO</tspan></text><path
+       class="st2"
+       d="m 120.86084,-278.55923 c 40.84402,-42.87173 77.05326,-80.52935 139.62283,-80.52935 97.04076,0 172.35598,76.76359 179.01848,171.48698 4.05544,58.80379 -14.19403,106.88967 -57.35543,150.920096 -72.12881,73.287506 -201.32338,204.220114 -245.06414,248.540224 -2.02771,2.02771 -8.97988,8.40054 -15.93206,8.40054 -7.24185,0 -14.19403,-6.37283 -15.93207,-8.40054 C 61.477704,167.53861 -68.006547,36.316325 -139.84568,-36.681504 c -43.74077,-44.030426 -61.99023,-92.116306 -57.9348,-150.920096 6.66251,-94.72339 81.97772,-171.48698 179.018504,-171.48698 62.569558,0 98.489124,37.65762 139.622816,80.52935 z"
+       id="path9"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="Heart" /></g></svg>
