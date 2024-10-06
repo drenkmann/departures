@@ -59,7 +59,7 @@ class LineTag extends StatelessWidget {
         color: lineType.color,
         borderRadius: BorderRadius.circular(3)
       ),
-      child: Text(lineName),
+      child: Text(lineName, style: const TextStyle(color: Colors.white),),
     );
   }
 }
