@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"build",
+				"apk",
+				"--release"
+			],
+			"group": "build",
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"label": "flutter: Build release APK"
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"build",
+				"apk",
+				"--release",
+				"--split-per-abi"
+			],
+			"group": "build",
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"label": "flutter: Build split APKs"
+		},
+		{
+			"label": "flutter: Build all APKs",
+			"dependsOn": [
+				"flutter: Build release APK",
+				"flutter: Build split APKs"
+			],
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"isBackground": true
+		}
+	]
+}
