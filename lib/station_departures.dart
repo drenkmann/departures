@@ -36,6 +36,18 @@ class _StationDeparturesState extends State<StationDepartures> {
 
   Future<void> _updateDepartures() async {
     final departures = await VbbApi.getDeparturesAtStop(stationId);
+    departures.sort((a, b) {
+      final timeA = DateTime.parse(a.when ?? a.plannedWhen!).toLocal();
+      final timeB = DateTime.parse(b.when ?? b.plannedWhen!).toLocal();
+
+      if (timeA.isBefore(timeB)) {
+        return -1;
+      } else if (timeA.isAfter(timeB)) {
+        return 1;
+      } else {
+        return 0;
+      }
+    },);
 
     setState(() {
       _departures = departures;
@@ -68,8 +80,9 @@ class _StationDeparturesState extends State<StationDepartures> {
                   direction: _departures[index].direction!,
                   line: _departures[index].line!.name!,
                   lineType: LineType.values.byName(_departures[index].line!.product!),
-                  departureTime: DateTime.parse(_departures[index].when == null ? _departures[index].plannedWhen! : _departures[index].when!).toLocal(),
+                  departureTime: DateTime.parse(_departures[index].when ?? _departures[index].plannedWhen!).toLocal(),
                   delay: _departures[index].delay == null ? null : (_departures[index].delay! / 60).round(),
+                  cancelled: _departures[index].cancelled,
                 );
               }
             ),

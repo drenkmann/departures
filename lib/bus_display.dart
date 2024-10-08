@@ -10,6 +10,7 @@ class BusDisplay extends StatelessWidget {
     required this.lineType,
     required this.departureTime,
     required this.delay,
+    required this.cancelled,
   });
 
   final String direction;
@@ -17,6 +18,7 @@ class BusDisplay extends StatelessWidget {
   final LineType lineType;
   final DateTime departureTime;
   final num? delay;
+  final bool? cancelled;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,18 @@ class BusDisplay extends StatelessWidget {
         ),
         trailing: Text.rich(
           TextSpan(children: [
-            TextSpan(text: "${(MediaQuery.of(context).alwaysUse24HourFormat ? DateFormat.Hm() : DateFormat.jm()).format(departureTime)} "),
             TextSpan(
+              text: "${(MediaQuery.of(context).alwaysUse24HourFormat ? DateFormat.Hm() : DateFormat.jm()).format(departureTime)} ",
+              style: cancelled ?? false
+                ? const TextStyle(
+                  color: Colors.redAccent,
+                  decorationColor: Colors.redAccent,
+                  decoration: TextDecoration.lineThrough,
+                  height: 1.2
+                )
+                : null
+            ),
+            if (cancelled == null || (cancelled != null && !cancelled!)) TextSpan(
               text: delay == null ? "(?)" : "(${delay == 0 ? "±" : delay! > 0 ? "+" : ""}$delay)",
               style: delay == null
                 ? const TextStyle(color: Colors.grey)
