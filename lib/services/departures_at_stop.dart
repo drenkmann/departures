@@ -38,6 +38,7 @@ class Departure {
   List<Remarks>? remarks;
   Null origin;
   Stop? destination;
+  bool? cancelled;
   CurrentTripPosition? currentTripPosition;
 
   Departure(
@@ -53,6 +54,7 @@ class Departure {
       this.remarks,
       this.origin,
       this.destination,
+      this.cancelled,
       this.currentTripPosition});
 
   Departure.fromJson(Map<String, dynamic> json) {
@@ -75,6 +77,7 @@ class Departure {
     destination = json['destination'] != null
         ? Stop.fromJson(json['destination'])
         : null;
+    cancelled = json['cancelled'];
     currentTripPosition = json['currentTripPosition'] != null
         ? CurrentTripPosition.fromJson(json['currentTripPosition'])
         : null;
@@ -103,6 +106,7 @@ class Departure {
     if (destination != null) {
       data['destination'] = destination!.toJson();
     }
+    data['cancelled'] = cancelled;
     if (currentTripPosition != null) {
       data['currentTripPosition'] = currentTripPosition!.toJson();
     }
