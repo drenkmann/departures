@@ -80,7 +80,7 @@ class _StationDeparturesState extends State<StationDepartures> {
                   direction: _departures[index].direction!,
                   line: _departures[index].line!.name!,
                   lineType: LineType.values.byName(_departures[index].line!.product!),
-                  departureTime: DateTime.parse(_departures[index].when == null ? _departures[index].plannedWhen! : _departures[index].when!).toLocal(),
+                  departureTime: DateTime.parse(_departures[index].when ?? _departures[index].plannedWhen!).toLocal(),
                   delay: _departures[index].delay == null ? null : (_departures[index].delay! / 60).round(),
                   cancelled: _departures[index].cancelled,
                 );
