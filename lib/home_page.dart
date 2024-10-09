@@ -3,6 +3,7 @@ import 'package:departures/services/vbb_api.dart';
 import 'package:departures/services/nearby_stations.dart';
 import 'package:departures/station_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
@@ -96,10 +97,21 @@ class _HomePageState extends State<HomePage> {
             onRefresh: _updateNearbyStations,
             key: _refreshIndicatorKey,
             child: _nearbyStations.isEmpty
-              ? Center(
-                child: Text(
-                  emptyListExplanation,
-                  textAlign: TextAlign.center,
+              ? LayoutBuilder(
+                builder: (context, constraints) => SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: constraints.maxWidth,
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Center(
+                      child: Text(
+                        emptyListExplanation,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
               )
               : ListView.builder(
