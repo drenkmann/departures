@@ -37,7 +37,7 @@ jobs:
       - name: Get version from latest tag
         id: tag_version
         run: |
-          tag_version=$(echo ${{ steps.latest_tag.outputs.latest_tag }} | sed 's/^v//')
+          tag_version=$(echo $latest_tag | sed 's/^v//')
           echo "Version from latest tag is $tag_version"
           echo "tag_version=$tag_version" >> $GITHUB_ENV
 
