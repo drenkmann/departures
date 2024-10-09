@@ -58,21 +58,21 @@ class _StationDeparturesState extends State<StationDepartures> {
   Widget build(BuildContext context) {
     stationId = widget.stationId;
 
-    return RefreshIndicator(
-      onRefresh: _updateDepartures,
-      key: _refreshIndicatorKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
-              child: Text(widget.stationName, style: Theme.of(context).textTheme.headlineSmall,),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
+            child: Text(widget.stationName, style: Theme.of(context).textTheme.headlineSmall,),
           ),
-          const Divider(indent: 16, endIndent: 16,),
-          Expanded(
+        ),
+        const Divider(indent: 16, endIndent: 16,),
+        Expanded(
+          child: RefreshIndicator(
+            onRefresh: _updateDepartures,
+            key: _refreshIndicatorKey,
             child: ListView.builder(
               itemCount: _departures.length,
               itemBuilder: (context, index) {
@@ -87,8 +87,8 @@ class _StationDeparturesState extends State<StationDepartures> {
               }
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

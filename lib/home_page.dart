@@ -96,10 +96,21 @@ class _HomePageState extends State<HomePage> {
             onRefresh: _updateNearbyStations,
             key: _refreshIndicatorKey,
             child: _nearbyStations.isEmpty
-              ? Center(
-                child: Text(
-                  emptyListExplanation,
-                  textAlign: TextAlign.center,
+              ? LayoutBuilder(
+                builder: (context, constraints) => SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: constraints.maxWidth,
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Center(
+                      child: Text(
+                        emptyListExplanation,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
               )
               : ListView.builder(
