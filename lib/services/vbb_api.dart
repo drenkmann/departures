@@ -17,7 +17,23 @@ class VbbApi {
       List<NearbyStation> nearbyStations = List<NearbyStation>.from(stations.map((model) => NearbyStation.fromJson(model)));
 
       return nearbyStations;
-    } else {
+    }
+    else if (response.statusCode >= 500 && response.statusCode < 600) {
+      final response = await http.get(
+        Uri.parse("https://v6.vbb.transport.rest/locations/nearby?latitude=${latitude.toString()}&longitude=${longitude.toString()}&linesOfStops=true&pretty=false")
+      );
+
+      if (response.statusCode == 200) {
+        Iterable stations = json.decode(response.body);
+        List<NearbyStation> nearbyStations = List<NearbyStation>.from(stations.map((model) => NearbyStation.fromJson(model)));
+
+        return nearbyStations;
+      }
+      else {
+        throw Exception("Failed to get nearby stations from API. Status code ${response.statusCode}");
+      }
+    }
+    else {
       throw Exception("Failed to get nearby stations from API. Status code ${response.statusCode}");
     }
   }
@@ -34,7 +50,25 @@ class VbbApi {
         throw Exception("Failed to get departures at stop.");
       }
       return departuresAtStop.departures!;
-    } else {
+    }
+    else if (response.statusCode >= 500 && response.statusCode < 600) {
+      final response = await http.get(
+        Uri.parse("https://v6.vbb.transport.rest/stops/$stopId/departures?tram=false&ferry=false&express=false&regional=false&pretty=false&remarks=false&duration=30")
+      );
+
+      if (response.statusCode == 200) {
+        DeparturesAtStop departuresAtStop = DeparturesAtStop.fromJson(json.decode(response.body));
+
+        if (departuresAtStop.departures == null) {
+          throw Exception("Failed to get departures at stop.");
+        }
+        return departuresAtStop.departures!;
+      }
+      else {
+        throw Exception("Failed to get departures at stop.");
+      }
+    }
+    else {
       throw Exception("Failed to get departures at stop.");
     }
   }
