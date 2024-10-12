@@ -13,5 +13,6 @@
     "nearbyStationsTitle": "Stationen in der Nähe",
     "searchTitle": "Suchen",
     "settingsTitle": "Einstellungen",
-    "notYetImplemented": "Noch nicht implementiert."
+    "notYetImplemented": "Noch nicht implementiert.",
+    "vbbFallbackMessage": "Greife auf VBB API zurück."
 }

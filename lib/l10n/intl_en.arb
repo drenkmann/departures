@@ -49,5 +49,7 @@
     "settingsTitle": "Settings",
     "@settingsTitle": {},
     "notYetImplemented": "Not yet implemented.",
-    "@notYetImplemented": {}
+    "@notYetImplemented": {},
+    "vbbFallbackMessage": "Falling back to VBB API.",
+    "@vbbFallbackMessage": {}
 }

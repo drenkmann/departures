@@ -35,7 +35,7 @@ class _StationDeparturesState extends State<StationDepartures> {
   List<Departure> _departures = [];
 
   Future<void> _updateDepartures() async {
-    final departures = await VbbApi.getDeparturesAtStop(stationId);
+    final departures = await VbbApi.getDeparturesAtStop(stationId, context);
     departures.sort((a, b) {
       final timeA = DateTime.parse(a.when ?? a.plannedWhen!).toLocal();
       final timeB = DateTime.parse(b.when ?? b.plannedWhen!).toLocal();
