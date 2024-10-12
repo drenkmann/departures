@@ -5,6 +5,7 @@ import 'package:departures/station_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -27,11 +28,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  AppLocalizations? _appLocalizations;
+
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   final Location location = Location();
 
   List<NearbyStation> _nearbyStations = [];
-  String emptyListExplanation = "No nearby stations found.";
+  String emptyListExplanation = "";
 
 
   Future<LocationData?> _getLocation() async {
@@ -40,24 +43,24 @@ class _HomePageState extends State<HomePage> {
       return locationResult;
     } on PlatformException catch (err) {
       setState(() {
-        emptyListExplanation = "Location could not be accessed.\nPlease check your permission settings and restart the app.";
+        emptyListExplanation = _appLocalizations!.locationCouldNotBeAccessed;
       });
 
       if (!mounted) return null;
       showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: const Text("Permissions Error"),
-        content: Text("Couldn't access location:\n${err.code}"),
+        title: Text(_appLocalizations!.permissionsError),
+        content: Text(_appLocalizations!.locationCouldNotBeAccessedReason(err.code)),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(context, "Close"),
-            child: const Text("Close"),
+            onPressed: () => Navigator.pop(context, _appLocalizations!.close),
+            child: Text(_appLocalizations!.close),
           ),
           TextButton(
             onPressed: () {
               openAppSettings();
-              Navigator.pop(context, "Open Settings");
+              Navigator.pop(context, _appLocalizations!.openSettings);
             },
-            child: const Text("Open Settings"),
+            child: Text(_appLocalizations!.openSettings),
           ),
         ],
       ));
@@ -81,6 +84,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _appLocalizations = AppLocalizations.of(context);
+    emptyListExplanation = _appLocalizations!.homeNoNearbyStations;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text("Nearby Stations", style: Theme.of(context).textTheme.headlineMedium,),
+            child: Text(_appLocalizations!.nearbyStationsTitle, style: Theme.of(context).textTheme.headlineMedium,),
           ),
         ),
         Expanded(

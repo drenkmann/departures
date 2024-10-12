@@ -1,0 +1,17 @@
+{
+    "@@locale": "de",
+    "appTitle": "Abfahrten",
+    "navigationLabelHome": "Start",
+    "navigationLabelSearch": "Suchen",
+    "navigationLabelSettings": "Einstellungen",
+    "homeNoNearbyStations": "Keine Stationen in der Nähe gefunden.",
+    "locationCouldNotBeAccessed": "Standort konnte nicht ermittelt werden.\nBitte überprüfe die App Berechtigungen und starte die App neu.",
+    "locationCouldNotBeAccessedReason": "Standort konnte nicht ermittelt werden:\n{error}",
+    "permissionsError": "Berechtigungs Fehler",
+    "close": "Schließen",
+    "openSettings": "Einstellungen öffnen",
+    "nearbyStationsTitle": "Stationen in der Nähe",
+    "searchTitle": "Suchen",
+    "settingsTitle": "Einstellungen",
+    "notYetImplemented": "Noch nicht implementiert."
+}
