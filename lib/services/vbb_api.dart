@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:departures/services/departures_at_stop.dart';
 import 'package:departures/services/nearby_stations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 
 class VbbApi {
   VbbApi._();
 
-  static Future<List<NearbyStation>> getNearbyStations(double latitude, double longitude) async {
+  static Future<List<NearbyStation>> getNearbyStations(double latitude, double longitude, BuildContext context) async {
     final response = await http.get(
       Uri.parse("https://v6.bvg.transport.rest/locations/nearby?latitude=${latitude.toString()}&longitude=${longitude.toString()}&linesOfStops=true&pretty=false")
     );
@@ -19,6 +21,16 @@ class VbbApi {
       return nearbyStations;
     }
     else if (response.statusCode >= 500 && response.statusCode < 600) {
+      if (!context.mounted) {
+        return [];
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
+        )
+      );
+
       final response = await http.get(
         Uri.parse("https://v6.vbb.transport.rest/locations/nearby?latitude=${latitude.toString()}&longitude=${longitude.toString()}&linesOfStops=true&pretty=false")
       );
@@ -38,7 +50,7 @@ class VbbApi {
     }
   }
 
-  static Future<List<Departure>> getDeparturesAtStop(String stopId) async {
+  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
     final response = await http.get(
       Uri.parse("https://v6.bvg.transport.rest/stops/$stopId/departures?tram=false&ferry=false&express=false&regional=false&pretty=false&remarks=false&duration=30")
     );
@@ -52,6 +64,15 @@ class VbbApi {
       return departuresAtStop.departures!;
     }
     else if (response.statusCode >= 500 && response.statusCode < 600) {
+      if (!context.mounted) {
+        return [];
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
+        )
+      );
       final response = await http.get(
         Uri.parse("https://v6.vbb.transport.rest/stops/$stopId/departures?tram=false&ferry=false&express=false&regional=false&pretty=false&remarks=false&duration=30")
       );

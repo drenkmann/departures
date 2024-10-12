@@ -72,11 +72,11 @@ class _HomePageState extends State<HomePage> {
   Future<void> _updateNearbyStations() async {
     final LocationData? locationData = await _getLocation();
 
-    if (locationData == null) {
+    if (locationData == null || !mounted) {
       return;
     }
 
-    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!);
+    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!, context);
     setState(() {
       _nearbyStations = nearbyStations;
     });
