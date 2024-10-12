@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({
@@ -14,12 +15,12 @@ class SearchPage extends StatelessWidget {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text("Search", style: Theme.of(context).textTheme.headlineMedium,),
+            child: Text(AppLocalizations.of(context)!.searchTitle, style: Theme.of(context).textTheme.headlineMedium,),
           )
         ),
-        const Expanded(
+        Expanded(
           child: Center(
-            child: Text("Not yet implemented."),
+            child: Text(AppLocalizations.of(context)!.notYetImplemented),
           )
         ),
       ],

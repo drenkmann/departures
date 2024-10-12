@@ -1,0 +1,53 @@
+{
+    "@@locale": "en",
+    "appTitle": "Departures",
+    "@appTitle": {
+        "description": "Main application title"
+    },
+    "navigationLabelHome": "Home",
+    "@navigationLabelHome": {
+        "description": "Label for the navigation button to home"
+    },
+    "navigationLabelSearch": "Search",
+    "@navigationLabelSearch": {
+        "description": "Label for the navigation button to search"
+    },
+    "navigationLabelSettings": "Settings",
+    "@navigationLabelSettings": {
+        "description": "Label for the navigation button to settings"
+    },
+    "homeNoNearbyStations": "No nearby stations found.",
+    "@homeNoNearbyStations": {
+        "description": "Text displayed when no nearby stations were found"
+    },
+    "locationCouldNotBeAccessed": "Location could not be accessed.\nPlease check your permission settings and restart the app.",
+    "@locationCouldNotBeAccessed": {
+        "description": "Text displayed when location couldn't be accessed"
+    },
+    "locationCouldNotBeAccessedReason": "Couldn''t access location:\n{error}",
+    "@locationCouldNotBeAccessedReason": {
+        "description": "Error reason on location permission error",
+        "placeholders": {
+            "error": {
+                "type": "String",
+                "example": "PERMISSION_DENIED"
+            }
+        }
+    },
+    "permissionsError": "Permissions Error",
+    "@permissionsError": {
+        "description": "Error title on permissions error"
+    },
+    "close": "Close",
+    "@close": {},
+    "openSettings": "Open Settings",
+    "@openSettings": {},
+    "nearbyStationsTitle": "Nearby Stations",
+    "@nearbyStationsTitle": {},
+    "searchTitle": "Search",
+    "@searchTitle": {},
+    "settingsTitle": "Settings",
+    "@settingsTitle": {},
+    "notYetImplemented": "Not yet implemented.",
+    "@notYetImplemented": {}
+}
