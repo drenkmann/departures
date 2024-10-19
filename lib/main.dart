@@ -1,11 +1,18 @@
 import 'package:departures/home_page.dart';
+import 'package:departures/provider/theme_settings.dart';
 import 'package:departures/search_page.dart';
 import 'package:departures/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const DeparturesApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const DeparturesApp()
+    )
+  );
 }
 
 class DeparturesApp extends StatelessWidget {
@@ -13,20 +20,24 @@ class DeparturesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00)),
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00), brightness: Brightness.dark),
-      ),
-      themeMode: ThemeMode.system,
-      home: const AppMainPage(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00)),
+          ),
+          darkTheme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00), brightness: Brightness.dark),
+          ),
+          themeMode: themeProvider.themeMode,
+          home: const AppMainPage(),
+        );
+      }
     );
   }
 }
