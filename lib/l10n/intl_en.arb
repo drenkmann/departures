@@ -51,5 +51,21 @@
     "notYetImplemented": "Not yet implemented.",
     "@notYetImplemented": {},
     "vbbFallbackMessage": "Falling back to VBB API.",
-    "@vbbFallbackMessage": {}
+    "@vbbFallbackMessage": {},
+    "settingsThemeTitle": "Theme",
+    "@settingsThemeTitle": {
+        "description": "Label of the theme option in the settings"
+    },
+    "settingsThemeSystem": "System",
+    "@settingsThemeSystem": {
+        "description": "Match system theme"
+    },
+    "settingsThemeLight": "Light",
+    "@settingsThemeLight": {
+        "description": "Use light theme"
+    },
+    "settingsThemeDark": "Dark",
+    "@settingsThemeDark": {
+        "description": "Use dark theme"
+    }
 }

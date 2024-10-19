@@ -8,6 +8,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations? appLocalizations = AppLocalizations.of(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -15,7 +17,7 @@ class SettingsPage extends StatelessWidget {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(AppLocalizations.of(context)!.settingsTitle, style: Theme.of(context).textTheme.headlineMedium,),
+            child: Text(appLocalizations!.settingsTitle, style: Theme.of(context).textTheme.headlineMedium,),
           )
         ),
         Expanded(
@@ -23,23 +25,23 @@ class SettingsPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               ListTile(
-                title: const Text("Theme"),
+                title: Text(appLocalizations.settingsThemeTitle),
                 trailing: Consumer<ThemeProvider>(
                   builder: (context, themeProvider, child) {
                     return DropdownMenu(
                       initialSelection: themeProvider.themeMode,
-                      dropdownMenuEntries: const [
+                      dropdownMenuEntries: [
                         DropdownMenuEntry(
                           value: ThemeMode.system,
-                          label: "System"
+                          label: appLocalizations.settingsThemeSystem
                         ),
                         DropdownMenuEntry(
                           value: ThemeMode.dark,
-                          label: "Dark"
+                          label: appLocalizations.settingsThemeDark
                         ),
                         DropdownMenuEntry(
                           value: ThemeMode.light,
-                          label: "Light"
+                          label: appLocalizations.settingsThemeLight
                         ),
                       ],
                       onSelected: (ThemeMode? themeMode) {

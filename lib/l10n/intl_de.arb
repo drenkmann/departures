@@ -14,5 +14,9 @@
     "searchTitle": "Suchen",
     "settingsTitle": "Einstellungen",
     "notYetImplemented": "Noch nicht implementiert.",
-    "vbbFallbackMessage": "Greife auf VBB API zurück."
+    "vbbFallbackMessage": "Greife auf VBB API zurück.",
+    "settingsThemeTitle": "Theme",
+    "settingsThemeSystem": "System",
+    "settingsThemeLight": "Hell",
+    "settingsThemeDark": "Dunkel"
 }
