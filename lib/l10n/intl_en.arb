@@ -67,5 +67,25 @@
     "settingsThemeDark": "Dark",
     "@settingsThemeDark": {
         "description": "Use dark theme"
+    },
+    "settingsSectionAppearance": "Appearance",
+    "@settingsSectionAppearance": {
+        "description": "Appearance section title"
+    },
+    "settingsSectionAdvanced": "Advanced",
+    "@settingsSectionAdvanced": {
+        "description": "Advanced section title"
+    },
+    "settingsSectionAbout": "About",
+    "@settingsSectionAbout": {
+        "description": "About section title"
+    },
+    "settingsMainHostLabel": "Main API Host",
+    "@settingsMainHostLabel": {
+        "description": "Label of the text field for the main api host to be used"
+    },
+    "settingsFallbackHostLabel": "Main API Host",
+    "@settingsFallbackHostLabel": {
+        "description": "Label of the text field for the fallback api host to be used"
     }
 }

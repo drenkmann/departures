@@ -18,5 +18,10 @@
     "settingsThemeTitle": "Theme",
     "settingsThemeSystem": "System",
     "settingsThemeLight": "Hell",
-    "settingsThemeDark": "Dunkel"
+    "settingsThemeDark": "Dunkel",
+    "settingsSectionAppearance": "Aussehen",
+    "settingsSectionAdvanced": "Experten",
+    "settingsSectionAbout": "Über",
+    "settingsMainHostLabel": "Primärer API Host",
+    "settingsFallbackHostLabel": "Sekundärer API Host"
 }

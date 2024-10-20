@@ -1,4 +1,5 @@
 import 'package:departures/home_page.dart';
+import 'package:departures/provider/api_host_settings.dart';
 import 'package:departures/provider/theme_settings.dart';
 import 'package:departures/search_page.dart';
 import 'package:departures/settings_page.dart';
@@ -8,8 +9,11 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ApiHostProvider()),
+      ],
       child: const DeparturesApp()
     )
   );

@@ -5,15 +5,38 @@ import 'package:departures/services/nearby_stations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VbbApi {
   VbbApi._();
 
+  static Future<String> _getMainApiHost() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final host = prefs.getString("apiHost");
+    if (host != null && host.isNotEmpty) {
+      return host;
+    } else {
+      return "v6.bvg.transport.rest";
+    }
+  }
+
+  static Future<String> _getFallbackApiHost() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final host = prefs.getString("fallbackApiHost");
+    if (host != null && host.isNotEmpty) {
+      return host;
+    } else {
+      return "v6.vbb.transport.rest";
+    }
+  }
+
   static Future<List<NearbyStation>> getNearbyStations(double latitude, double longitude, BuildContext context) async {
+    final String host = await _getMainApiHost();
+
     final response = await http.get(
       Uri(
         scheme: "https",
-        host: "v6.bvg.transport.rest",
+        host: host,
         path: "/locations/nearby",
         queryParameters: {
           "latitude": latitude.toString(),
@@ -41,10 +64,12 @@ class VbbApi {
         )
       );
 
+      final String fallbackHost = await _getFallbackApiHost();
+
       final response = await http.get(
         Uri(
           scheme: "https",
-          host: "v6.vbb.transport.rest",
+          host: fallbackHost,
           path: "/locations/nearby",
           queryParameters: {
             "latitude": latitude.toString(),
@@ -71,10 +96,12 @@ class VbbApi {
   }
 
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
+    final String host = await _getMainApiHost();
+
     final response = await http.get(
       Uri(
         scheme: "https",
-        host: "v6.bvg.transport.rest",
+        host: host,
         path: "/stops/$stopId/departures",
         queryParameters: {
           "tram": "false",
@@ -106,10 +133,13 @@ class VbbApi {
           content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
         )
       );
+
+      final String fallbackHost = await _getFallbackApiHost();
+
       final response = await http.get(
         Uri(
           scheme: "https",
-          host: "v6.vbb.transport.rest",
+          host: fallbackHost,
           path: "/stops/$stopId/departures",
           queryParameters: {
             "tram": "false",
