@@ -11,7 +11,17 @@ class VbbApi {
 
   static Future<List<NearbyStation>> getNearbyStations(double latitude, double longitude, BuildContext context) async {
     final response = await http.get(
-      Uri.parse("https://v6.bvg.transport.rest/locations/nearby?latitude=${latitude.toString()}&longitude=${longitude.toString()}&linesOfStops=true&pretty=false")
+      Uri(
+        scheme: "https",
+        host: "v6.bvg.transport.rest",
+        path: "/locations/nearby",
+        queryParameters: {
+          "latitude": latitude.toString(),
+          "longitude": longitude.toString(),
+          "linesOfStops": "true",
+          "pretty": "false",
+        }
+      )
     );
 
     if (response.statusCode == 200) {
@@ -32,7 +42,17 @@ class VbbApi {
       );
 
       final response = await http.get(
-        Uri.parse("https://v6.vbb.transport.rest/locations/nearby?latitude=${latitude.toString()}&longitude=${longitude.toString()}&linesOfStops=true&pretty=false")
+        Uri(
+          scheme: "https",
+          host: "v6.vbb.transport.rest",
+          path: "/locations/nearby",
+          queryParameters: {
+            "latitude": latitude.toString(),
+            "longitude": longitude.toString(),
+            "linesOfStops": "true",
+            "pretty": "false",
+          }
+        )
       );
 
       if (response.statusCode == 200) {
@@ -52,7 +72,20 @@ class VbbApi {
 
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
     final response = await http.get(
-      Uri.parse("https://v6.bvg.transport.rest/stops/$stopId/departures?tram=false&ferry=false&express=false&regional=false&pretty=false&remarks=false&duration=30")
+      Uri(
+        scheme: "https",
+        host: "v6.bvg.transport.rest",
+        path: "/stops/$stopId/departures",
+        queryParameters: {
+          "tram": "false",
+          "ferry": "false",
+          "express": "false",
+          "regional": "false",
+          "pretty": "false",
+          "remarks": "false",
+          "duration": "30",
+        }
+      )
     );
 
     if (response.statusCode == 200) {
@@ -74,7 +107,20 @@ class VbbApi {
         )
       );
       final response = await http.get(
-        Uri.parse("https://v6.vbb.transport.rest/stops/$stopId/departures?tram=false&ferry=false&express=false&regional=false&pretty=false&remarks=false&duration=30")
+        Uri(
+          scheme: "https",
+          host: "v6.vbb.transport.rest",
+          path: "/stops/$stopId/departures",
+          queryParameters: {
+            "tram": "false",
+            "ferry": "false",
+            "express": "false",
+            "regional": "false",
+            "pretty": "false",
+            "remarks": "false",
+            "duration": "30",
+          }
+        )
       );
 
       if (response.statusCode == 200) {
