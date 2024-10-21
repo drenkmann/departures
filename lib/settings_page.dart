@@ -69,6 +69,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   builder: (context, themeProvider, child) {
                     return DropdownMenu(
                       initialSelection: themeProvider.themeMode,
+                      inputDecorationTheme: InputDecorationTheme(
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                        constraints: BoxConstraints.tight(const Size.fromHeight(40)),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)
+                        )
+                      ),
                       dropdownMenuEntries: [
                         DropdownMenuEntry(
                           value: ThemeMode.system,
@@ -95,7 +103,7 @@ class _SettingsPageState extends State<SettingsPage> {
               const Divider(
                 indent: 16,
                 endIndent: 16,
-                height: 32,
+                height: 24,
                 thickness: 1,
               ),
               Padding(
@@ -144,7 +152,7 @@ class _SettingsPageState extends State<SettingsPage> {
               const Divider(
                 indent: 16,
                 endIndent: 16,
-                height: 32,
+                height: 24,
                 thickness: 1,
               ),
               Padding(
