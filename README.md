@@ -7,6 +7,8 @@
 [![Downloads](https://img.shields.io/github/downloads/drenkmann/departures/total?style=flat-square&color=blue
 )](https://github.com/drenkmann/departures/releases/latest)
 
+[EN/[DE](./docs/de/README.md)]
+
 A simple app that displays the departures of the public transport lines in Berlin.
 
 <table>
