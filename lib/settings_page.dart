@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -168,7 +169,16 @@ class _SettingsPageState extends State<SettingsPage> {
                     );
                   });
                 },
-              )
+              ),
+              ListTile(
+                title: const Text("Open Github"),
+                trailing: const Icon(Icons.code_outlined),
+                onTap: () async {
+                  if (!await launchUrlString("https://github.com/drenkmann/departures")) {
+                    throw Exception("Could not open github URL");
+                  }
+                },
+              ),
             ],
           ),
         )
