@@ -14,5 +14,15 @@
     "searchTitle": "Suchen",
     "settingsTitle": "Einstellungen",
     "notYetImplemented": "Noch nicht implementiert.",
-    "vbbFallbackMessage": "Greife auf VBB API zurück."
+    "vbbFallbackMessage": "Greife auf VBB API zurück.",
+    "settingsThemeTitle": "Farbschema",
+    "settingsThemeSystem": "System",
+    "settingsThemeLight": "Hell",
+    "settingsThemeDark": "Dunkel",
+    "settingsSectionAppearance": "Aussehen",
+    "settingsSectionAdvanced": "Experten",
+    "settingsSectionAbout": "Über",
+    "settingsMainHostLabel": "Primärer API Host",
+    "settingsFallbackHostLabel": "Sekundärer API Host",
+    "settingsAboutAppButton": "Über diese App"
 }
