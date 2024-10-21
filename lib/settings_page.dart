@@ -155,6 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               ListTile(
                 title: Text(appLocalizations.settingsAboutAppButton),
+                trailing: const Icon(Icons.info_outline),
                 onTap: () {
                   PackageInfo.fromPlatform().then((PackageInfo info) {
                     if (!context.mounted) return;
