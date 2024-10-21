@@ -1,5 +1,12 @@
 # Departures
 
+[![Main API Status](https://img.shields.io/uptimerobot/status/m793274554-6cf10d741ce5352cc2a6d65f?style=flat-square&label=Main%20API
+)](https://stats.uptimerobot.com/57wNLs39M/793274554)
+[![Secondary API Status](https://img.shields.io/uptimerobot/status/m793274559-f7e6aec36412170133ab2b04?style=flat-square&label=Secondary%20API
+)](https://stats.uptimerobot.com/57wNLs39M/793274559)
+[![Downloads](https://img.shields.io/github/downloads/drenkmann/departures/total?style=flat-square&color=blue
+)](https://github.com/drenkmann/departures/releases/latest)
+
 A simple app that displays the departures of the public transport lines in Berlin.
 
 <table>
