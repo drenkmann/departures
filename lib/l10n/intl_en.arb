@@ -50,7 +50,7 @@
     "@settingsTitle": {},
     "notYetImplemented": "Not yet implemented.",
     "@notYetImplemented": {},
-    "vbbFallbackMessage": "Falling back to VBB API.",
+    "vbbFallbackMessage": "Falling back to fallback API.",
     "@vbbFallbackMessage": {},
     "settingsThemeTitle": "Theme",
     "@settingsThemeTitle": {
