@@ -87,5 +87,7 @@
     "settingsFallbackHostLabel": "Main API Host",
     "@settingsFallbackHostLabel": {
         "description": "Label of the text field for the fallback api host to be used"
-    }
+    },
+    "settingsAboutAppButton": "About Departures",
+    "@settingsAboutAppButton": {}
 }

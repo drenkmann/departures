@@ -2,6 +2,7 @@ import 'package:departures/provider/api_host_settings.dart';
 import 'package:departures/provider/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -139,6 +140,32 @@ class _SettingsPageState extends State<SettingsPage> {
                   }
                 ),
               ),
+              const Divider(
+                indent: 16,
+                endIndent: 16,
+                height: 32,
+                thickness: 1,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  appLocalizations.settingsSectionAbout,
+                  style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary),
+                ),
+              ),
+              ListTile(
+                title: Text(appLocalizations.settingsAboutAppButton),
+                onTap: () async {
+                  PackageInfo info = await PackageInfo.fromPlatform();
+
+                  showAboutDialog(
+                    context: context,
+                    applicationName: appLocalizations.appTitle,
+                    applicationVersion: "v${info.version}",
+                    applicationLegalese: "© drenkmann 2024",
+                  );
+                },
+              )
             ],
           ),
         )
