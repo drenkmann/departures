@@ -3,7 +3,7 @@ description: "An open source app trying to replicate the old BVG app."
 publish_to: 'none'
 
 # MAJOR.MINOR.PATCH
-# Increment MINOR when introducing major changes/major rewrites
+# Increment MAJOR when introducing major changes/major rewrites
 # Increment MINOR when introducing new features
 # Increment PATCH when fixing bugs/refactoring
 # Changes that do not modify code (e.g. README) should not increment the version number
