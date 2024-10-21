@@ -155,15 +155,17 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               ListTile(
                 title: Text(appLocalizations.settingsAboutAppButton),
-                onTap: () async {
-                  PackageInfo info = await PackageInfo.fromPlatform();
+                onTap: () {
+                  PackageInfo.fromPlatform().then((PackageInfo info) {
+                    if (!context.mounted) return;
 
-                  showAboutDialog(
-                    context: context,
-                    applicationName: appLocalizations.appTitle,
-                    applicationVersion: "v${info.version}",
-                    applicationLegalese: "© drenkmann 2024",
-                  );
+                    showAboutDialog(
+                      context: context,
+                      applicationName: appLocalizations.appTitle,
+                      applicationVersion: "v${info.version}",
+                      applicationLegalese: "© drenkmann 2024",
+                    );
+                  });
                 },
               )
             ],
