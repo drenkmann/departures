@@ -23,7 +23,8 @@ class StationDisplay extends StatelessWidget {
         runSpacing: 5,
         children: [
             for (final line in lines.entries)
-            LineTag(lineType: line.value, lineName: line.key)
+              if ((line.key as String).isNotEmpty)
+                LineTag(lineType: line.value, lineName: line.key)
           ]
       ),
       onTap: () {
