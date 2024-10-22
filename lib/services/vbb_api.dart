@@ -104,10 +104,7 @@ class VbbApi {
         host: host,
         path: "/stops/$stopId/departures",
         queryParameters: {
-          "tram": "false",
-          "ferry": "false",
           "express": "false",
-          "regional": "false",
           "pretty": "false",
           "remarks": "false",
           "duration": "30",
@@ -142,10 +139,7 @@ class VbbApi {
           host: fallbackHost,
           path: "/stops/$stopId/departures",
           queryParameters: {
-            "tram": "false",
-            "ferry": "false",
             "express": "false",
-            "regional": "false",
             "pretty": "false",
             "remarks": "false",
             "duration": "30",
