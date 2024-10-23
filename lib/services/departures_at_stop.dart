@@ -120,6 +120,7 @@ class Stop {
   String? name;
   StationLocation? location;
   Products? products;
+  List<Line>? lines;
   String? stationDHID;
 
   Stop(
@@ -128,6 +129,7 @@ class Stop {
       this.name,
       this.location,
       this.products,
+      this.lines,
       this.stationDHID});
 
   Stop.fromJson(Map<String, dynamic> json) {
@@ -140,6 +142,12 @@ class Stop {
     products = json['products'] != null
         ? Products.fromJson(json['products'])
         : null;
+    if (json['lines'] != null) {
+      lines = <Line>[];
+      json['lines'].forEach((v) {
+        lines!.add(Line.fromJson(v));
+      });
+    }
     stationDHID = json['stationDHID'];
   }
 
@@ -153,6 +161,9 @@ class Stop {
     }
     if (products != null) {
       data['products'] = products!.toJson();
+    }
+    if (lines != null) {
+      data['lines'] = lines!.map((v) => v.toJson()).toList();
     }
     data['stationDHID'] = stationDHID;
     return data;

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:departures/services/departures_at_stop.dart';
 import 'package:departures/services/nearby_stations.dart';
+import 'package:departures/services/searched_stations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
@@ -161,6 +162,105 @@ class VbbApi {
     }
     else {
       throw Exception("Failed to get departures at stop.");
+    }
+  }
+
+  static Future<NearbyStation> getStationInfo(String stopId) async {
+    final String host = await _getMainApiHost();
+
+    final response = await http.get(
+      Uri(
+        scheme: "https",
+        host: host,
+        path: "/stops/$stopId",
+        queryParameters: {
+          "linesOfStops": "true",
+        },
+      )
+    );
+
+    NearbyStation info = NearbyStation.fromJson(json.decode(response.body));
+
+    return info;
+  }
+
+  static Future<List<NearbyStation>> getStations(String query, BuildContext context) async {
+    final String host = await _getMainApiHost();
+
+    final response = await http.get(
+      Uri(
+        scheme: "https",
+        host: host,
+        path: "/stations",
+        queryParameters: {
+          "query": query,
+          "results": "10",
+        },
+      )
+    );
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> stationsRaw = json.decode(response.body);
+      List<NearbyStation> stations = [];
+      List<String> usedIds = [];
+
+      for (var v in stationsRaw.values) {
+        Station station = Station.fromJson(v);
+        String id = station.id!.split(":")[2];
+        if (!usedIds.contains(id)){
+          stations.add(await getStationInfo(id));
+          usedIds.add(id);
+        }
+      }
+
+      return stations;
+    } else if (response.statusCode >= 500 && response.statusCode < 600) {
+      if (!context.mounted) {
+        return [];
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
+        )
+      );
+
+      final String fallbackHost = await _getFallbackApiHost();
+
+      final response = await http.get(
+        Uri(
+          scheme: "https",
+          host: fallbackHost,
+          path: "/stations",
+          queryParameters: {
+            "query": query,
+            "results": "10",
+          },
+        )
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> stationsRaw = json.decode(response.body);
+        List<NearbyStation> stations = [];
+        List<String> usedIds = [];
+
+        for (var v in stationsRaw.values) {
+          Station station = Station.fromJson(v);
+          String id = station.id!.split(":")[2];
+          if (!usedIds.contains(id)){
+            stations.add(await getStationInfo(id));
+            usedIds.add(id);
+          }
+        }
+
+        return stations;
+      }
+      else {
+        throw Exception("Failed to get stops.");
+      }
+    }
+    else {
+      throw Exception("Failed to get stops.");
     }
   }
 }
