@@ -1,28 +1,4 @@
-class DeparturesAtStop {
-  List<Departure>? departures;
-  int? realtimeDataUpdatedAt;
-
-  DeparturesAtStop({this.departures, this.realtimeDataUpdatedAt});
-
-  DeparturesAtStop.fromJson(Map<String, dynamic> json) {
-    if (json['departures'] != null) {
-      departures = <Departure>[];
-      json['departures'].forEach((v) {
-        departures!.add(Departure.fromJson(v));
-      });
-    }
-    realtimeDataUpdatedAt = json['realtimeDataUpdatedAt'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (departures != null) {
-      data['departures'] = departures!.map((v) => v.toJson()).toList();
-    }
-    data['realtimeDataUpdatedAt'] = realtimeDataUpdatedAt;
-    return data;
-  }
-}
+import 'package:departures/services/stop.dart';
 
 class Departure {
   String? tripId;
@@ -110,62 +86,6 @@ class Departure {
     if (currentTripPosition != null) {
       data['currentTripPosition'] = currentTripPosition!.toJson();
     }
-    return data;
-  }
-}
-
-class Stop {
-  String? type;
-  String? id;
-  String? name;
-  StationLocation? location;
-  Products? products;
-  List<Line>? lines;
-  String? stationDHID;
-
-  Stop(
-      {this.type,
-      this.id,
-      this.name,
-      this.location,
-      this.products,
-      this.lines,
-      this.stationDHID});
-
-  Stop.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    id = json['id'];
-    name = json['name'];
-    location = json['location'] != null
-        ? StationLocation.fromJson(json['location'])
-        : null;
-    products = json['products'] != null
-        ? Products.fromJson(json['products'])
-        : null;
-    if (json['lines'] != null) {
-      lines = <Line>[];
-      json['lines'].forEach((v) {
-        lines!.add(Line.fromJson(v));
-      });
-    }
-    stationDHID = json['stationDHID'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
-    data['id'] = id;
-    data['name'] = name;
-    if (location != null) {
-      data['location'] = location!.toJson();
-    }
-    if (products != null) {
-      data['products'] = products!.toJson();
-    }
-    if (lines != null) {
-      data['lines'] = lines!.map((v) => v.toJson()).toList();
-    }
-    data['stationDHID'] = stationDHID;
     return data;
   }
 }

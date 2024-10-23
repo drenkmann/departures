@@ -1,5 +1,5 @@
 import 'package:departures/line_types.dart';
-import 'package:departures/services/nearby_stations.dart';
+import 'package:departures/services/stop.dart';
 import 'package:departures/services/vbb_api.dart';
 import 'package:departures/station_display.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<NearbyStation> _stops = [];
+  List<Stop> _stops = [];
 
   Future<void> _getStops(String query) async {
     setState(() {

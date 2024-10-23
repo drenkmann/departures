@@ -1,6 +1,6 @@
 import 'package:departures/bus_display.dart';
 import 'package:departures/line_types.dart';
-import 'package:departures/services/departures_at_stop.dart';
+import 'package:departures/services/departure.dart';
 import 'package:departures/services/vbb_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
