@@ -131,12 +131,9 @@ class _HomePageState extends State<HomePage> {
                   }
                 }
 
-                final RegExp regExp = RegExp(r'\(.*?\)|\[.*?\]');
-
                 return StationDisplay(
                   stationName: _nearbyStations[index].name!
-                    .replaceAll(regExp, "")
-                    .replaceAll(RegExp(r'\s+'), ' ')
+                    .replaceAll("(Berlin)", "")
                     .trim(),
                   stationId: _nearbyStations[index].id!,
                   lines: lineTypes,
