@@ -17,6 +17,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   List<Stop> _stops = [];
 
+  FocusNode searchFocusNode = FocusNode();
+
   Future<void> _getStops(String query) async {
     setState(() {
       _stops = [];
@@ -44,7 +46,11 @@ class _SearchPageState extends State<SearchPage> {
           padding: const EdgeInsets.all(16),
           child: TextField(
             onSubmitted: _getStops,
-            autofocus: true,
+            onTapOutside: (event) {
+              searchFocusNode.unfocus();
+            },
+            focusNode: searchFocusNode,
+            autofocus: false,
             maxLines: 1,
             decoration: InputDecoration(
               hintText: "Search",
