@@ -84,7 +84,7 @@
     "@settingsMainHostLabel": {
         "description": "Label of the text field for the main api host to be used"
     },
-    "settingsFallbackHostLabel": "Main API Host",
+    "settingsFallbackHostLabel": "Fallback API Host",
     "@settingsFallbackHostLabel": {
         "description": "Label of the text field for the fallback api host to be used"
     },
