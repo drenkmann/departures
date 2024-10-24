@@ -16,6 +16,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
   late TextEditingController _fallbackHostController;
+  FocusNode mainHostFocusNode = FocusNode();
+  FocusNode fallbackHostFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -120,6 +122,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
                     return TextFormField(
                       controller: _mainHostController,
+                      focusNode: mainHostFocusNode,
+                      onTapOutside: (event) {
+                        mainHostFocusNode.unfocus();
+                      },
                       onChanged: (value) {
                         apiHostProvider.saveMainHostPreference(value);
                       },
@@ -138,6 +144,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
                     return TextFormField(
                       controller: _fallbackHostController,
+                      focusNode: fallbackHostFocusNode,
+                      onTapOutside: (event) {
+                        fallbackHostFocusNode.unfocus();
+                      },
                       onChanged: (value) {
                         apiHostProvider.saveFallbackHostPreferences(value);
                       },
