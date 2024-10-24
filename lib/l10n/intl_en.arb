@@ -89,5 +89,9 @@
         "description": "Label of the text field for the fallback api host to be used"
     },
     "settingsAboutAppButton": "About Departures",
-    "@settingsAboutAppButton": {}
+    "@settingsAboutAppButton": {},
+    "searchBarPlaceholder": "Enter station name",
+    "@searchBarPlaceholder": {
+        "description": "Placeholder for station search bar"
+    }
 }

@@ -24,5 +24,6 @@
     "settingsSectionAbout": "Über",
     "settingsMainHostLabel": "Primärer API Host",
     "settingsFallbackHostLabel": "Sekundärer API Host",
-    "settingsAboutAppButton": "Über diese App"
+    "settingsAboutAppButton": "Über diese App",
+    "searchBarPlaceholder": "Haltestelle eingeben"
 }
