@@ -1,6 +1,6 @@
 import 'package:departures/line_types.dart';
 import 'package:departures/services/vbb_api.dart';
-import 'package:departures/services/nearby_stations.dart';
+import 'package:departures/services/stop.dart';
 import 'package:departures/station_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   final Location location = Location();
 
-  List<NearbyStation> _nearbyStations = [];
+  List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
 
 
@@ -131,12 +131,9 @@ class _HomePageState extends State<HomePage> {
                   }
                 }
 
-                final RegExp regExp = RegExp(r'\(.*?\)|\[.*?\]');
-
                 return StationDisplay(
                   stationName: _nearbyStations[index].name!
-                    .replaceAll(regExp, "")
-                    .replaceAll(RegExp(r'\s+'), ' ')
+                    .replaceAll("(Berlin)", "")
                     .trim(),
                   stationId: _nearbyStations[index].id!,
                   lines: lineTypes,

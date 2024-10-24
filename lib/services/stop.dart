@@ -1,4 +1,4 @@
-class NearbyStation {
+class Stop {
   String? type;
   String? id;
   String? name;
@@ -8,7 +8,7 @@ class NearbyStation {
   String? stationDHID;
   int? distance;
 
-  NearbyStation(
+  Stop(
       {this.type,
       this.id,
       this.name,
@@ -18,7 +18,7 @@ class NearbyStation {
       this.stationDHID,
       this.distance});
 
-  NearbyStation.fromJson(Map<String, dynamic> json) {
+  Stop.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     name = json['name'];
