@@ -53,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
             autofocus: false,
             maxLines: 1,
             decoration: InputDecoration(
-              hintText: "Search",
+              hintText: AppLocalizations.of(context)!.searchBarPlaceholder,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
