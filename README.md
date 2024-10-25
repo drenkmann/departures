@@ -33,5 +33,8 @@ To install manually, download the `app-release.apk` and install it.
 ## Credit
 The underlying API, developed by [@derhuerst](https://github.com/derhuerst) can be found here: https://v6.bvg.transport.rest/
 
+## Privacy
+The Privacy Policy can be found at https://github.com/drenkmann/derpartures/blob/main/docs/PRIVACY-POLICY.md
+
 ## License
 This project is licensed under the [MIT license](./LICENSE.md)
