@@ -14,8 +14,8 @@ class ApiHostProvider with ChangeNotifier {
 
   Future<void> loadHostPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? mainHost = prefs.containsKey("apiHost") ? prefs.getString("apiHost") : null;
-    String? fallbackHost = prefs.containsKey("apiFallbackHost") ? prefs.getString("apiFallbackHost") : null;
+    String? mainHost = prefs.getString("apiHost");
+    String? fallbackHost = prefs.getString("apiFallbackHost");
 
     if (mainHost != null) {
       _mainHost = mainHost;

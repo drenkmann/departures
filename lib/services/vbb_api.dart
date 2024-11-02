@@ -23,7 +23,7 @@ class VbbApi {
 
   static Future<String> _getFallbackApiHost() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final host = prefs.getString("fallbackApiHost");
+    final host = prefs.getString("apiFallbackHost");
     if (host != null && host.isNotEmpty) {
       return host;
     } else {
