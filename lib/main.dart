@@ -27,9 +27,19 @@ class DeparturesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        SystemChrome.setSystemUIOverlayStyle(
-          MediaQuery.of(context).platformBrightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark
-        );
+        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.themeMode) {
+          ThemeMode.system =>
+            MediaQuery.of(context).platformBrightness == Brightness.light ?
+              SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
+
+          ThemeMode.dark =>
+            SystemUiOverlayStyle.light,
+
+          ThemeMode.light =>
+            SystemUiOverlayStyle.dark,
+        };
+
+        SystemChrome.setSystemUIOverlayStyle(overlayStyle);
 
         return MaterialApp(
           onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
