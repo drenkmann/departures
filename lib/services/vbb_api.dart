@@ -153,9 +153,26 @@ class VbbApi {
 
     final response = await http.get(uri);
 
-    Stop info = Stop.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      Stop info = Stop.fromJson(json.decode(response.body));
 
-    return info;
+      return info;
+    } else if (response.statusCode >= 500 && response.statusCode < 600) {
+      final String fallbackHost = await _getFallbackApiHost();
+
+      final response = await http.get(uri.replace(host: fallbackHost));
+
+      if (response.statusCode == 200) {
+        Stop info = Stop.fromJson(json.decode(response.body));
+
+        return info;
+      }
+      else {
+        throw Exception("Failed to get station info.");
+      }
+    } else {
+      throw Exception("Failed to get station info.");
+    }
   }
 
   static Future<List<Stop>> getStations(String query, BuildContext context) async {
