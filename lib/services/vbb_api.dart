@@ -11,6 +11,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VbbApi {
   VbbApi._();
 
+  static void _showError(BuildContext context, String errorMessage, [List<Widget>? actions]) async {
+    if (!context.mounted) return;
+      AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
+      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+        title: Text(appLocalizations.generalError),
+        content: Text(errorMessage),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(appLocalizations.ok),
+          ),
+          ...actions ?? [],
+        ],
+      ));
+  }
+
   static Future<String> _getMainApiHost() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final host = prefs.getString("apiHost");
@@ -78,7 +95,11 @@ class VbbApi {
         return nearbyStations;
       }
       else {
-        throw Exception("Failed to get nearby stations from API. Status code ${response.statusCode}");
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
+        }
+
+        return [];
       }
     }
   }
@@ -128,12 +149,16 @@ class VbbApi {
         return departures;
       }
       else {
-        throw Exception("Failed to get departures at stop.");
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
+        }
+
+        return [];
       }
     }
   }
 
-  static Future<Stop> getStationInfo(String stopId) async {
+  static Future<Stop?> getStationInfo(BuildContext context, String stopId) async {
     final String host = await _getMainApiHost();
 
     Uri uri = Uri(
@@ -163,7 +188,11 @@ class VbbApi {
         return info;
       }
       else {
-        throw Exception("Failed to get station info.");
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
+        }
+
+        return null;
       }
     }
   }
@@ -191,8 +220,11 @@ class VbbApi {
       for (var v in stationsRaw.values) {
         Station station = Station.fromJson(v);
         String id = station.id!.split(":")[2];
-        if (!usedIds.contains(id)){
-          stations.add(await getStationInfo(id));
+        if (!usedIds.contains(id) && context.mounted){
+          Stop? stop = await getStationInfo(context, id);
+          if (stop != null) {
+            stations.add(stop);
+          }
           usedIds.add(id);
         }
       }
@@ -222,8 +254,11 @@ class VbbApi {
         for (var v in stationsRaw.values) {
           Station station = Station.fromJson(v);
           String id = station.id!.split(":")[2];
-          if (!usedIds.contains(id)){
-            stations.add(await getStationInfo(id));
+          if (!usedIds.contains(id) && context.mounted){
+            Stop? stop = await getStationInfo(context, id);
+            if (stop != null) {
+              stations.add(stop);
+            }
             usedIds.add(id);
           }
         }
@@ -231,7 +266,11 @@ class VbbApi {
         return stations;
       }
       else {
-        throw Exception("Failed to get stops.");
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
+        }
+
+        return [];
       }
     }
   }
