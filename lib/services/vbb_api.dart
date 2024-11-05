@@ -54,7 +54,7 @@ class VbbApi {
 
       return nearbyStations;
     }
-    else if (response.statusCode >= 500 && response.statusCode < 600) {
+    else {
       if (!context.mounted) {
         return [];
       }
@@ -81,9 +81,6 @@ class VbbApi {
         throw Exception("Failed to get nearby stations from API. Status code ${response.statusCode}");
       }
     }
-    else {
-      throw Exception("Failed to get nearby stations from API. Status code ${response.statusCode}");
-    }
   }
 
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
@@ -109,7 +106,7 @@ class VbbApi {
 
       return departures;
     }
-    else if (response.statusCode >= 500 && response.statusCode < 600) {
+    else {
       if (!context.mounted) {
         return [];
       }
@@ -134,9 +131,6 @@ class VbbApi {
         throw Exception("Failed to get departures at stop.");
       }
     }
-    else {
-      throw Exception("Failed to get departures at stop.");
-    }
   }
 
   static Future<Stop> getStationInfo(String stopId) async {
@@ -157,7 +151,8 @@ class VbbApi {
       Stop info = Stop.fromJson(json.decode(response.body));
 
       return info;
-    } else if (response.statusCode >= 500 && response.statusCode < 600) {
+    }
+    else {
       final String fallbackHost = await _getFallbackApiHost();
 
       final response = await http.get(uri.replace(host: fallbackHost));
@@ -170,8 +165,6 @@ class VbbApi {
       else {
         throw Exception("Failed to get station info.");
       }
-    } else {
-      throw Exception("Failed to get station info.");
     }
   }
 
@@ -205,7 +198,8 @@ class VbbApi {
       }
 
       return stations;
-    } else if (response.statusCode >= 500 && response.statusCode < 600) {
+    }
+    else {
       if (!context.mounted) {
         return [];
       }
@@ -239,9 +233,6 @@ class VbbApi {
       else {
         throw Exception("Failed to get stops.");
       }
-    }
-    else {
-      throw Exception("Failed to get stops.");
     }
   }
 }
