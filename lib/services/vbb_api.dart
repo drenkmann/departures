@@ -34,19 +34,19 @@ class VbbApi {
   static Future<List<Stop>> getNearbyStations(double latitude, double longitude, BuildContext context) async {
     final String host = await _getMainApiHost();
 
-    final response = await http.get(
-      Uri(
-        scheme: "https",
-        host: host,
-        path: "/locations/nearby",
-        queryParameters: {
-          "latitude": latitude.toString(),
-          "longitude": longitude.toString(),
-          "linesOfStops": "true",
-          "pretty": "false",
-        }
-      )
+    Uri uri = Uri(
+      scheme: "https",
+      host: host,
+      path: "/locations/nearby",
+      queryParameters: {
+        "latitude": latitude.toString(),
+        "longitude": longitude.toString(),
+        "linesOfStops": "true",
+        "pretty": "false",
+      }
     );
+
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       Iterable stations = json.decode(response.body);
@@ -68,17 +68,7 @@ class VbbApi {
       final String fallbackHost = await _getFallbackApiHost();
 
       final response = await http.get(
-        Uri(
-          scheme: "https",
-          host: fallbackHost,
-          path: "/locations/nearby",
-          queryParameters: {
-            "latitude": latitude.toString(),
-            "longitude": longitude.toString(),
-            "linesOfStops": "true",
-            "pretty": "false",
-          }
-        )
+        uri.replace(host: fallbackHost)
       );
 
       if (response.statusCode == 200) {
@@ -99,19 +89,19 @@ class VbbApi {
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
     final String host = await _getMainApiHost();
 
-    final response = await http.get(
-      Uri(
-        scheme: "https",
-        host: host,
-        path: "/stops/$stopId/departures",
-        queryParameters: {
-          "express": "false",
-          "pretty": "false",
-          "remarks": "false",
-          "duration": "30",
-        }
-      )
+    Uri uri = Uri(
+      scheme: "https",
+      host: host,
+      path: "/stops/$stopId/departures",
+      queryParameters: {
+        "express": "false",
+        "pretty": "false",
+        "remarks": "false",
+        "duration": "30",
+      }
     );
+
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> departuresAtStop = json.decode(response.body);
@@ -132,19 +122,7 @@ class VbbApi {
 
       final String fallbackHost = await _getFallbackApiHost();
 
-      final response = await http.get(
-        Uri(
-          scheme: "https",
-          host: fallbackHost,
-          path: "/stops/$stopId/departures",
-          queryParameters: {
-            "express": "false",
-            "pretty": "false",
-            "remarks": "false",
-            "duration": "30",
-          }
-        )
-      );
+      final response = await http.get(uri.replace(host: fallbackHost));
 
       if (response.statusCode == 200) {
         Map<String, dynamic> departuresAtStop = json.decode(response.body);
@@ -164,16 +142,16 @@ class VbbApi {
   static Future<Stop> getStationInfo(String stopId) async {
     final String host = await _getMainApiHost();
 
-    final response = await http.get(
-      Uri(
-        scheme: "https",
-        host: host,
-        path: "/stops/$stopId",
-        queryParameters: {
-          "linesOfStops": "true",
-        },
-      )
+    Uri uri = Uri(
+      scheme: "https",
+      host: host,
+      path: "/stops/$stopId",
+      queryParameters: {
+        "linesOfStops": "true",
+      },
     );
+
+    final response = await http.get(uri);
 
     Stop info = Stop.fromJson(json.decode(response.body));
 
@@ -183,17 +161,17 @@ class VbbApi {
   static Future<List<Stop>> getStations(String query, BuildContext context) async {
     final String host = await _getMainApiHost();
 
-    final response = await http.get(
-      Uri(
-        scheme: "https",
-        host: host,
-        path: "/stations",
-        queryParameters: {
-          "query": query,
-          "results": "10",
-        },
-      )
+    Uri uri = Uri(
+      scheme: "https",
+      host: host,
+      path: "/stations",
+      queryParameters: {
+        "query": query,
+        "results": "10",
+      },
     );
+
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> stationsRaw = json.decode(response.body);
@@ -223,33 +201,23 @@ class VbbApi {
 
       final String fallbackHost = await _getFallbackApiHost();
 
-      final response = await http.get(
-        Uri(
-          scheme: "https",
-          host: fallbackHost,
-          path: "/stations",
-          queryParameters: {
-            "query": query,
-            "results": "10",
-          },
-        )
-      );
+      final response = await http.get(uri.replace(host: fallbackHost));
 
       if (response.statusCode == 200) {
         Map<String, dynamic> stationsRaw = json.decode(response.body);
-        List<Stop> stationsOther = [];
+        List<Stop> stations = [];
         List<String> usedIds = [];
 
         for (var v in stationsRaw.values) {
           Station station = Station.fromJson(v);
           String id = station.id!.split(":")[2];
           if (!usedIds.contains(id)){
-            stationsOther.add(await getStationInfo(id));
+            stations.add(await getStationInfo(id));
             usedIds.add(id);
           }
         }
 
-        return stationsOther;
+        return stations;
       }
       else {
         throw Exception("Failed to get stops.");
