@@ -126,7 +126,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       onTapOutside: (event) {
                         mainHostFocusNode.unfocus();
                       },
-                      onFieldSubmitted: (value) {
+                      onChanged: (value) {
                         apiHostProvider.saveMainHostPreference(value);
                       },
                       decoration: InputDecoration(
@@ -149,7 +149,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       onTapOutside: (event) {
                         fallbackHostFocusNode.unfocus();
                       },
-                      onFieldSubmitted: (value) {
+                      onChanged: (value) {
                         apiHostProvider.saveFallbackHostPreferences(value);
                       },
                       decoration: InputDecoration(
