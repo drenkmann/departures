@@ -8,6 +8,8 @@
     "locationCouldNotBeAccessed": "Standort konnte nicht ermittelt werden.\nBitte überprüfe die App Berechtigungen und starte die App neu.",
     "locationCouldNotBeAccessedReason": "Standort konnte nicht ermittelt werden:\n{error}",
     "permissionsError": "Berechtigungs Fehler",
+    "generalError": "Fehler",
+    "ok": "OK",
     "close": "Schließen",
     "openSettings": "Einstellungen öffnen",
     "nearbyStationsTitle": "Stationen in der Nähe",

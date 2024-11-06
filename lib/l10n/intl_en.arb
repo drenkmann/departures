@@ -38,6 +38,12 @@
     "@permissionsError": {
         "description": "Error title on permissions error"
     },
+    "generalError": "Error",
+    "@generalError": {
+        "description": "General error title"
+    },
+    "ok": "OK",
+    "@ok": {},
     "close": "Close",
     "@close": {},
     "openSettings": "Open Settings",

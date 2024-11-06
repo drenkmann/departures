@@ -131,6 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                       decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
+                        hintText: "v6.bvg.transport.rest",
                         labelText: appLocalizations.settingsMainHostLabel,
                       ),
                     );
@@ -153,6 +154,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                       decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
+                        hintText: "v6.vbb.transport.rest",
                         labelText: appLocalizations.settingsFallbackHostLabel,
                       ),
                     );

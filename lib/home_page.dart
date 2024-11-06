@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                 Map<String, LineType> lineTypes = {};
 
                 for (final line in _nearbyStations[index].lines!) {
-                  if (LineType.values.map((e) => e.name).contains(line.product)) {
+                  if (LineType.values.map((e) => e.name).contains(line.product) && line.name != null) {
                     lineTypes[line.name!] = LineType.values.byName(line.product!);
                   }
                 }

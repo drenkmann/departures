@@ -4,6 +4,7 @@ import 'package:departures/provider/theme_settings.dart';
 import 'package:departures/search_page.dart';
 import 'package:departures/settings_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,20 @@ class DeparturesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
+        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.themeMode) {
+          ThemeMode.system =>
+            MediaQuery.of(context).platformBrightness == Brightness.light ?
+              SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
+
+          ThemeMode.dark =>
+            SystemUiOverlayStyle.light,
+
+          ThemeMode.light =>
+            SystemUiOverlayStyle.dark,
+        };
+
+        SystemChrome.setSystemUIOverlayStyle(overlayStyle);
+
         return MaterialApp(
           onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
