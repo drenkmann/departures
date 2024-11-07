@@ -17,14 +17,27 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   List<Stop> _stops = [];
 
-  FocusNode searchFocusNode = FocusNode();
+  late TextEditingController _searchController;
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  final FocusNode _searchFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+
+    super.dispose();
+  }
 
   Future<void> _getStops(String query) async {
-    setState(() {
-      _stops = [];
-    });
-
     final stops = await VbbApi.getStations(query, context);
+
     setState(() {
       _stops = stops;
     });
@@ -45,11 +58,12 @@ class _SearchPageState extends State<SearchPage> {
         Padding(
           padding: const EdgeInsets.all(16),
           child: TextField(
-            onSubmitted: _getStops,
+            onSubmitted: (_) => _refreshIndicatorKey.currentState?.show(),
             onTapOutside: (event) {
-              searchFocusNode.unfocus();
+              _searchFocusNode.unfocus();
             },
-            focusNode: searchFocusNode,
+            controller: _searchController,
+            focusNode: _searchFocusNode,
             autofocus: false,
             maxLines: 1,
             decoration: InputDecoration(
@@ -61,26 +75,31 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: _stops.length,
-            itemBuilder:(context, index) {
-              Map<String, LineType> lineTypes = {};
+          child: RefreshIndicator(
+            key: _refreshIndicatorKey,
+            onRefresh: () => _getStops(_searchController.text),
+            notificationPredicate: (_) => false,
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: _stops.length,
+              itemBuilder:(context, index) {
+                Map<String, LineType> lineTypes = {};
 
-              for (final line in _stops[index].lines!) {
-                if (LineType.values.map((e) => e.name).contains(line.product)) {
-                  lineTypes[line.name!] = LineType.values.byName(line.product!);
+                for (final line in _stops[index].lines!) {
+                  if (LineType.values.map((e) => e.name).contains(line.product)) {
+                    lineTypes[line.name!] = LineType.values.byName(line.product!);
+                  }
                 }
-              }
 
-              return StationDisplay(
-                stationName: _stops[index].name!
-                  .replaceAll("(Berlin)", "")
-                  .trim(),
-                stationId: _stops[index].id!,
-                lines: lineTypes,
-              );
-            },
+                return StationDisplay(
+                  stationName: _stops[index].name!
+                    .replaceAll("(Berlin)", "")
+                    .trim(),
+                  stationId: _stops[index].id!,
+                  lines: lineTypes,
+                );
+              },
+            ),
           )
         ),
       ],
