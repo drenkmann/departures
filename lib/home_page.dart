@@ -77,7 +77,12 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!, _nearbyStationsCount, context);
+    final nearbyStations = await VbbApi.getNearbyStations(
+      locationData.latitude!,
+      locationData.longitude!,
+      context,
+      count: _nearbyStationsCount,
+    );
     setState(() {
       _nearbyStations = nearbyStations;
     });
