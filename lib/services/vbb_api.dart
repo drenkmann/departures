@@ -48,7 +48,7 @@ class VbbApi {
     }
   }
 
-  static Future<List<Stop>> getNearbyStations(double latitude, double longitude, BuildContext context) async {
+  static Future<List<Stop>> getNearbyStations(double latitude, double longitude, int count, BuildContext context) async {
     final String host = await _getMainApiHost();
 
     Uri uri = Uri(
@@ -60,6 +60,7 @@ class VbbApi {
         "longitude": longitude.toString(),
         "linesOfStops": "true",
         "pretty": "false",
+        "results": count.toString(),
       }
     );
 

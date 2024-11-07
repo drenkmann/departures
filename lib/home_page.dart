@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
 
+  int _nearbyStationsCount = 10;
 
   Future<LocationData?> _getLocation() async {
     try {
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!, context);
+    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!, _nearbyStationsCount, context);
     setState(() {
       _nearbyStations = nearbyStations;
     });
@@ -99,7 +100,12 @@ class _HomePageState extends State<HomePage> {
         ),
         Expanded(
           child: RefreshIndicator(
-            onRefresh: _updateNearbyStations,
+            onRefresh: () {
+              setState(() {
+                _nearbyStationsCount = 10;
+              });
+              return _updateNearbyStations();
+            },
             key: _refreshIndicatorKey,
             child: _nearbyStations.isEmpty
               ? LayoutBuilder(
@@ -121,8 +127,28 @@ class _HomePageState extends State<HomePage> {
               )
               : ListView.builder(
               padding: EdgeInsets.zero,
-              itemCount: _nearbyStations.length,
+              itemCount: _nearbyStations.length + 1,
               itemBuilder: (context, index) {
+                if (index == _nearbyStations.length) {
+                  return ListTile(
+                    title: Center(
+                      child: Text(
+                        _appLocalizations!.loadMore,
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          decoration: TextDecoration.underline
+                        ),
+                      )
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _nearbyStationsCount += 10;
+                      });
+                      _updateNearbyStations();
+                    },
+                  );
+                }
+
                 Map<String, LineType> lineTypes = {};
 
                 for (final line in _nearbyStations[index].lines!) {
