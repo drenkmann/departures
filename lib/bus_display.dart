@@ -40,6 +40,7 @@ class BusDisplay extends StatelessWidget {
                   color: Colors.redAccent,
                   decorationColor: Colors.redAccent,
                   decoration: TextDecoration.lineThrough,
+                  decorationThickness: 2,
                   height: 1.2
                 )
                 : null
