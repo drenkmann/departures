@@ -13,7 +13,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => ApiHostProvider()),
+        ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
       ],
       child: const DeparturesApp()
     )

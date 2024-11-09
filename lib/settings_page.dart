@@ -26,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _mainHostController = TextEditingController();
     _fallbackHostController = TextEditingController();
 
-    final apiHostProvider = Provider.of<ApiHostProvider>(context, listen: false);
+    final apiHostProvider = Provider.of<ApiSettingsProvider>(context, listen: false);
     _mainHostController.text = apiHostProvider.mainHost;
     _fallbackHostController.text = apiHostProvider.fallbackHost;
   }
@@ -116,7 +116,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
-                title: Consumer<ApiHostProvider>(
+                title: Consumer<ApiSettingsProvider>(
                   builder: (context, apiHostProvider, child) {
                     _mainHostController.text = apiHostProvider.mainHost;
 
@@ -139,7 +139,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
-                title: Consumer<ApiHostProvider>(
+                title: Consumer<ApiSettingsProvider>(
                   builder: (context, apiHostProvider, child) {
                     _fallbackHostController.text = apiHostProvider.fallbackHost;
 

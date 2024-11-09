@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ApiHostProvider with ChangeNotifier {
+class ApiSettingsProvider with ChangeNotifier {
   String _mainHost = "";
   String get mainHost => _mainHost;
 
   String _fallbackHost = "";
   String get fallbackHost => _fallbackHost;
 
-  ApiHostProvider() {
+  ApiSettingsProvider() {
     loadHostPreferences();
   }
 

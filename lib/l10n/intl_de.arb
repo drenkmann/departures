@@ -27,5 +27,6 @@
     "settingsMainHostLabel": "Primärer API Host",
     "settingsFallbackHostLabel": "Sekundärer API Host",
     "settingsAboutAppButton": "Über diese App",
-    "searchBarPlaceholder": "Haltestelle eingeben"
+    "searchBarPlaceholder": "Haltestelle eingeben",
+    "loadMore": "Mehr laden"
 }

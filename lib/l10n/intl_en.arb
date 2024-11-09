@@ -99,5 +99,9 @@
     "searchBarPlaceholder": "Enter station name",
     "@searchBarPlaceholder": {
         "description": "Placeholder for station search bar"
+    },
+    "loadMore": "Load more",
+    "@loadMore": {
+        "description": "Button to load more nearby stations"
     }
 }

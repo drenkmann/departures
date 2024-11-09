@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
 
+  bool _isProgrammaticRefresh = false;
+  int _nearbyStationsCount = 10;
 
   Future<LocationData?> _getLocation() async {
     try {
@@ -70,13 +72,33 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _updateNearbyStations() async {
+    if (_isProgrammaticRefresh) {
+      setState(() {
+        _nearbyStationsCount += 10;
+      });
+    } else {
+      setState(() {
+        _nearbyStationsCount = 10;
+      });
+    }
+
+    setState(() {
+      _isProgrammaticRefresh = false;
+    });
+
     final LocationData? locationData = await _getLocation();
 
     if (locationData == null || !mounted) {
       return;
     }
 
-    final nearbyStations = await VbbApi.getNearbyStations(locationData.latitude!, locationData.longitude!, context);
+    final nearbyStations = await VbbApi.getNearbyStations(
+      locationData.latitude!,
+      locationData.longitude!,
+      context,
+      count: _nearbyStationsCount,
+    );
+
     setState(() {
       _nearbyStations = nearbyStations;
     });
@@ -121,8 +143,26 @@ class _HomePageState extends State<HomePage> {
               )
               : ListView.builder(
               padding: EdgeInsets.zero,
-              itemCount: _nearbyStations.length,
+              itemCount: _nearbyStations.length + 1,
               itemBuilder: (context, index) {
+                if (index == _nearbyStations.length) {
+                  return ListTile(
+                    title: Center(
+                      child: Text(
+                        _appLocalizations!.loadMore,
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          decoration: TextDecoration.underline
+                        ),
+                      )
+                    ),
+                    onTap: () {
+                      _isProgrammaticRefresh = true;
+                      _refreshIndicatorKey.currentState?.show();
+                    },
+                  );
+                }
+
                 Map<String, LineType> lineTypes = {};
 
                 for (final line in _nearbyStations[index].lines!) {

@@ -1,6 +1,5 @@
 import 'package:departures/line_types.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class BusDisplay extends StatelessWidget {
   const BusDisplay({
@@ -35,12 +34,13 @@ class BusDisplay extends StatelessWidget {
         trailing: Text.rich(
           TextSpan(children: [
             TextSpan(
-              text: "${(MediaQuery.of(context).alwaysUse24HourFormat ? DateFormat.Hm() : DateFormat.jm()).format(departureTime)} ",
+              text: "${TimeOfDay.fromDateTime(departureTime).format(context)} ",
               style: cancelled ?? false
                 ? const TextStyle(
                   color: Colors.redAccent,
                   decorationColor: Colors.redAccent,
                   decoration: TextDecoration.lineThrough,
+                  decorationThickness: 2,
                   height: 1.2
                 )
                 : null
