@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
 
+  bool _isProgrammaticRefresh = false;
   int _nearbyStationsCount = 10;
 
   Future<LocationData?> _getLocation() async {
@@ -71,6 +72,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _updateNearbyStations() async {
+    if (_isProgrammaticRefresh) {
+      setState(() {
+        _nearbyStationsCount += 10;
+      });
+    } else {
+      setState(() {
+        _nearbyStationsCount = 10;
+      });
+    }
+
+    setState(() {
+      _isProgrammaticRefresh = false;
+    });
+
     final LocationData? locationData = await _getLocation();
 
     if (locationData == null || !mounted) {
@@ -83,6 +98,7 @@ class _HomePageState extends State<HomePage> {
       context,
       count: _nearbyStationsCount,
     );
+
     setState(() {
       _nearbyStations = nearbyStations;
     });
@@ -105,12 +121,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Expanded(
           child: RefreshIndicator(
-            onRefresh: () {
-              setState(() {
-                _nearbyStationsCount = 10;
-              });
-              return _updateNearbyStations();
-            },
+            onRefresh: _updateNearbyStations,
             key: _refreshIndicatorKey,
             child: _nearbyStations.isEmpty
               ? LayoutBuilder(
@@ -146,10 +157,8 @@ class _HomePageState extends State<HomePage> {
                       )
                     ),
                     onTap: () {
-                      setState(() {
-                        _nearbyStationsCount += 10;
-                      });
-                      _updateNearbyStations();
+                      _isProgrammaticRefresh = true;
+                      _refreshIndicatorKey.currentState?.show();
                     },
                   );
                 }
