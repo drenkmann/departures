@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:departures/bus_display.dart';
 import 'package:departures/line_types.dart';
 import 'package:departures/services/departure.dart';
@@ -5,7 +7,6 @@ import 'package:departures/services/vbb_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:intl/intl.dart';
 
 class StationDepartures extends StatefulWidget {
   const StationDepartures({
@@ -38,6 +39,7 @@ class _StationDeparturesState extends State<StationDepartures> {
 
   bool _isProgrammaticRefresh = false;
   int _duration = 30;
+  TimeOfDay? _when;
 
   Future<void> _updateDepartures() async {
     if (_isProgrammaticRefresh) {
@@ -73,6 +75,21 @@ class _StationDeparturesState extends State<StationDepartures> {
     });
   }
 
+  void _changeWhenPopup() async {
+    final selectedTime = await showTimePicker(
+      context: context,
+      initialTime: _when ?? TimeOfDay.now(),
+    );
+
+    if (selectedTime != null) {
+      setState(() {
+        _when = selectedTime;
+      });
+
+      _refreshIndicatorKey.currentState?.show();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     stationId = widget.stationId;
@@ -82,9 +99,34 @@ class _StationDeparturesState extends State<StationDepartures> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
-            child: Text(widget.stationName, style: Theme.of(context).textTheme.headlineSmall,),
+          bottom: false,
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 0, bottom: 4),
+                  child: Text(
+                    widget.stationName,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                child: OutlinedButton(
+                  onPressed: _changeWhenPopup,
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  ),
+                  child: Text("${_when?.format(context) ?? TimeOfDay.now().format(context)} ")
+                ),
+              ),
+            ],
           ),
         ),
         const Divider(indent: 16, endIndent: 16,),

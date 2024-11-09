@@ -11,6 +11,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VbbApi {
   VbbApi._();
 
+  static String getIso8601FromTimeOfDay(TimeOfDay time) {
+    final now = DateTime.now();
+    final DateTime combinedDateTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      time.hour,
+      time.minute,
+    );
+
+    // Get timezone offset in minutes
+    final offset = now.timeZoneOffset;
+    final sign = offset.isNegative ? '-' : '+';
+    final hours = offset.inHours.abs().toString().padLeft(2, '0');
+    final minutes = (offset.inMinutes.abs() % 60).toString().padLeft(2, '0');
+
+    return '${combinedDateTime.toIso8601String().substring(0, 19)}$sign$hours:$minutes';
+  }
+
   static void _showError(BuildContext context, String errorMessage, [List<Widget>? actions]) async {
     if (!context.mounted) return;
       AppLocalizations appLocalizations = AppLocalizations.of(context)!;
@@ -113,7 +132,7 @@ class VbbApi {
     }
   }
 
-  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {DateTime? when, int? duration}) async {
+  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {TimeOfDay? when, int? duration}) async {
     final String host = await _getMainApiHost();
 
     Uri uri = Uri(
@@ -125,7 +144,7 @@ class VbbApi {
         "pretty": "false",
         "remarks": "false",
         "duration": duration?.toString() ?? "30",
-        if (when != null) "when": when.toIso8601String(),
+        if (when != null) "when": getIso8601FromTimeOfDay(when),
       }
     );
 
