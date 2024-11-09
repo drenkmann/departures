@@ -4,6 +4,8 @@ import 'package:departures/services/departure.dart';
 import 'package:departures/services/vbb_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class StationDepartures extends StatefulWidget {
   const StationDepartures({
@@ -34,8 +36,25 @@ class _StationDeparturesState extends State<StationDepartures> {
   String stationId = "";
   List<Departure> _departures = [];
 
+  bool _isProgrammaticRefresh = false;
+  int _duration = 30;
+
   Future<void> _updateDepartures() async {
-    final departures = await VbbApi.getDeparturesAtStop(stationId, context);
+    if (_isProgrammaticRefresh) {
+      setState(() {
+        _duration += 30;
+      });
+    } else {
+      setState(() {
+        _duration = 30;
+      });
+    }
+
+    setState(() {
+      _isProgrammaticRefresh = false;
+    });
+
+    final departures = await VbbApi.getDeparturesAtStop(stationId, context, duration: _duration, when: _when);
     departures.sort((a, b) {
       final timeA = DateTime.parse(a.when ?? a.plannedWhen!).toLocal();
       final timeB = DateTime.parse(b.when ?? b.plannedWhen!).toLocal();
@@ -74,8 +93,28 @@ class _StationDeparturesState extends State<StationDepartures> {
             onRefresh: _updateDepartures,
             key: _refreshIndicatorKey,
             child: ListView.builder(
-              itemCount: _departures.length,
+              itemCount: _departures.length + 1,
               itemBuilder: (context, index) {
+                if (index == _departures.length) {
+                  return ListTile(
+                    title: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.loadMore,
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          decoration: TextDecoration.underline
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _isProgrammaticRefresh = true;
+                      });
+                      _refreshIndicatorKey.currentState?.show();
+                    },
+                  );
+                }
+
                 return BusDisplay(
                   direction: _departures[index].direction!,
                   line: _departures[index].line!.name!,

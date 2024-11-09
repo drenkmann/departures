@@ -113,7 +113,7 @@ class VbbApi {
     }
   }
 
-  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context) async {
+  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {DateTime? when, int? duration}) async {
     final String host = await _getMainApiHost();
 
     Uri uri = Uri(
@@ -124,7 +124,8 @@ class VbbApi {
         "express": "false",
         "pretty": "false",
         "remarks": "false",
-        "duration": "30",
+        "duration": duration?.toString() ?? "30",
+        if (when != null) "when": when.toIso8601String(),
       }
     );
 
