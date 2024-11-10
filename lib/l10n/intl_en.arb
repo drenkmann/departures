@@ -120,6 +120,8 @@
     },
     "settingsAboutAppButton": "About Departures",
     "@settingsAboutAppButton": {},
+    "settingsOpenDeviceSettingsButton": "Open Device Settings",
+    "@settingsOpenDeviceSettingsButton": {},
     "settingsOpenGithubButton": "Open Github",
     "@settingsOpenGithubButton": {},
     "searchBarPlaceholder": "Enter station name",

@@ -2,6 +2,7 @@ import 'package:departures/provider/api_host_settings.dart';
 import 'package:departures/provider/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -199,6 +200,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   }
                 },
               ),
+              ListTile(
+                title: Text(appLocalizations.settingsOpenDeviceSettingsButton),
+                trailing: const Icon(Icons.settings_outlined),
+                onTap: Geolocator.openAppSettings,
+              )
             ],
           ),
         )
