@@ -124,6 +124,8 @@
     "@settingsOpenDeviceSettingsButton": {},
     "settingsOpenGithubButton": "Open Github",
     "@settingsOpenGithubButton": {},
+    "settingsOpenPrivacyPolicyButton": "Open Privacy Policy",
+    "@settingsOpenPrivacyPolicyButton": {},
     "searchBarPlaceholder": "Enter station name",
     "@searchBarPlaceholder": {
         "description": "Placeholder for station search bar"

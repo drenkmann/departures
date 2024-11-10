@@ -201,6 +201,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               ListTile(
+                title: Text(appLocalizations.settingsOpenPrivacyPolicyButton),
+                trailing: const Icon(Icons.privacy_tip_outlined),
+                onTap: () async {
+                  if (!await launchUrlString("https://github.com/drenkmann/departures")) {
+                    throw Exception("Could not open github URL");
+                  }
+                },
+              ),
+              ListTile(
                 title: Text(appLocalizations.settingsOpenDeviceSettingsButton),
                 trailing: const Icon(Icons.settings_outlined),
                 onTap: Geolocator.openAppSettings,
