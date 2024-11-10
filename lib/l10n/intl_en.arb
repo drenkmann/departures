@@ -24,7 +24,7 @@
     "@locationCouldNotBeAccessed": {
         "description": "Text displayed when location couldn't be accessed"
     },
-    "locationCouldNotBeAccessedReason": "Couldn''t access location:\n{error}",
+    "locationCouldNotBeAccessedReason": "Couldn't access location:\n{error}",
     "@locationCouldNotBeAccessedReason": {
         "description": "Error reason on location permission error",
         "placeholders": {
@@ -34,9 +34,25 @@
             }
         }
     },
+    "locationNotEnabledError": "Location Error",
+    "@locationNotEnabledError": {
+        "description": "Error title on location error"
+    },
+    "locationNotEnabled": "Location services are not enabled.",
+    "@locationNotEnabled": {
+        "description": "Text displayed when location services are not enabled"
+    },
     "permissionsError": "Permissions Error",
     "@permissionsError": {
         "description": "Error title on permissions error"
+    },
+    "locationDisabledAdvice": "Please enable location services in your device settings.",
+    "@locationDisabledAdvice": {
+        "description": "Advice to enable location services"
+    },
+    "locationPermissionDeniedAdvice": "Please grant location permissions to the app in your device settings.",
+    "@locationPermissionDeniedAdvice": {
+        "description": "Advice to grant location permissions"
     },
     "generalError": "Error",
     "@generalError": {

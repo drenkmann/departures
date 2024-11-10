@@ -4,10 +4,8 @@ import 'package:departures/services/stop.dart';
 import 'package:departures/station_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:location/location.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -31,7 +29,6 @@ class _HomePageState extends State<HomePage> {
   AppLocalizations? _appLocalizations;
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
-  final Location location = Location();
 
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
@@ -39,11 +36,69 @@ class _HomePageState extends State<HomePage> {
   bool _isProgrammaticRefresh = false;
   int _nearbyStationsCount = 10;
 
-  Future<LocationData?> _getLocation() async {
-    try {
-      final locationResult = await location.getLocation();
-      return locationResult;
-    } on PlatformException catch (err) {
+  Future<Position?> _getLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      setState(() {
+        emptyListExplanation = _appLocalizations!.locationNotEnabled;
+      });
+
+      if (!mounted) return null;
+      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+        title: Text(_appLocalizations!.locationNotEnabledError),
+        content: Text(_appLocalizations!.locationDisabledAdvice),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_appLocalizations!.close),
+          ),
+          TextButton(
+            onPressed: () {
+              Geolocator.openLocationSettings();
+              Navigator.pop(context);
+            },
+            child: Text(_appLocalizations!.openSettings),
+          ),
+        ],
+      ));
+
+      return null;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        setState(() {
+          emptyListExplanation = _appLocalizations!.locationCouldNotBeAccessed;
+        });
+
+        if (!mounted) return null;
+        showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+          title: Text(_appLocalizations!.permissionsError),
+          content: Text(_appLocalizations!.locationPermissionDeniedAdvice),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(_appLocalizations!.close),
+            ),
+            TextButton(
+              onPressed: () {
+                Geolocator.openAppSettings();
+                Navigator.pop(context);
+              },
+              child: Text(_appLocalizations!.openSettings),
+            ),
+          ],
+        ));
+
+        return null;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
       setState(() {
         emptyListExplanation = _appLocalizations!.locationCouldNotBeAccessed;
       });
@@ -51,24 +106,26 @@ class _HomePageState extends State<HomePage> {
       if (!mounted) return null;
       showDialog(context: context, builder: (BuildContext context) => AlertDialog(
         title: Text(_appLocalizations!.permissionsError),
-        content: Text(_appLocalizations!.locationCouldNotBeAccessedReason(err.code)),
+        content: Text(_appLocalizations!.locationPermissionDeniedAdvice),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(context, _appLocalizations!.close),
+            onPressed: () => Navigator.pop(context),
             child: Text(_appLocalizations!.close),
           ),
           TextButton(
             onPressed: () {
-              openAppSettings();
-              Navigator.pop(context, _appLocalizations!.openSettings);
+              Geolocator.openAppSettings();
+              Navigator.pop(context);
             },
             child: Text(_appLocalizations!.openSettings),
           ),
         ],
       ));
+
+      return null;
     }
 
-    return null;
+    return Geolocator.getCurrentPosition();
   }
 
   Future<void> _updateNearbyStations() async {
@@ -86,15 +143,15 @@ class _HomePageState extends State<HomePage> {
       _isProgrammaticRefresh = false;
     });
 
-    final LocationData? locationData = await _getLocation();
+    final Position? locationData = await _getLocation();
 
     if (locationData == null || !mounted) {
       return;
     }
 
     final nearbyStations = await VbbApi.getNearbyStations(
-      locationData.latitude!,
-      locationData.longitude!,
+      locationData.latitude,
+      locationData.longitude,
       context,
       count: _nearbyStationsCount,
     );
