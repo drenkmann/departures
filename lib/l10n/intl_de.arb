@@ -33,6 +33,9 @@
     "settingsMainHostLabel": "Primärer API Host",
     "settingsFallbackHostLabel": "Sekundärer API Host",
     "settingsAboutAppButton": "Über diese App",
+    "settingsOpenGithubButton": "Github öffnen",
+    "settingsOpenPrivacyPolicyButton": "Datenschutzrichtlinie öffnen",
+    "settingsOpenDeviceSettingsButton": "Geräte Einstellungen öffnen",
     "searchBarPlaceholder": "Haltestelle eingeben",
     "loadMore": "Mehr laden"
 }
