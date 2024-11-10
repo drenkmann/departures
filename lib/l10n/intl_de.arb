@@ -12,6 +12,8 @@
     "permissionsError": "Berechtigungs Fehler",
     "locationDisabledAdvice": "Bitte aktiviere Standort Dienste in den Geräte Einstellungen.",
     "locationPermissionDeniedAdvice": "Bitte gewähre der App Standort Berechtigungen in den Geräte Einstellungen.",
+    "locationNotPreciseAdvice": "Bitte aktiviere genaue Standort Dienste in den Geräte Einstellungen.",
+    "locationNotPrecise": "Standort nicht genau genug.",
     "generalError": "Fehler",
     "ok": "OK",
     "close": "Schließen",

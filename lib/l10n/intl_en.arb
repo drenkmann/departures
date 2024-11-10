@@ -54,6 +54,14 @@
     "@locationPermissionDeniedAdvice": {
         "description": "Advice to grant location permissions"
     },
+    "locationNotPreciseAdvice": "Please enable precise location services in your device settings.",
+    "@locationNotPreciseAdvice": {
+        "description": "Advice to enable precise location services"
+    },
+    "locationNotPrecise": "Location not precise enough.",
+    "@locationNotPrecise": {
+        "description": "Text displayed when precise location isn't enabled"
+    },
     "generalError": "Error",
     "@generalError": {
         "description": "General error title"

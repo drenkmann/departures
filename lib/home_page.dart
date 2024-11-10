@@ -125,6 +125,35 @@ class _HomePageState extends State<HomePage> {
       return null;
     }
 
+    final LocationAccuracyStatus accuracy = await Geolocator.getLocationAccuracy();
+
+    if (!(accuracy == LocationAccuracyStatus.precise)) {
+      setState(() {
+        emptyListExplanation = _appLocalizations!.locationNotPrecise;
+      });
+
+      if (!mounted) return null;
+      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+        title: Text(_appLocalizations!.permissionsError),
+        content: Text(_appLocalizations!.locationNotPreciseAdvice),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_appLocalizations!.close),
+          ),
+          TextButton(
+            onPressed: () {
+              Geolocator.openAppSettings();
+              Navigator.pop(context);
+            },
+            child: Text(_appLocalizations!.openSettings),
+          ),
+        ],
+      ));
+
+      return null;
+    }
+
     return Geolocator.getCurrentPosition();
   }
 
