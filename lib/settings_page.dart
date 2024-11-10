@@ -191,7 +191,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               ListTile(
-                title: const Text("Open Github"),
+                title: Text(appLocalizations.settingsOpenGithubButton),
                 trailing: const Icon(Icons.code_outlined),
                 onTap: () async {
                   if (!await launchUrlString("https://github.com/drenkmann/departures")) {
