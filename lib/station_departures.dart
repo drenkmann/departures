@@ -84,6 +84,7 @@ class _StationDeparturesState extends State<StationDepartures> {
     if (selectedTime != null) {
       setState(() {
         _when = selectedTime;
+        _duration = 30;
       });
 
       _refreshIndicatorKey.currentState?.show();
