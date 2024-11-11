@@ -54,7 +54,7 @@
     "@locationPermissionDeniedAdvice": {
         "description": "Advice to grant location permissions"
     },
-    "locationNotPreciseAdvice": "Please enable precise location services in your device settings.",
+    "locationNotPreciseAdvice": "Please grant precise location permissions to the app in your device settings.",
     "@locationNotPreciseAdvice": {
         "description": "Advice to enable precise location services"
     },
@@ -120,6 +120,12 @@
     },
     "settingsAboutAppButton": "About Departures",
     "@settingsAboutAppButton": {},
+    "settingsOpenDeviceSettingsButton": "Open Device Settings",
+    "@settingsOpenDeviceSettingsButton": {},
+    "settingsOpenGithubButton": "Open Github",
+    "@settingsOpenGithubButton": {},
+    "settingsOpenPrivacyPolicyButton": "Open Privacy Policy",
+    "@settingsOpenPrivacyPolicyButton": {},
     "searchBarPlaceholder": "Enter station name",
     "@searchBarPlaceholder": {
         "description": "Placeholder for station search bar"
