@@ -17,6 +17,7 @@
     "generalError": "Fehler",
     "connectionError": "Verbindungsfehler",
     "connectionErrorAdvice": "Bitte überprüfe deine Internetverbindung.",
+    "httpError": "HTTP Fehler",
     "ok": "OK",
     "close": "Schließen",
     "openSettings": "Einstellungen öffnen",

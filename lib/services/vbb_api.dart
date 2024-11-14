@@ -103,7 +103,11 @@ class VbbApi {
       }
       else {
         if (context.mounted) {
-          _showError(context, "HTTP Error: ${response.statusCode}");
+          _showError(
+            context,
+            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+            title: AppLocalizations.of(context)!.httpError
+          );
         }
 
         return [];
@@ -156,7 +160,11 @@ class VbbApi {
       }
       else {
         if (context.mounted) {
-          _showError(context, "HTTP Error: ${response.statusCode}");
+          _showError(
+            context,
+            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+            title: AppLocalizations.of(context)!.httpError
+          );
         }
 
         return [];
@@ -204,7 +212,11 @@ class VbbApi {
       }
       else {
         if (context.mounted) {
-          _showError(context, "HTTP Error: ${response.statusCode}");
+          _showError(
+            context,
+            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+            title: AppLocalizations.of(context)!.httpError
+          );
         }
 
         return null;
@@ -267,7 +279,11 @@ class VbbApi {
       }
       else {
         if (context.mounted) {
-          _showError(context, "HTTP Error: ${response.statusCode} - ${response.reasonPhrase}");
+          _showError(
+            context,
+            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+            title: AppLocalizations.of(context)!.httpError
+          );
         }
 
         return [];

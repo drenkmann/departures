@@ -74,6 +74,10 @@
     "@connectionErrorAdvice": {
         "description": "Advice to check internet connection"
     },
+    "httpError": "HTTP Error",
+    "@httpError": {
+        "description": "Error title on HTTP error"
+    },
     "ok": "OK",
     "@ok": {},
     "close": "Close",
