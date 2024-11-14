@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:departures/services/departure.dart';
 import 'package:departures/services/stop.dart';
 import 'package:departures/services/station.dart';
@@ -30,12 +31,12 @@ class VbbApi {
     return '${combinedDateTime.toIso8601String().substring(0, 19)}$sign$hours:$minutes';
   }
 
-  static void _showError(BuildContext context, String errorMessage, [List<Widget>? actions]) async {
+  static void _showError(BuildContext context, String errorMessage, {String? title, List<Widget>? actions}) async {
     if (!context.mounted) return;
       AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
       showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: Text(appLocalizations.generalError),
+        title: Text(title ?? appLocalizations.generalError),
         content: Text(errorMessage),
         actions: <Widget>[
           TextButton(
@@ -57,7 +58,25 @@ class VbbApi {
     }
   }
 
+  static Future<bool> _hasInternetConnection() async {
+    final connectivity = await Connectivity().checkConnectivity();
+
+    return !connectivity.contains(ConnectivityResult.none);
+  }
+
   static Future<List<Stop>> getNearbyStations(double latitude, double longitude, BuildContext context, {int? count}) async {
+    if (!await _hasInternetConnection()) {
+      if (context.mounted) {
+        _showError(
+          context,
+          AppLocalizations.of(context)!.connectionErrorAdvice,
+          title: AppLocalizations.of(context)!.connectionError,
+        );
+      }
+
+      return [];
+    }
+
     final String host = await _getApiHost();
 
     Uri uri = Uri(
@@ -99,6 +118,18 @@ class VbbApi {
   }
 
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {TimeOfDay? when, int? duration}) async {
+    if (!await _hasInternetConnection()) {
+      if (context.mounted) {
+        _showError(
+          context,
+          AppLocalizations.of(context)!.connectionErrorAdvice,
+          title: AppLocalizations.of(context)!.connectionError,
+        );
+      }
+
+      return [];
+    }
+
     final String host = await _getApiHost();
 
     Uri uri = Uri(
@@ -140,6 +171,18 @@ class VbbApi {
   }
 
   static Future<Stop?> getStationInfo(BuildContext context, String stopId) async {
+    if (!await _hasInternetConnection()) {
+      if (context.mounted) {
+        _showError(
+          context,
+          AppLocalizations.of(context)!.connectionErrorAdvice,
+          title: AppLocalizations.of(context)!.connectionError,
+        );
+      }
+
+      return null;
+    }
+
     final String host = await _getApiHost();
 
     Uri uri = Uri(
@@ -176,6 +219,18 @@ class VbbApi {
   }
 
   static Future<List<Stop>> getStations(String query, BuildContext context) async {
+    if (!await _hasInternetConnection()) {
+      if (context.mounted) {
+        _showError(
+          context,
+          AppLocalizations.of(context)!.connectionErrorAdvice,
+          title: AppLocalizations.of(context)!.connectionError,
+        );
+      }
+
+      return [];
+    }
+
     final String host = await _getApiHost();
 
     Uri uri = Uri(
