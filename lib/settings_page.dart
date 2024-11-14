@@ -16,26 +16,21 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
-  late TextEditingController _fallbackHostController;
   FocusNode mainHostFocusNode = FocusNode();
-  FocusNode fallbackHostFocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
 
     _mainHostController = TextEditingController();
-    _fallbackHostController = TextEditingController();
 
     final apiHostProvider = Provider.of<ApiSettingsProvider>(context, listen: false);
     _mainHostController.text = apiHostProvider.mainHost;
-    _fallbackHostController.text = apiHostProvider.fallbackHost;
   }
 
   @override
   void dispose() {
     _mainHostController.dispose();
-    _fallbackHostController.dispose();
 
     super.dispose();
   }
@@ -128,35 +123,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         mainHostFocusNode.unfocus();
                       },
                       onChanged: (value) {
-                        apiHostProvider.saveMainHostPreference(value);
-                      },
-                      decoration: InputDecoration(
-                        border: const UnderlineInputBorder(),
-                        hintText: "v6.bvg.transport.rest",
-                        labelText: appLocalizations.settingsMainHostLabel,
-                      ),
-                    );
-                  }
-                ),
-              ),
-              ListTile(
-                title: Consumer<ApiSettingsProvider>(
-                  builder: (context, apiHostProvider, child) {
-                    _fallbackHostController.text = apiHostProvider.fallbackHost;
-
-                    return TextFormField(
-                      controller: _fallbackHostController,
-                      focusNode: fallbackHostFocusNode,
-                      onTapOutside: (event) {
-                        fallbackHostFocusNode.unfocus();
-                      },
-                      onChanged: (value) {
-                        apiHostProvider.saveFallbackHostPreferences(value);
+                        apiHostProvider.saveHostPreference(value);
                       },
                       decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
                         hintText: "v6.vbb.transport.rest",
-                        labelText: appLocalizations.settingsFallbackHostLabel,
+                        labelText: appLocalizations.settingsApiHostLabel,
                       ),
                     );
                   }

@@ -47,19 +47,9 @@ class VbbApi {
       ));
   }
 
-  static Future<String> _getMainApiHost() async {
+  static Future<String> _getApiHost() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final host = prefs.getString("apiHost");
-    if (host != null && host.isNotEmpty) {
-      return host;
-    } else {
-      return "v6.bvg.transport.rest";
-    }
-  }
-
-  static Future<String> _getFallbackApiHost() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final host = prefs.getString("apiFallbackHost");
     if (host != null && host.isNotEmpty) {
       return host;
     } else {
@@ -68,7 +58,7 @@ class VbbApi {
   }
 
   static Future<List<Stop>> getNearbyStations(double latitude, double longitude, BuildContext context, {int? count}) async {
-    final String host = await _getMainApiHost();
+    final String host = await _getApiHost();
 
     Uri uri = Uri(
       scheme: "https",
@@ -93,35 +83,11 @@ class VbbApi {
         return nearbyStations;
       }
       else {
-        if (!context.mounted) {
-          return [];
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
         }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
-          )
-        );
-
-        final String fallbackHost = await _getFallbackApiHost();
-
-        final response = await http.get(
-          uri.replace(host: fallbackHost)
-        );
-
-        if (response.statusCode == 200) {
-          Iterable stations = json.decode(response.body);
-          List<Stop> nearbyStations = List<Stop>.from(stations.map((model) => Stop.fromJson(model)));
-
-          return nearbyStations;
-        }
-        else {
-          if (context.mounted) {
-            _showError(context, "HTTP Error: ${response.statusCode}");
-          }
-
-          return [];
-        }
+        return [];
       }
     } catch (e) {
       if (context.mounted) {
@@ -133,7 +99,7 @@ class VbbApi {
   }
 
   static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {TimeOfDay? when, int? duration}) async {
-    final String host = await _getMainApiHost();
+    final String host = await _getApiHost();
 
     Uri uri = Uri(
       scheme: "https",
@@ -156,33 +122,13 @@ class VbbApi {
         List<Departure> departures = List<Departure>.from(departuresAtStop['departures'].map((model) => Departure.fromJson(model)));
 
         return departures;
-      } else {
-        if (!context.mounted) {
-          return [];
+      }
+      else {
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
         }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
-          )
-        );
-
-        final String fallbackHost = await _getFallbackApiHost();
-
-        final response = await http.get(uri.replace(host: fallbackHost));
-
-        if (response.statusCode == 200) {
-          Map<String, dynamic> departuresAtStop = json.decode(response.body);
-          List<Departure> departures = List<Departure>.from(departuresAtStop['departures'].map((model) => Departure.fromJson(model)));
-
-          return departures;
-        } else {
-          if (context.mounted) {
-            _showError(context, "HTTP Error: ${response.statusCode}");
-          }
-
-          return [];
-        }
+        return [];
       }
     } catch (e) {
       if (context.mounted) {
@@ -194,7 +140,7 @@ class VbbApi {
   }
 
   static Future<Stop?> getStationInfo(BuildContext context, String stopId) async {
-    final String host = await _getMainApiHost();
+    final String host = await _getApiHost();
 
     Uri uri = Uri(
       scheme: "https",
@@ -212,22 +158,13 @@ class VbbApi {
         Stop info = Stop.fromJson(json.decode(response.body));
 
         return info;
-      } else {
-        final String fallbackHost = await _getFallbackApiHost();
-
-        final response = await http.get(uri.replace(host: fallbackHost));
-
-        if (response.statusCode == 200) {
-          Stop info = Stop.fromJson(json.decode(response.body));
-
-          return info;
-        } else {
-          if (context.mounted) {
-            _showError(context, "HTTP Error: ${response.statusCode}");
-          }
-
-          return null;
+      }
+      else {
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode}");
         }
+
+        return null;
       }
     } catch (e) {
       if (context.mounted) {
@@ -239,7 +176,7 @@ class VbbApi {
   }
 
   static Future<List<Stop>> getStations(String query, BuildContext context) async {
-    final String host = await _getMainApiHost();
+    final String host = await _getApiHost();
 
     Uri uri = Uri(
       scheme: "https",
@@ -272,46 +209,13 @@ class VbbApi {
         }
 
         return stations;
-      } else {
-        if (!context.mounted) {
-          return [];
+      }
+      else {
+        if (context.mounted) {
+          _showError(context, "HTTP Error: ${response.statusCode} - ${response.reasonPhrase}");
         }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context)!.vbbFallbackMessage)
-          )
-        );
-
-        final String fallbackHost = await _getFallbackApiHost();
-
-        final response = await http.get(uri.replace(host: fallbackHost));
-
-        if (response.statusCode == 200) {
-          Map<String, dynamic> stationsRaw = json.decode(response.body);
-          List<Stop> stations = [];
-          List<String> usedIds = [];
-
-          for (var v in stationsRaw.values) {
-            Station station = Station.fromJson(v);
-            String id = station.id!.split(":")[2];
-            if (!usedIds.contains(id) && context.mounted){
-              Stop? stop = await getStationInfo(context, id);
-              if (stop != null) {
-                stations.add(stop);
-              }
-              usedIds.add(id);
-            }
-          }
-
-          return stations;
-        } else {
-          if (context.mounted) {
-            _showError(context, "HTTP Error: ${response.statusCode}");
-          }
-
-          return [];
-        }
+        return [];
       }
     } catch (e) {
       if (context.mounted) {
