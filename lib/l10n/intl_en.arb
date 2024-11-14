@@ -66,6 +66,18 @@
     "@generalError": {
         "description": "General error title"
     },
+    "connectionError": "Connection Error",
+    "@connectionError": {
+        "description": "Error title on connection error"
+    },
+    "connectionErrorAdvice": "Please check your internet connection and try again.",
+    "@connectionErrorAdvice": {
+        "description": "Advice to check internet connection"
+    },
+    "httpError": "HTTP Error",
+    "@httpError": {
+        "description": "Error title on HTTP error"
+    },
     "ok": "OK",
     "@ok": {},
     "close": "Close",
