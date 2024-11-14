@@ -32,7 +32,7 @@ Es empfiehlt sich Obtainium zu benutzen um diese App zu installieren, da es sich
 Um die App manuell zu installieren, lade `app-release.apk` herunter und installiere die Datei.
 
 ## Credit
-Die verwendete API, welche von [@derhuerst](https://github.com/derhuerst) entwickelt wurde, kann hier gefunden werden: https://v6.bvg.transport.rest/
+Die verwendete API, welche von [@derhuerst](https://github.com/derhuerst) entwickelt wurde, kann hier gefunden werden: https://v6.vbb.transport.rest/
 
 ## Lizenz
 Dieses Projekt ist unter der [MIT Lizenz](../LICENSE.md) lizensiert.
