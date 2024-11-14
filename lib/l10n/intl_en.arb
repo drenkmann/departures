@@ -110,13 +110,9 @@
     "@settingsSectionAbout": {
         "description": "About section title"
     },
-    "settingsMainHostLabel": "Main API Host",
-    "@settingsMainHostLabel": {
-        "description": "Label of the text field for the main api host to be used"
-    },
-    "settingsFallbackHostLabel": "Fallback API Host",
-    "@settingsFallbackHostLabel": {
-        "description": "Label of the text field for the fallback api host to be used"
+    "settingsApiHostLabel": "API Host",
+    "@settingsApiHostLabel": {
+        "description": "Label of the text field for the api host to be used"
     },
     "settingsAboutAppButton": "About Departures",
     "@settingsAboutAppButton": {},

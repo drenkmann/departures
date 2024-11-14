@@ -31,7 +31,7 @@ It is recommended you use Obtainium to install this app, as it will ensure you d
 To install manually, download the `app-release.apk` and install it.
 
 ## Credit
-The underlying API, developed by [@derhuerst](https://github.com/derhuerst) can be found here: https://v6.bvg.transport.rest/
+The underlying API, developed by [@derhuerst](https://github.com/derhuerst) can be found here: https://v6.vbb.transport.rest/
 
 ## Privacy
 The Privacy Policy can be found at https://github.com/drenkmann/departures/blob/main/docs/PRIVACY-POLICY.md
