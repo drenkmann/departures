@@ -66,6 +66,18 @@
     "@generalError": {
         "description": "General error title"
     },
+    "connectionError": "Connection Error",
+    "@connectionError": {
+        "description": "Error title on connection error"
+    },
+    "connectionErrorAdvice": "Please check your internet connection and try again.",
+    "@connectionErrorAdvice": {
+        "description": "Advice to check internet connection"
+    },
+    "httpError": "HTTP Error",
+    "@httpError": {
+        "description": "Error title on HTTP error"
+    },
     "ok": "OK",
     "@ok": {},
     "close": "Close",
@@ -110,13 +122,9 @@
     "@settingsSectionAbout": {
         "description": "About section title"
     },
-    "settingsMainHostLabel": "Main API Host",
-    "@settingsMainHostLabel": {
-        "description": "Label of the text field for the main api host to be used"
-    },
-    "settingsFallbackHostLabel": "Fallback API Host",
-    "@settingsFallbackHostLabel": {
-        "description": "Label of the text field for the fallback api host to be used"
+    "settingsApiHostLabel": "API Host",
+    "@settingsApiHostLabel": {
+        "description": "Label of the text field for the api host to be used"
     },
     "settingsAboutAppButton": "About Departures",
     "@settingsAboutAppButton": {},

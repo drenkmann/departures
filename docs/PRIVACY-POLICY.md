@@ -16,7 +16,7 @@ The Application does not store precise information about the location of your mo
 The Application collects your device's location, which helps the Service Provider determine your precise geographical location and make use of in below ways:
 
 *   Geolocation Services: The Service Provider utilizes location data to provide features such as a list of nearby public transport stations.
-*   Third-Party Services: The Service Provider may transmit anonymized location data to external services, such as https://v6.bvg.transport.rest and https://v6.vbb.transport.rest.
+*   Third-Party Services: The Service Provider may transmit anonymized location data to external services, such as https://v6.vbb.transport.rest.
 
 For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information, including but not limited to location. The information that the Service Provider request will not be retained by them and used as described in this privacy policy.
 

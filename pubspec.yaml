@@ -7,7 +7,7 @@ publish_to: 'none'
 # Increment MINOR when introducing new features
 # Increment PATCH when fixing bugs/refactoring
 # Changes that do not modify code (e.g. README) should not increment the version number
-version: 2.0.1+13
+version: 2.1.0+14
 
 environment:
   sdk: ^3.5.3
@@ -27,6 +27,7 @@ dependencies:
   package_info_plus: ^8.1.0
   url_launcher: ^6.3.1
   geolocator: ^13.0.1
+  connectivity_plus: ^6.1.0
 
 dev_dependencies:
   flutter_test:
