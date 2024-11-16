@@ -40,7 +40,7 @@ You can stop all collection of information by the Application easily by uninstal
 
 ### Data Retention Policy
 
-The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at departures@iamjustafish.mozmail.com and they will respond in a reasonable time.
+The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at departures-support@drenkmann.dev and they will respond in a reasonable time.
 
 The Service Provider does not collect or store any User Provided data, however Third-Party Services might. For more information, please refrence the previous sections.
 
@@ -48,7 +48,7 @@ The Service Provider does not collect or store any User Provided data, however T
 
 The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.
 
-The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (departures@iamjustafish.mozmail.com) so that they will be able to take the necessary actions.
+The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (departures-support@drenkmann.dev) so that they will be able to take the necessary actions.
 
 ### Security
 
@@ -66,7 +66,7 @@ By using the Application, you are consenting to the processing of your informati
 
 ### Contact Us
 
-If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at departures@iamjustafish.mozmail.com.
+If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at departures-support@drenkmann.dev.
 
 * * *
 
