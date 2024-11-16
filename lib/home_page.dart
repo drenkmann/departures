@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -25,6 +25,9 @@ class _HomePageState extends State<HomePage> {
       _refreshIndicatorKey.currentState?.show();
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   AppLocalizations? _appLocalizations;
 
@@ -192,6 +195,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     _appLocalizations = AppLocalizations.of(context);
     emptyListExplanation = _appLocalizations!.homeNoNearbyStations;
 
