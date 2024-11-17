@@ -1,8 +1,6 @@
 # Abfahrten
 
-[![Haupt API Status](https://img.shields.io/uptimerobot/status/m793274554-6cf10d741ce5352cc2a6d65f?style=flat-square&label=Haupt%20API&up_message=online&down_message=offline
-)](https://stats.uptimerobot.com/57wNLs39M/793274554)
-[![Sekundäre API Status](https://img.shields.io/uptimerobot/status/m793274559-f7e6aec36412170133ab2b04?style=flat-square&label=Sekund%C3%A4re%20API&up_message=online&down_message=offline
+[![API Status](https://img.shields.io/uptimerobot/status/m793274559-f7e6aec36412170133ab2b04?style=flat-square&label=api&up_message=online&down_message=offline
 )](https://stats.uptimerobot.com/57wNLs39M/793274559)
 [![Downloads](https://img.shields.io/github/downloads/drenkmann/departures/total?style=flat-square&color=blue
 )](https://github.com/drenkmann/departures/releases/latest)

@@ -3,6 +3,7 @@ import 'package:departures/provider/api_host_settings.dart';
 import 'package:departures/provider/theme_settings.dart';
 import 'package:departures/search_page.dart';
 import 'package:departures/settings_page.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -27,7 +28,7 @@ class DeparturesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.themeMode) {
+        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.themeModeEnum.themeMode) {
           ThemeMode.system =>
             MediaQuery.of(context).platformBrightness == Brightness.light ?
               SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
@@ -41,20 +42,35 @@ class DeparturesApp extends StatelessWidget {
 
         SystemChrome.setSystemUIOverlayStyle(overlayStyle);
 
-        return MaterialApp(
-          onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00)),
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00), brightness: Brightness.dark),
-          ),
-          themeMode: themeProvider.themeMode,
-          home: const AppMainPage(),
+        return DynamicColorBuilder(
+          builder: (ColorScheme? lightDynamicColor, ColorScheme? darkDynamicColor) {
+            ColorScheme lightColorScheme;
+            ColorScheme darkColorScheme;
+
+            if (themeProvider.materialYou && lightDynamicColor != null && darkDynamicColor != null) {
+              lightColorScheme = lightDynamicColor.harmonized();
+              darkColorScheme = darkDynamicColor.harmonized();
+            } else {
+              lightColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00));
+              darkColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00), brightness: Brightness.dark);
+            }
+
+            return MaterialApp(
+              onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: ThemeData(
+                useMaterial3: true,
+                colorScheme: lightColorScheme,
+              ),
+              darkTheme: ThemeData(
+                useMaterial3: true,
+                colorScheme: darkColorScheme,
+              ),
+              themeMode: themeProvider.themeModeEnum.themeMode,
+              home: const AppMainPage(),
+            );
+          }
         );
       }
     );
@@ -70,9 +86,10 @@ class AppMainPage extends StatefulWidget {
 }
 
 class _AppMainPageState extends State<AppMainPage> {
-  int _currentIndex = 0;
+  int _activePage = 0;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final _pageViewController = PageController();
 
   List<Widget> _pages = [];
 
@@ -88,22 +105,35 @@ class _AppMainPageState extends State<AppMainPage> {
   }
 
   @override
+  void dispose() {
+    _pageViewController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
+      body: PageView(
+        controller: _pageViewController, // Attach the controller here
         children: _pages,
+        onPageChanged: (int index) {
+          setState(() {
+            _activePage = index;
+          });
+        },
       ),
       key: scaffoldKey,
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        selectedIndex: _currentIndex,
+        selectedIndex: _activePage,
         onDestinationSelected: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          _pageViewController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.fastOutSlowIn,
+          );
         },
         destinations: <Widget>[
           NavigationDestination(
