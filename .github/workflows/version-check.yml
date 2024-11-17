@@ -3,6 +3,7 @@ name: Check Flutter Version Increment on PR
 on:
   pull_request:
     types: [opened, synchronize]
+    branches: main
 
 jobs:
   version-check:
