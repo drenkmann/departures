@@ -1,4 +1,5 @@
 import 'package:departures/provider/api_host_settings.dart';
+import 'package:departures/provider/theme_modes.dart';
 import 'package:departures/provider/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -71,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
                 trailing: Consumer<ThemeProvider>(
                   builder: (context, themeProvider, child) {
                     return DropdownMenu(
-                      initialSelection: themeProvider.themeMode,
+                      initialSelection: themeProvider.themeModeEnum,
                       inputDecorationTheme: InputDecorationTheme(
                         isDense: true,
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -82,19 +83,23 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
                       ),
                       dropdownMenuEntries: [
                         DropdownMenuEntry(
-                          value: ThemeMode.system,
+                          value: AppThemeMode.system,
                           label: appLocalizations.settingsThemeSystem
                         ),
                         DropdownMenuEntry(
-                          value: ThemeMode.dark,
+                          value: AppThemeMode.dark,
                           label: appLocalizations.settingsThemeDark
                         ),
                         DropdownMenuEntry(
-                          value: ThemeMode.light,
+                          value: AppThemeMode.light,
                           label: appLocalizations.settingsThemeLight
                         ),
+                        DropdownMenuEntry(
+                          value: AppThemeMode.you,
+                          label: "Material You"
+                        )
                       ],
-                      onSelected: (ThemeMode? themeMode) {
+                      onSelected: (AppThemeMode? themeMode) {
                         if (themeMode != null) {
                           themeProvider.setThemeMode(themeMode);
                         }

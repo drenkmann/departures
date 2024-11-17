@@ -1,21 +1,23 @@
+import 'package:departures/provider/theme_modes.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider with ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  AppThemeMode _themeModeEnum = AppThemeMode.system;
+  AppThemeMode get themeModeEnum => _themeModeEnum;
 
-  ThemeMode get themeMode => _themeMode;
+  bool get materialYou => _themeModeEnum == AppThemeMode.you;
 
   ThemeProvider() {
     loadThemePreference();
   }
 
-  Future<void> saveThemePreference(ThemeMode themeMode) async {
-    _themeMode = themeMode;
+  Future<void> saveThemePreference(AppThemeMode themeMode) async {
+    _themeModeEnum = themeMode;
     notifyListeners();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('themeMode', _themeMode.index);
+    prefs.setInt('themeMode', _themeModeEnum.index);
   }
 
   Future<void> loadThemePreference() async {
@@ -23,12 +25,12 @@ class ThemeProvider with ChangeNotifier {
     int? themeIndex = prefs.getInt('themeMode');
 
     if (themeIndex != null) {
-      _themeMode = ThemeMode.values[themeIndex];
+      _themeModeEnum = AppThemeMode.values[themeIndex];
       notifyListeners();
     }
   }
 
-  void setThemeMode(ThemeMode mode) {
+  void setThemeMode(AppThemeMode mode) {
     saveThemePreference(mode);
   }
 }
