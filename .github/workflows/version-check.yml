@@ -24,7 +24,7 @@ jobs:
       - name: Get current version from pubspec.yaml
         id: current_version
         run: |
-          current_version=$(grep '^version: ' pubspec.yaml | awk '{print $2}')
+          current_version=$(grep '^version: ' pubspec.yaml | awk '{print $2}' | sed 's/+.*//')
           echo "Current version is $current_version"
           echo "current_version=$current_version" >> $GITHUB_ENV
 
