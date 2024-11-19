@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:departures/bus_display.dart';
-import 'package:departures/line_types.dart';
+import 'package:departures/widgets/bus_display.dart';
+import 'package:departures/enums/line_types.dart';
 import 'package:departures/services/departure.dart';
-import 'package:departures/services/vbb_api.dart';
+import 'package:departures/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

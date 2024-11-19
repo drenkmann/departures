@@ -1,6 +1,6 @@
-import 'package:departures/provider/api_host_settings.dart';
-import 'package:departures/provider/theme_modes.dart';
-import 'package:departures/provider/theme_settings.dart';
+import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/enums/app_theme_modes.dart';
+import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';
@@ -72,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
                 trailing: Consumer<ThemeProvider>(
                   builder: (context, themeProvider, child) {
                     return DropdownMenu(
-                      initialSelection: themeProvider.themeModeEnum,
+                      initialSelection: themeProvider.appThemeMode,
                       inputDecorationTheme: InputDecorationTheme(
                         isDense: true,
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
