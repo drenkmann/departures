@@ -1,6 +1,7 @@
 import 'package:departures/provider/api_settings_provider.dart';
 import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
+import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';
@@ -106,6 +107,20 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
                       },
                     );
                   }
+                ),
+              ),
+              Consumer<TimeDisplaySettingsProvider>(
+                builder: (context, timeDisplayProvider, child) => ListTile(
+                  title: Text(appLocalizations.settingsShowActualTimeTitle),
+                  subtitle: timeDisplayProvider.showActualTime
+                    ? Text(appLocalizations.settingsShowActualTimeSubtitleOn)
+                    : Text(appLocalizations.settingsShowActualTimeSubtitleOff),
+                  trailing: Switch(
+                    value: timeDisplayProvider.showActualTime,
+                    onChanged: (value) {
+                      timeDisplayProvider.setShowActualTime(value);
+                    },
+                  ),
                 ),
               ),
               const Divider(

@@ -1,8 +1,9 @@
 import 'package:departures/pages/home_page.dart';
-import 'package:departures/provider/api_settings_provider.dart';
-import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/pages/search_page.dart';
 import 'package:departures/pages/settings_page.dart';
+import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/theme_settings_provider.dart';
+import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
+        ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
       ],
       child: const DeparturesApp()
     )
