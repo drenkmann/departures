@@ -1,12 +1,14 @@
 import 'dart:async';
 
-import 'package:departures/bus_display.dart';
-import 'package:departures/line_types.dart';
+import 'package:departures/provider/time_display_settings_provider.dart';
+import 'package:departures/widgets/bus_display.dart';
+import 'package:departures/enums/line_types.dart';
 import 'package:departures/services/departure.dart';
-import 'package:departures/services/vbb_api.dart';
+import 'package:departures/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class StationDepartures extends StatefulWidget {
   const StationDepartures({
@@ -32,6 +34,12 @@ class _StationDeparturesState extends State<StationDepartures> {
     });
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _timeDisplaySettingsProvider = Provider.of<TimeDisplaySettingsProvider>(context);
+  }
+
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
   String stationId = "";
@@ -40,6 +48,15 @@ class _StationDeparturesState extends State<StationDepartures> {
   bool _isProgrammaticRefresh = false;
   int _duration = 30;
   TimeOfDay? _when;
+
+  late final TimeDisplaySettingsProvider _timeDisplaySettingsProvider;
+
+  DateTime getDisplayTime(Departure departure) {
+    final departureTimeString = _timeDisplaySettingsProvider.showActualTime
+      ? (departure.when ?? departure.plannedWhen!)
+      : departure.plannedWhen!;
+    return DateTime.parse(departureTimeString).toLocal();
+  }
 
   Future<void> _updateDepartures() async {
     if (_isProgrammaticRefresh) {
@@ -58,8 +75,8 @@ class _StationDeparturesState extends State<StationDepartures> {
 
     final departures = await VbbApi.getDeparturesAtStop(stationId, context, duration: _duration, when: _when);
     departures.sort((a, b) {
-      final timeA = DateTime.parse(a.when ?? a.plannedWhen!).toLocal();
-      final timeB = DateTime.parse(b.when ?? b.plannedWhen!).toLocal();
+      final timeA = getDisplayTime(a);
+      final timeB = getDisplayTime(b);
 
       if (timeA.isBefore(timeB)) {
         return -1;
@@ -158,13 +175,15 @@ class _StationDeparturesState extends State<StationDepartures> {
                   );
                 }
 
-                return BusDisplay(
-                  direction: _departures[index].direction!,
-                  line: _departures[index].line!.name!,
-                  lineType: LineType.values.byName(_departures[index].line!.product!),
-                  departureTime: DateTime.parse(_departures[index].when ?? _departures[index].plannedWhen!).toLocal(),
-                  delay: _departures[index].delay == null ? null : (_departures[index].delay! / 60).round(),
-                  cancelled: _departures[index].cancelled,
+                return Consumer<TimeDisplaySettingsProvider>(
+                  builder: (context, timeDisplayProvider, child) => BusDisplay(
+                    direction: _departures[index].direction!,
+                    line: _departures[index].line!.name!,
+                    lineType: LineType.values.byName(_departures[index].line!.product!),
+                    departureTime: getDisplayTime(_departures[index]),
+                    delay: _departures[index].delay == null ? null : (_departures[index].delay! / 60).round(),
+                    cancelled: _departures[index].cancelled,
+                  ),
                 );
               }
             ),

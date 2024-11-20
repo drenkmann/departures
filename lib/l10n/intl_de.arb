@@ -39,5 +39,8 @@
     "settingsOpenPrivacyPolicyButton": "Datenschutzrichtlinie öffnen",
     "settingsOpenDeviceSettingsButton": "Geräte Einstellungen öffnen",
     "searchBarPlaceholder": "Haltestelle eingeben",
-    "loadMore": "Mehr laden"
+    "loadMore": "Mehr laden",
+    "settingsShowActualTimeTitle": "Tatsächliche Zeit anzeigen",
+    "settingsShowActualTimeSubtitleOn": "Zeigt tatsächliche Zeit",
+    "settingsShowActualTimeSubtitleOff": "Zeigt geplante Zeit"
 }

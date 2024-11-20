@@ -1,5 +1,5 @@
-import 'package:departures/line_types.dart';
-import 'package:departures/station_departures.dart';
+import 'package:departures/enums/line_types.dart';
+import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
 
 class StationDisplay extends StatelessWidget {

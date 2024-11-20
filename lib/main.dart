@@ -1,8 +1,9 @@
-import 'package:departures/home_page.dart';
-import 'package:departures/provider/api_host_settings.dart';
-import 'package:departures/provider/theme_settings.dart';
-import 'package:departures/search_page.dart';
-import 'package:departures/settings_page.dart';
+import 'package:departures/pages/home_page.dart';
+import 'package:departures/pages/search_page.dart';
+import 'package:departures/pages/settings_page.dart';
+import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/theme_settings_provider.dart';
+import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
+        ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
       ],
       child: const DeparturesApp()
     )
@@ -28,7 +30,7 @@ class DeparturesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.themeModeEnum.themeMode) {
+        final SystemUiOverlayStyle overlayStyle = switch (themeProvider.appThemeMode.themeMode) {
           ThemeMode.system =>
             MediaQuery.of(context).platformBrightness == Brightness.light ?
               SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
@@ -67,7 +69,7 @@ class DeparturesApp extends StatelessWidget {
                 useMaterial3: true,
                 colorScheme: darkColorScheme,
               ),
-              themeMode: themeProvider.themeModeEnum.themeMode,
+              themeMode: themeProvider.appThemeMode.themeMode,
               home: const AppMainPage(),
             );
           }

@@ -141,5 +141,17 @@
     "loadMore": "Load more",
     "@loadMore": {
         "description": "Button to load more nearby stations"
+    },
+    "settingsShowActualTimeTitle": "Show actual time",
+    "@settingsShowActualTimeTitle": {
+        "description": "Label for the show actual time toggle in the settings"
+    },
+    "settingsShowActualTimeSubtitleOn": "Showing actual time",
+    "@settingsShowActualTimeSubtitleOn": {
+        "description": "Subtitle when the show actual time toggle is on"
+    },
+    "settingsShowActualTimeSubtitleOff": "Showing planned time",
+    "@settingsShowActualTimeSubtitleOff": {
+        "description": "Subtitle when the show actual time toggle is off"
     }
 }
