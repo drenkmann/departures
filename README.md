@@ -22,7 +22,10 @@ A simple app that displays the departures of the public transport lines in Berli
 
 ## Installation
 
-### Using [Obtainium](https://github.com/ImranR98/Obtainium) (Recommended)
+### On the Play Store (Recommended)
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=dev.drenkmann.departures)
+
+### Using [Obtainium](https://github.com/ImranR98/Obtainium)
 It is recommended you use Obtainium to install this app, as it will ensure you download the correct file and will automatically update the app for you. To install Departures using Obtainium, simply paste the link of this repository (https://github.com/drenkmann/departures) into Obtainium.
 
 ### Manually
