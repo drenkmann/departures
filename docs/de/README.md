@@ -23,7 +23,10 @@ Eine einfache App, die die Abfahrten der Öffentlichen Verkehrsmittel in Berlin 
 
 ## Installation
 
-### Mit [Obtainium](https://github.com/ImranR98/Obtainium) (Empfohlen)
+### Aus dem Play Store
+[<img src="https://github.com/pioug/google-play-badges/blob/main/svg/de.svg" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=dev.drenkmann.departures)
+
+### Mit [Obtainium](https://github.com/ImranR98/Obtainium)
 Es empfiehlt sich Obtainium zu benutzen um diese App zu installieren, da es sicherstellt, dass die korrekte Version der App installiert wird und automatische Updates liefert. Um Abfahrten mithilfe von Obtainium zu installieren, füge den Link zu dieser Seite (https://github.com/drenkmann/departures) in Obtainium ein.
 
 ### Manuell
