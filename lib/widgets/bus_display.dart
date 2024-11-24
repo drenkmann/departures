@@ -50,8 +50,8 @@ class BusDisplay extends StatelessWidget {
               style: delay == null
                 ? const TextStyle(color: Colors.grey)
                 : delay == 0
-                  ? const TextStyle(color: Colors.greenAccent)
-                  : const TextStyle(color: Colors.redAccent)
+                  ? const TextStyle(color: Colors.green, fontWeight: FontWeight.w500)
+                  : const TextStyle(color: Colors.red, fontWeight: FontWeight.w500)
             )
           ])
         ),

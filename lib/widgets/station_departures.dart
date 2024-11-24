@@ -41,6 +41,7 @@ class _StationDeparturesState extends State<StationDepartures> {
   }
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  late TimeDisplaySettingsProvider _timeDisplaySettingsProvider;
 
   String stationId = "";
   List<Departure> _departures = [];
@@ -48,8 +49,6 @@ class _StationDeparturesState extends State<StationDepartures> {
   bool _isProgrammaticRefresh = false;
   int _duration = 30;
   TimeOfDay? _when;
-
-  late final TimeDisplaySettingsProvider _timeDisplaySettingsProvider;
 
   DateTime getDisplayTime(Departure departure) {
     final departureTimeString = _timeDisplaySettingsProvider.showActualTime
