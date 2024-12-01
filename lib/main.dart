@@ -139,8 +139,8 @@ class _AppMainPageState extends State<AppMainPage> {
         },
         destinations: <Widget>[
           NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.near_me_outlined),
+            selectedIcon: const Icon(Icons.near_me),
             label: appLocalizations.navigationLabelHome,
           ),
           NavigationDestination(

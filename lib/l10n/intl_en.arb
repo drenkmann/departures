@@ -4,7 +4,7 @@
     "@appTitle": {
         "description": "Main application title"
     },
-    "navigationLabelHome": "Home",
+    "navigationLabelHome": "Nearby",
     "@navigationLabelHome": {
         "description": "Label for the navigation button to home"
     },
