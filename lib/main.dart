@@ -1,7 +1,9 @@
+import 'package:departures/pages/favorites_page.dart';
 import 'package:departures/pages/home_page.dart';
 import 'package:departures/pages/search_page.dart';
 import 'package:departures/pages/settings_page.dart';
 import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -17,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
         ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ],
       child: const DeparturesApp()
     )
@@ -100,6 +103,7 @@ class _AppMainPageState extends State<AppMainPage> {
 
     _pages = [
         const HomePage(),
+        const FavoritesPage(),
         const SearchPage(),
         const SettingsPage(),
     ];
@@ -111,8 +115,8 @@ class _AppMainPageState extends State<AppMainPage> {
 
     return Scaffold(
       body: IndexedStack(
-        children: _pages,
         index: _activePage,
+        children: _pages,
       ),
       key: scaffoldKey,
       bottomNavigationBar: NavigationBar(
@@ -128,6 +132,11 @@ class _AppMainPageState extends State<AppMainPage> {
             icon: const Icon(Icons.location_on_outlined),
             selectedIcon: const Icon(Icons.location_on),
             label: appLocalizations.navigationLabelHome,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.favorite_border_outlined),
+            selectedIcon: const Icon(Icons.favorite),
+            label: appLocalizations.navigationLabelFavorites,
           ),
           NavigationDestination(
             icon: const Icon(Icons.search_outlined),

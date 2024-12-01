@@ -2,6 +2,7 @@
     "@@locale": "de",
     "appTitle": "Abfahrten",
     "navigationLabelHome": "Nah",
+    "navigationLabelFavorites": "Gespeichert",
     "navigationLabelSearch": "Suchen",
     "navigationLabelSettings": "Einstellungen",
     "homeNoNearbyStations": "Keine Stationen in der Nähe gefunden.",

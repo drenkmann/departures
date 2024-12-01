@@ -14,6 +14,22 @@ class StationDisplay extends StatelessWidget {
   final String stationId;
   final Map lines;
 
+  Map<String, dynamic> toJson() {
+    return {
+      'stationName': stationName,
+      'stationId': stationId,
+      'lines': lines.map((key, value) => MapEntry(key, value.toString())),
+    };
+  }
+
+  static StationDisplay fromJson(Map<String, dynamic> json) {
+    return StationDisplay(
+      stationName: json['stationName'],
+      stationId: json['stationId'],
+      lines: (json['lines'] as Map<String, dynamic>).map((key, value) => MapEntry(key, LineType.values.firstWhere((e) => e.toString() == value))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

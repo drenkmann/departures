@@ -8,6 +8,10 @@
     "@navigationLabelHome": {
         "description": "Label for the navigation button to home"
     },
+    "navigationLabelFavorites": "Saved",
+    "@navigationLabelFavorites": {
+        "description": "Label for the navigation button to favorites"
+    },
     "navigationLabelSearch": "Search",
     "@navigationLabelSearch": {
         "description": "Label for the navigation button to search"
