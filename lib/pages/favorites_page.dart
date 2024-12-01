@@ -28,27 +28,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
         ),
         Expanded(
           child: Consumer<FavoritesProvider>(
-            builder: (context, favProvider, child) => ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: favProvider.favorites.length + 1,
-              itemBuilder: (context, index) {
-                if (index == favProvider.favorites.length) {
-                  return ListTile(
-                    title: Center(
-                      child: Text(
-                        "Add",
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ),
-                  );
-                }
-
-                return favProvider.favorites[index];
-              },
-            ),
+            builder: (context, favProvider, child) {
+              return ReorderableListView(
+                padding: EdgeInsets.zero,
+                onReorder: (oldIndex, newIndex) {
+                  favProvider.moveFavorite(oldIndex, newIndex);
+                },
+                children: favProvider.favorites,
+              );
+            }
           )
         )
       ],

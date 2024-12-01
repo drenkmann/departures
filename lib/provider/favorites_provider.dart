@@ -33,6 +33,16 @@ class FavoritesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void moveFavorite(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final StationDisplay station = _favorites.removeAt(oldIndex);
+    _favorites.insert(newIndex, station);
+    _saveFavorites();
+    notifyListeners();
+  }
+
   void _loadFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? favoritesJson = prefs.getStringList('favorites');

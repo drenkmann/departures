@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class StationDisplay extends StatelessWidget {
-  const StationDisplay({
-    super.key,
+  StationDisplay({
     required this.stationName,
     required this.lines,
     required this.stationId,
-  });
+  }) : super(key: Key(stationId));
 
   final String stationName;
   final String stationId;
