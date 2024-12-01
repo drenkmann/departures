@@ -134,8 +134,8 @@ class _AppMainPageState extends State<AppMainPage> {
             label: appLocalizations.navigationLabelHome,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.favorite_border_outlined),
-            selectedIcon: const Icon(Icons.favorite),
+            icon: const Icon(Icons.save_outlined),
+            selectedIcon: const Icon(Icons.save),
             label: appLocalizations.navigationLabelFavorites,
           ),
           NavigationDestination(
