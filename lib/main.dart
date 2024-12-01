@@ -91,7 +91,6 @@ class _AppMainPageState extends State<AppMainPage> {
   int _activePage = 0;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final _pageViewController = PageController();
 
   List<Widget> _pages = [];
 
@@ -107,35 +106,22 @@ class _AppMainPageState extends State<AppMainPage> {
   }
 
   @override
-  void dispose() {
-    _pageViewController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: PageView(
-        controller: _pageViewController, // Attach the controller here
+      body: IndexedStack(
         children: _pages,
-        onPageChanged: (int index) {
-          setState(() {
-            _activePage = index;
-          });
-        },
+        index: _activePage,
       ),
       key: scaffoldKey,
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         selectedIndex: _activePage,
         onDestinationSelected: (int index) {
-          _pageViewController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.fastOutSlowIn,
-          );
+          setState(() {
+            _activePage = index;
+          });
         },
         destinations: <Widget>[
           NavigationDestination(

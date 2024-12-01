@@ -18,7 +18,7 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClientMixin {
+class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
   FocusNode mainHostFocusNode = FocusNode();
 
@@ -40,12 +40,7 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
   }
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     AppLocalizations? appLocalizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
