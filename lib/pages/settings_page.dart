@@ -7,6 +7,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -16,7 +18,7 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClientMixin {
+class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
   FocusNode mainHostFocusNode = FocusNode();
 
@@ -38,12 +40,7 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
   }
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     AppLocalizations? appLocalizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
@@ -158,6 +155,33 @@ class _SettingsPageState extends State<SettingsPage> with AutomaticKeepAliveClie
                     );
                   }
                 ),
+              ),
+              ListTile(
+                title: Text(appLocalizations.settingsReset),
+                trailing: const Icon(Icons.restart_alt_outlined),
+                onTap: () {
+                  showDialog(context: context, builder: (context) => AlertDialog(
+                    title: Text(appLocalizations.settingsResetTitle),
+                    content: Text(appLocalizations.settingsResetConfirmation),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          SharedPreferences.getInstance().then((prefs) {
+                            prefs.clear().then((_) => Restart.restartApp());
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(appLocalizations.yes),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(appLocalizations.no),
+                      )
+                    ],
+                  ));
+                },
               ),
               const Divider(
                 indent: 16,

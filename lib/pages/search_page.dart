@@ -14,7 +14,7 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMixin {
+class _SearchPageState extends State<SearchPage> {
   List<Stop> _stops = [];
 
   late TextEditingController _searchController;
@@ -35,9 +35,6 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
     super.dispose();
   }
 
-  @override
-  bool get wantKeepAlive => true;
-
   Future<void> _getStops(String query) async {
     final stops = await VbbApi.getStations(query, context);
 
@@ -48,8 +45,6 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
