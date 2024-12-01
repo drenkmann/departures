@@ -1,6 +1,8 @@
 import 'package:departures/enums/line_types.dart';
+import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StationDisplay extends StatelessWidget {
   const StationDisplay({
@@ -32,28 +34,64 @@ class StationDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(stationName),
-      subtitle: Wrap(
-        spacing: 5,
-        runSpacing: 5,
-        children: [
-            for (final line in lines.entries)
-              if ((line.key as String).isNotEmpty)
-                LineTag(lineType: line.value, lineName: line.key)
-          ]
+    final theme = Theme.of(context);
+
+    return Dismissible(
+      key: Key(stationId),
+      background: Container(
+        color: theme.colorScheme.secondaryContainer,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        child: Row(
+          children: [
+            Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
+            const Spacer(),
+            Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
+          ],
+        ),
       ),
-      onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          useSafeArea: true,
-          showDragHandle: true,
-          builder: (BuildContext context) {
-            return StationDepartures(stationName: stationName, stationId: stationId,);
-          },
-        );
+      confirmDismiss: (_) {
+        final provider = Provider.of<FavoritesProvider>(context, listen: false);
+        final justSaved = !provider.favorites.contains(this);
+        provider.toggleFavorite(this);
+        ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+            content: Text(justSaved ? "Saved $stationName" : "Unsaved $stationName"),
+            duration: const Duration(seconds: 1),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                provider.toggleFavorite(this);
+              },
+            ),
+          ));
+
+        return Future.value(false);
       },
+      child: ListTile(
+        title: Text(stationName),
+        subtitle: Wrap(
+          spacing: 5,
+          runSpacing: 5,
+          children: [
+              for (final line in lines.entries)
+                if ((line.key as String).isNotEmpty)
+                  LineTag(lineType: line.value, lineName: line.key)
+            ]
+        ),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            useSafeArea: true,
+            showDragHandle: true,
+            builder: (BuildContext context) {
+              return StationDepartures(stationName: stationName, stationId: stationId,);
+            },
+          );
+        },
+      ),
     );
   }
 }
