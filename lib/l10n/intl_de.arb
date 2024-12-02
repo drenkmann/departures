@@ -48,5 +48,6 @@
     "settingsShowActualTimeSubtitleOff": "Zeigt geplante Zeit",
     "settingsReset": "Alles zurücksetzen",
     "settingsResetConfirmation": "Sind Sie sicher, dass Sie alle Einstellungen und gespeicherte Stationen zurücksetzen möchten? Die App wird danach neusstarten.",
-    "settingsResetTitle": "Alles zurücksetzen?"
+    "settingsResetTitle": "Alles zurücksetzen?",
+    "favoritesEmpty": "Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite."
 }

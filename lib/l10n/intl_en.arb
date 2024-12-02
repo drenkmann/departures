@@ -173,5 +173,9 @@
     "settingsResetTitle": "Reset everything?",
     "@settingsResetTitle": {
         "description": "Title of the reset confirmation dialog"
+    },
+    "favoritesEmpty": "No stations saved.\nTo save a station, swipe on it.",
+    "@favoritesEmpty": {
+        "description": "Text displayed when no favorites are saved"
     }
 }
