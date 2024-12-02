@@ -98,10 +98,6 @@
     "@searchTitle": {},
     "settingsTitle": "Settings",
     "@settingsTitle": {},
-    "notYetImplemented": "Not yet implemented.",
-    "@notYetImplemented": {},
-    "vbbFallbackMessage": "Falling back to fallback API.",
-    "@vbbFallbackMessage": {},
     "settingsThemeTitle": "Theme",
     "@settingsThemeTitle": {
         "description": "Label of the theme option in the settings"

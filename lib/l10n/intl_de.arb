@@ -27,8 +27,6 @@
     "nearbyStationsTitle": "Stationen in der Nähe",
     "searchTitle": "Suchen",
     "settingsTitle": "Einstellungen",
-    "notYetImplemented": "Noch nicht implementiert.",
-    "vbbFallbackMessage": "Greife auf sekundäre API zurück.",
     "settingsThemeTitle": "Farbschema",
     "settingsThemeSystem": "System",
     "settingsThemeLight": "Hell",
