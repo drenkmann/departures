@@ -23,6 +23,7 @@
     "close": "Schließen",
     "yes": "Ja",
     "no": "Nein",
+    "undo": "Zurück",
     "openSettings": "Einstellungen öffnen",
     "nearbyStationsTitle": "Stationen in der Nähe",
     "searchTitle": "Suchen",
@@ -47,5 +48,6 @@
     "settingsReset": "Alles zurücksetzen",
     "settingsResetConfirmation": "Sind Sie sicher, dass Sie alle Einstellungen und gespeicherte Stationen zurücksetzen möchten? Die App wird danach neusstarten.",
     "settingsResetTitle": "Alles zurücksetzen?",
-    "favoritesEmpty": "Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite."
+    "favoritesEmpty": "Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite.",
+    "undoFavoriteToggle": "{stationName} {wasSaved, select, true {gespeichert} false {entfernt} other {Update fehlgeschlagen}}."
 }

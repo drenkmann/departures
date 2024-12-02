@@ -2,6 +2,7 @@ import 'package:departures/enums/line_types.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class StationDisplay extends StatelessWidget {
@@ -33,6 +34,7 @@ class StationDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
     return Dismissible(
@@ -56,10 +58,10 @@ class StationDisplay extends StatelessWidget {
         provider.toggleFavorite(this);
         ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(
-            content: Text(justSaved ? "Saved $stationName" : "Unsaved $stationName"),
+            content: Text(appLocalizations.undoFavoriteToggle(justSaved.toString(), stationName)),
             duration: const Duration(seconds: 1),
             action: SnackBarAction(
-              label: 'Undo',
+              label: appLocalizations.undo,
               onPressed: () {
                 provider.toggleFavorite(this);
               },
