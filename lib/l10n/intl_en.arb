@@ -90,6 +90,8 @@
     "@yes": {},
     "no": "No",
     "@no": {},
+    "undo": "Undo",
+    "@undo": {},
     "openSettings": "Open Settings",
     "@openSettings": {},
     "nearbyStationsTitle": "Nearby Stations",
@@ -98,10 +100,6 @@
     "@searchTitle": {},
     "settingsTitle": "Settings",
     "@settingsTitle": {},
-    "notYetImplemented": "Not yet implemented.",
-    "@notYetImplemented": {},
-    "vbbFallbackMessage": "Falling back to fallback API.",
-    "@vbbFallbackMessage": {},
     "settingsThemeTitle": "Theme",
     "@settingsThemeTitle": {
         "description": "Label of the theme option in the settings"
@@ -173,5 +171,23 @@
     "settingsResetTitle": "Reset everything?",
     "@settingsResetTitle": {
         "description": "Title of the reset confirmation dialog"
+    },
+    "favoritesEmpty": "No stations saved.\nTo save a station, swipe on it.",
+    "@favoritesEmpty": {
+        "description": "Text displayed when no favorites are saved"
+    },
+    "undoFavoriteToggle": "{wasSaved, select, true {Saved} false {Unsaved} other {Error updating}} {stationName}",
+    "@undoFavoriteToggle": {
+        "description": "Snackbar message for undoing a favorite toggle",
+        "placeholders": {
+            "wasSaved": {
+                "type": "String",
+                "example": "true"
+            },
+            "stationName": {
+                "type": "String",
+                "example": "Hauptbahnhof"
+            }
+        }
     }
 }

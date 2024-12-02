@@ -29,7 +29,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
         Expanded(
           child: Consumer<FavoritesProvider>(
             builder: (context, favProvider, child) {
-              return ReorderableListView(
+              return favProvider.favorites.isEmpty
+                ? Center(child: Text(appLocalizations.favoritesEmpty, textAlign: TextAlign.center, style: TextStyle(height: 1.4),))
+                : ReorderableListView(
                 padding: EdgeInsets.zero,
                 onReorder: (oldIndex, newIndex) {
                   favProvider.moveFavorite(oldIndex, newIndex);
