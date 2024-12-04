@@ -1,3 +1,6 @@
+# VSCode related
+.vscode/launch.json
+
 # Miscellaneous
 *.class
 *.log
