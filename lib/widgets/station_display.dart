@@ -41,16 +41,17 @@ class StationDisplay extends StatelessWidget {
       key: Key(stationId),
       background: Container(
         color: theme.colorScheme.secondaryContainer,
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        child: Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
+      ),
+      secondaryBackground: Container(
+        color: theme.colorScheme.secondaryContainer,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
-        child: Row(
-          children: [
-            Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
-            const Spacer(),
-            Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
-          ],
-        ),
+        child: Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
       ),
       confirmDismiss: (_) {
         final provider = Provider.of<FavoritesProvider>(context, listen: false);
