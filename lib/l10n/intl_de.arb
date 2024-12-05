@@ -1,7 +1,8 @@
 {
     "@@locale": "de",
     "appTitle": "Abfahrten",
-    "navigationLabelHome": "Start",
+    "navigationLabelHome": "In der Nähe",
+    "navigationLabelFavorites": "Gespeichert",
     "navigationLabelSearch": "Suchen",
     "navigationLabelSettings": "Einstellungen",
     "homeNoNearbyStations": "Keine Stationen in der Nähe gefunden.",
@@ -20,12 +21,13 @@
     "httpError": "HTTP Fehler",
     "ok": "OK",
     "close": "Schließen",
+    "yes": "Ja",
+    "no": "Nein",
+    "undo": "Zurück",
     "openSettings": "Einstellungen öffnen",
     "nearbyStationsTitle": "Stationen in der Nähe",
     "searchTitle": "Suchen",
     "settingsTitle": "Einstellungen",
-    "notYetImplemented": "Noch nicht implementiert.",
-    "vbbFallbackMessage": "Greife auf sekundäre API zurück.",
     "settingsThemeTitle": "Farbschema",
     "settingsThemeSystem": "System",
     "settingsThemeLight": "Hell",
@@ -42,5 +44,10 @@
     "loadMore": "Mehr laden",
     "settingsShowActualTimeTitle": "Tatsächliche Zeit anzeigen",
     "settingsShowActualTimeSubtitleOn": "Zeigt tatsächliche Zeit",
-    "settingsShowActualTimeSubtitleOff": "Zeigt geplante Zeit"
+    "settingsShowActualTimeSubtitleOff": "Zeigt geplante Zeit",
+    "settingsReset": "Alles zurücksetzen",
+    "settingsResetConfirmation": "Sind Sie sicher, dass Sie alle Einstellungen und gespeicherte Stationen zurücksetzen möchten? Die App wird danach neusstarten.",
+    "settingsResetTitle": "Alles zurücksetzen?",
+    "favoritesEmpty": "Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite.",
+    "undoFavoriteToggle": "{stationName} {wasSaved, select, true {gespeichert} false {entfernt} other {Update fehlgeschlagen}}."
 }

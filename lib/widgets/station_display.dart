@@ -1,43 +1,99 @@
 import 'package:departures/enums/line_types.dart';
+import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class StationDisplay extends StatelessWidget {
-  const StationDisplay({
-    super.key,
+  StationDisplay({
     required this.stationName,
     required this.lines,
     required this.stationId,
-  });
+  }) : super(key: Key(stationId));
 
   final String stationName;
   final String stationId;
   final Map lines;
 
+  Map<String, dynamic> toJson() {
+    return {
+      'stationName': stationName,
+      'stationId': stationId,
+      'lines': lines.map((key, value) => MapEntry(key, value.toString())),
+    };
+  }
+
+  static StationDisplay fromJson(Map<String, dynamic> json) {
+    return StationDisplay(
+      stationName: json['stationName'],
+      stationId: json['stationId'],
+      lines: (json['lines'] as Map<String, dynamic>).map((key, value) => MapEntry(key, LineType.values.firstWhere((e) => e.toString() == value))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(stationName),
-      subtitle: Wrap(
-        spacing: 5,
-        runSpacing: 5,
-        children: [
-            for (final line in lines.entries)
-              if ((line.key as String).isNotEmpty)
-                LineTag(lineType: line.value, lineName: line.key)
-          ]
+    final appLocalizations = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+
+    return Dismissible(
+      key: Key(stationId),
+      background: Container(
+        color: theme.colorScheme.secondaryContainer,
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        child: Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
       ),
-      onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          useSafeArea: true,
-          showDragHandle: true,
-          builder: (BuildContext context) {
-            return StationDepartures(stationName: stationName, stationId: stationId,);
-          },
-        );
+      secondaryBackground: Container(
+        color: theme.colorScheme.secondaryContainer,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        child: Icon(Icons.save, color: theme.colorScheme.onSecondaryContainer),
+      ),
+      confirmDismiss: (_) {
+        final provider = Provider.of<FavoritesProvider>(context, listen: false);
+        final justSaved = !provider.favorites.contains(this);
+        provider.toggleFavorite(this);
+        ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+            content: Text(appLocalizations.undoFavoriteToggle(justSaved.toString(), stationName)),
+            duration: const Duration(seconds: 1),
+            action: SnackBarAction(
+              label: appLocalizations.undo,
+              onPressed: () {
+                provider.toggleFavorite(this);
+              },
+            ),
+          ));
+
+        return Future.value(false);
       },
+      child: ListTile(
+        title: Text(stationName),
+        subtitle: Wrap(
+          spacing: 5,
+          runSpacing: 5,
+          children: [
+              for (final line in lines.entries)
+                if ((line.key as String).isNotEmpty)
+                  LineTag(lineType: line.value, lineName: line.key)
+            ]
+        ),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            useSafeArea: true,
+            showDragHandle: true,
+            builder: (BuildContext context) {
+              return StationDepartures(stationName: stationName, stationId: stationId,);
+            },
+          );
+        },
+      ),
     );
   }
 }

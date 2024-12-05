@@ -1,7 +1,9 @@
+import 'package:departures/pages/favorites_page.dart';
 import 'package:departures/pages/home_page.dart';
 import 'package:departures/pages/search_page.dart';
 import 'package:departures/pages/settings_page.dart';
 import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -17,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
         ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ],
       child: const DeparturesApp()
     )
@@ -91,7 +94,6 @@ class _AppMainPageState extends State<AppMainPage> {
   int _activePage = 0;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final _pageViewController = PageController();
 
   List<Widget> _pages = [];
 
@@ -101,15 +103,10 @@ class _AppMainPageState extends State<AppMainPage> {
 
     _pages = [
         const HomePage(),
+        const FavoritesPage(),
         const SearchPage(),
         const SettingsPage(),
     ];
-  }
-
-  @override
-  void dispose() {
-    _pageViewController.dispose();
-    super.dispose();
   }
 
   @override
@@ -117,31 +114,29 @@ class _AppMainPageState extends State<AppMainPage> {
     final appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: PageView(
-        controller: _pageViewController, // Attach the controller here
+      body: IndexedStack(
+        index: _activePage,
         children: _pages,
-        onPageChanged: (int index) {
-          setState(() {
-            _activePage = index;
-          });
-        },
       ),
       key: scaffoldKey,
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         selectedIndex: _activePage,
         onDestinationSelected: (int index) {
-          _pageViewController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.fastOutSlowIn,
-          );
+          setState(() {
+            _activePage = index;
+          });
         },
         destinations: <Widget>[
           NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.location_on_outlined),
+            selectedIcon: const Icon(Icons.location_on),
             label: appLocalizations.navigationLabelHome,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.save_outlined),
+            selectedIcon: const Icon(Icons.save),
+            label: appLocalizations.navigationLabelFavorites,
           ),
           NavigationDestination(
             icon: const Icon(Icons.search_outlined),

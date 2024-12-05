@@ -4,9 +4,13 @@
     "@appTitle": {
         "description": "Main application title"
     },
-    "navigationLabelHome": "Home",
+    "navigationLabelHome": "Nearby",
     "@navigationLabelHome": {
         "description": "Label for the navigation button to home"
+    },
+    "navigationLabelFavorites": "Saved",
+    "@navigationLabelFavorites": {
+        "description": "Label for the navigation button to favorites"
     },
     "navigationLabelSearch": "Search",
     "@navigationLabelSearch": {
@@ -82,6 +86,12 @@
     "@ok": {},
     "close": "Close",
     "@close": {},
+    "yes": "Yes",
+    "@yes": {},
+    "no": "No",
+    "@no": {},
+    "undo": "Undo",
+    "@undo": {},
     "openSettings": "Open Settings",
     "@openSettings": {},
     "nearbyStationsTitle": "Nearby Stations",
@@ -90,10 +100,6 @@
     "@searchTitle": {},
     "settingsTitle": "Settings",
     "@settingsTitle": {},
-    "notYetImplemented": "Not yet implemented.",
-    "@notYetImplemented": {},
-    "vbbFallbackMessage": "Falling back to fallback API.",
-    "@vbbFallbackMessage": {},
     "settingsThemeTitle": "Theme",
     "@settingsThemeTitle": {
         "description": "Label of the theme option in the settings"
@@ -153,5 +159,35 @@
     "settingsShowActualTimeSubtitleOff": "Showing planned time",
     "@settingsShowActualTimeSubtitleOff": {
         "description": "Subtitle when the show actual time toggle is off"
+    },
+    "settingsReset": "Reset everything",
+    "@settingsReset": {
+        "description": "Button to reset all data"
+    },
+    "settingsResetConfirmation": "Do you really want to reset all settings and favorites? This will restart the app.",
+    "@settingsResetConfirmation": {
+        "description": "Confirmation dialog for resetting all settings"
+    },
+    "settingsResetTitle": "Reset everything?",
+    "@settingsResetTitle": {
+        "description": "Title of the reset confirmation dialog"
+    },
+    "favoritesEmpty": "No stations saved.\nTo save a station, swipe on it.",
+    "@favoritesEmpty": {
+        "description": "Text displayed when no favorites are saved"
+    },
+    "undoFavoriteToggle": "{wasSaved, select, true {Saved} false {Unsaved} other {Error updating}} {stationName}",
+    "@undoFavoriteToggle": {
+        "description": "Snackbar message for undoing a favorite toggle",
+        "placeholders": {
+            "wasSaved": {
+                "type": "String",
+                "example": "true"
+            },
+            "stationName": {
+                "type": "String",
+                "example": "Hauptbahnhof"
+            }
+        }
     }
 }
