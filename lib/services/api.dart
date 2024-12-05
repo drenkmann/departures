@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:departures/services/departure.dart';
 import 'package:departures/services/stop.dart';
-import 'package:departures/services/station.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
@@ -178,58 +177,6 @@ class VbbApi {
     }
   }
 
-  static Future<Stop?> getStationInfo(BuildContext context, String stopId) async {
-    if (!await _hasInternetConnection()) {
-      if (context.mounted) {
-        _showError(
-          context,
-          AppLocalizations.of(context)!.connectionErrorAdvice,
-          title: AppLocalizations.of(context)!.connectionError,
-        );
-      }
-
-      return null;
-    }
-
-    final String host = await _getApiHost();
-
-    Uri uri = Uri(
-      scheme: "https",
-      host: host,
-      path: "/stops/$stopId",
-      queryParameters: {
-        "linesOfStops": "true",
-      },
-    );
-
-    try {
-      final response = await http.get(uri);
-
-      if (response.statusCode == 200) {
-        Stop info = Stop.fromJson(json.decode(response.body));
-
-        return info;
-      }
-      else {
-        if (context.mounted) {
-          _showError(
-            context,
-            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
-            title: AppLocalizations.of(context)!.httpError
-          );
-        }
-
-        return null;
-      }
-    } catch (e) {
-      if (context.mounted) {
-        _showError(context, e.toString());
-      }
-
-      return null;
-    }
-  }
-
   static Future<List<Stop>> getStations(String query, BuildContext context) async {
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
@@ -248,10 +195,14 @@ class VbbApi {
     Uri uri = Uri(
       scheme: "https",
       host: host,
-      path: "/stations",
+      path: "/locations",
       queryParameters: {
         "query": query,
-        "results": "10",
+        "fuzzy": "false",
+        "addresses": "false",
+        "poi": "false",
+        "linesOfStops": "true",
+        "pretty": "false",
       },
     );
 
@@ -259,21 +210,8 @@ class VbbApi {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> stationsRaw = json.decode(response.body);
-        List<Stop> stations = [];
-        List<String> usedIds = [];
-
-        for (var v in stationsRaw.values) {
-          Station station = Station.fromJson(v);
-          String id = station.id!.split(":")[2];
-          if (!usedIds.contains(id) && context.mounted){
-            Stop? stop = await getStationInfo(context, id);
-            if (stop != null) {
-              stations.add(stop);
-            }
-            usedIds.add(id);
-          }
-        }
+        Iterable stationsRaw = json.decode(response.body);
+        List<Stop> stations = List<Stop>.from(stationsRaw.map((model) => Stop.fromJson(model)));
 
         return stations;
       }
