@@ -7,7 +7,7 @@ publish_to: 'none'
 # Increment MINOR when introducing new features
 # Increment PATCH when fixing bugs/refactoring
 # Changes that do not modify code (e.g. README) should not increment the version number
-version: 2.3.1+19
+version: 2.3.2+20
 
 environment:
   sdk: ^3.5.3
@@ -36,7 +36,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
-  flutter_launcher_icons: ^0.14.1
+  flutter_launcher_icons: ^0.14.2
 
 flutter:
   uses-material-design: true
@@ -44,7 +44,8 @@ flutter:
 
 flutter_launcher_icons:
   android: true
-  ios: true
+  min_sdk_android: 24
   image_path: "assets/icon/icon-full.png"
   adaptive_icon_foreground: "assets/icon/icon-foreground.png"
-  adaptive_icon_background: "assets/icon/icon-background.png"
+  adaptive_icon_monochrome: "assets/icon/icon-foreground.png"
+  adaptive_icon_background: "#f0d723"
