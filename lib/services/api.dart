@@ -30,21 +30,24 @@ class VbbApi {
     return '${combinedDateTime.toIso8601String().substring(0, 19)}$sign$hours:$minutes';
   }
 
-  static void _showError(BuildContext context, String errorMessage, {String? title, List<Widget>? actions}) async {
+  static void _showError(BuildContext context, String errorMessage,
+      {String? title, List<Widget>? actions}) async {
     if (!context.mounted) return;
-      AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
-      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: Text(title ?? appLocalizations.generalError),
-        content: Text(errorMessage),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(appLocalizations.ok),
-          ),
-          ...actions ?? [],
-        ],
-      ));
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text(title ?? appLocalizations.generalError),
+              content: Text(errorMessage),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(appLocalizations.ok),
+                ),
+                ...actions ?? [],
+              ],
+            ));
   }
 
   static Future<String> _getApiHost() async {
@@ -63,7 +66,9 @@ class VbbApi {
     return !connectivity.contains(ConnectivityResult.none);
   }
 
-  static Future<List<Stop>> getNearbyStations(double latitude, double longitude, BuildContext context, {int? count}) async {
+  static Future<List<Stop>> getNearbyStations(
+      double latitude, double longitude, BuildContext context,
+      {int? count}) async {
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -79,34 +84,31 @@ class VbbApi {
     final String host = await _getApiHost();
 
     Uri uri = Uri(
-      scheme: "https",
-      host: host,
-      path: "/locations/nearby",
-      queryParameters: {
-        "latitude": latitude.toString(),
-        "longitude": longitude.toString(),
-        "linesOfStops": "true",
-        "pretty": "false",
-        if (count != null) "results": count.toString(),
-      }
-    );
+        scheme: "https",
+        host: host,
+        path: "/locations/nearby",
+        queryParameters: {
+          "latitude": latitude.toString(),
+          "longitude": longitude.toString(),
+          "linesOfStops": "true",
+          "pretty": "false",
+          if (count != null) "results": count.toString(),
+        });
 
     try {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
         Iterable stations = json.decode(response.body);
-        List<Stop> nearbyStations = List<Stop>.from(stations.map((model) => Stop.fromJson(model)));
+        List<Stop> nearbyStations =
+            List<Stop>.from(stations.map((model) => Stop.fromJson(model)));
 
         return nearbyStations;
-      }
-      else {
+      } else {
         if (context.mounted) {
-          _showError(
-            context,
-            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
-            title: AppLocalizations.of(context)!.httpError
-          );
+          _showError(context,
+              "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+              title: AppLocalizations.of(context)!.httpError);
         }
 
         return [];
@@ -120,7 +122,9 @@ class VbbApi {
     }
   }
 
-  static Future<List<Departure>> getDeparturesAtStop(String stopId, BuildContext context, {TimeOfDay? when, int? duration}) async {
+  static Future<List<Departure>> getDeparturesAtStop(
+      String stopId, BuildContext context,
+      {TimeOfDay? when, int? duration}) async {
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -136,34 +140,32 @@ class VbbApi {
     final String host = await _getApiHost();
 
     Uri uri = Uri(
-      scheme: "https",
-      host: host,
-      path: "/stops/$stopId/departures",
-      queryParameters: {
-        "express": "false",
-        "pretty": "false",
-        "remarks": "false",
-        "duration": duration?.toString() ?? "30",
-        if (when != null) "when": getIso8601FromTimeOfDay(when),
-      }
-    );
+        scheme: "https",
+        host: host,
+        path: "/stops/$stopId/departures",
+        queryParameters: {
+          "express": "false",
+          "pretty": "false",
+          "remarks": "false",
+          "duration": duration?.toString() ?? "30",
+          if (when != null) "when": getIso8601FromTimeOfDay(when),
+        });
 
     try {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> departuresAtStop = json.decode(response.body);
-        List<Departure> departures = List<Departure>.from(departuresAtStop['departures'].map((model) => Departure.fromJson(model)));
+        List<Departure> departures = List<Departure>.from(
+            departuresAtStop['departures']
+                .map((model) => Departure.fromJson(model)));
 
         return departures;
-      }
-      else {
+      } else {
         if (context.mounted) {
-          _showError(
-            context,
-            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
-            title: AppLocalizations.of(context)!.httpError
-          );
+          _showError(context,
+              "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+              title: AppLocalizations.of(context)!.httpError);
         }
 
         return [];
@@ -177,7 +179,8 @@ class VbbApi {
     }
   }
 
-  static Future<List<Stop>> getStations(String query, BuildContext context) async {
+  static Future<List<Stop>> getStations(
+      String query, BuildContext context) async {
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -211,17 +214,15 @@ class VbbApi {
 
       if (response.statusCode == 200) {
         Iterable stationsRaw = json.decode(response.body);
-        List<Stop> stations = List<Stop>.from(stationsRaw.map((model) => Stop.fromJson(model)));
+        List<Stop> stations =
+            List<Stop>.from(stationsRaw.map((model) => Stop.fromJson(model)));
 
         return stations;
-      }
-      else {
+      } else {
         if (context.mounted) {
-          _showError(
-            context,
-            "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
-            title: AppLocalizations.of(context)!.httpError
-          );
+          _showError(context,
+              "${response.statusCode}${response.reasonPhrase == null ? "" : " - ${response.reasonPhrase}"}",
+              title: AppLocalizations.of(context)!.httpError);
         }
 
         return [];

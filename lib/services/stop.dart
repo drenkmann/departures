@@ -25,9 +25,8 @@ class Stop {
     location = json['location'] != null
         ? StationLocation.fromJson(json['location'])
         : null;
-    products = json['products'] != null
-        ? Products.fromJson(json['products'])
-        : null;
+    products =
+        json['products'] != null ? Products.fromJson(json['products']) : null;
     if (json['lines'] != null) {
       lines = <Lines>[];
       json['lines'].forEach((v) {

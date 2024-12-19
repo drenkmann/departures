@@ -28,7 +28,9 @@ class StationDisplay extends StatelessWidget {
     return StationDisplay(
       stationName: json['stationName'],
       stationId: json['stationId'],
-      lines: (json['lines'] as Map<String, dynamic>).map((key, value) => MapEntry(key, LineType.values.firstWhere((e) => e.toString() == value))),
+      lines: (json['lines'] as Map<String, dynamic>).map((key, value) =>
+          MapEntry(
+              key, LineType.values.firstWhere((e) => e.toString() == value))),
     );
   }
 
@@ -57,31 +59,27 @@ class StationDisplay extends StatelessWidget {
         final provider = Provider.of<FavoritesProvider>(context, listen: false);
         final justSaved = !provider.favorites.contains(this);
         provider.toggleFavorite(this);
-        ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(
-            content: Text(appLocalizations.undoFavoriteToggle(justSaved.toString(), stationName)),
-            duration: const Duration(seconds: 1),
-            action: SnackBarAction(
-              label: appLocalizations.undo,
-              onPressed: () {
-                provider.toggleFavorite(this);
-              },
-            ),
-          ));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(appLocalizations.undoFavoriteToggle(
+              justSaved.toString(), stationName)),
+          duration: const Duration(seconds: 1),
+          action: SnackBarAction(
+            label: appLocalizations.undo,
+            onPressed: () {
+              provider.toggleFavorite(this);
+            },
+          ),
+        ));
 
         return Future.value(false);
       },
       child: ListTile(
         title: Text(stationName),
-        subtitle: Wrap(
-          spacing: 5,
-          runSpacing: 5,
-          children: [
-              for (final line in lines.entries)
-                if ((line.key as String).isNotEmpty)
-                  LineTag(lineType: line.value, lineName: line.key)
-            ]
-        ),
+        subtitle: Wrap(spacing: 5, runSpacing: 5, children: [
+          for (final line in lines.entries)
+            if ((line.key as String).isNotEmpty)
+              LineTag(lineType: line.value, lineName: line.key)
+        ]),
         onTap: () {
           showModalBottomSheet(
             context: context,
@@ -89,7 +87,10 @@ class StationDisplay extends StatelessWidget {
             useSafeArea: true,
             showDragHandle: true,
             builder: (BuildContext context) {
-              return StationDepartures(stationName: stationName, stationId: stationId,);
+              return StationDepartures(
+                stationName: stationName,
+                stationId: stationId,
+              );
             },
           );
         },
@@ -111,12 +112,13 @@ class LineTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    padding: const EdgeInsets.only(left: 3, right: 3),
+      padding: const EdgeInsets.only(left: 3, right: 3),
       decoration: BoxDecoration(
-        color: lineType.color,
-        borderRadius: BorderRadius.circular(3)
+          color: lineType.color, borderRadius: BorderRadius.circular(3)),
+      child: Text(
+        lineName,
+        style: const TextStyle(color: Colors.white),
       ),
-      child: Text(lineName, style: const TextStyle(color: Colors.white),),
     );
   }
 }
