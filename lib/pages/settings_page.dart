@@ -208,6 +208,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
+                title: Text("Support the developer"),
+                trailing: Icon(Icons.coffee_outlined),
+                onTap: () async {
+                  if (!await launchUrlString("https://ko-fi.com/drenkmann")) {
+                    throw Exception("Could not open ko-fi URL");
+                  }
+                },
+              ),
+              ListTile(
                 title: Text(appLocalizations.settingsOpenGithubButton),
                 trailing: const Icon(Icons.code_outlined),
                 onTap: () async {
