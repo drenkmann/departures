@@ -21,12 +21,18 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
   FocusNode mainHostFocusNode = FocusNode();
+  PackageInfo? _packageInfo;
 
   @override
   void initState() {
     super.initState();
 
     _mainHostController = TextEditingController();
+    PackageInfo.fromPlatform().then((packageInfo) {
+      setState(() {
+        _packageInfo = packageInfo;
+      });
+    });
 
     final apiHostProvider =
         Provider.of<ApiSettingsProvider>(context, listen: false);
@@ -133,27 +139,41 @@ class _SettingsPageState extends State<SettingsPage> {
                       ?.copyWith(color: theme.colorScheme.primary),
                 ),
               ),
-              ListTile(
-                title: Consumer<ApiSettingsProvider>(
-                    builder: (context, apiHostProvider, child) {
+              Consumer<ApiSettingsProvider>(
+                builder: (context, apiHostProvider, child) {
                   _mainHostController.text = apiHostProvider.mainHost;
 
-                  return TextFormField(
-                    controller: _mainHostController,
-                    focusNode: mainHostFocusNode,
-                    onTapOutside: (event) {
-                      mainHostFocusNode.unfocus();
-                    },
-                    onChanged: (value) {
-                      apiHostProvider.saveHostPreference(value);
-                    },
-                    decoration: InputDecoration(
-                      border: const UnderlineInputBorder(),
-                      hintText: "v6.vbb.transport.rest",
-                      labelText: appLocalizations.settingsApiHostLabel,
+                  return Column(children: [
+                    ListTile(
+                      title: Text("Duration"),
+                      subtitle: Slider(
+                          min: 10,
+                          max: 120,
+                          divisions: 11,
+                          label: "${apiHostProvider.duration}min.",
+                          value: apiHostProvider.duration.toDouble(),
+                          onChanged: (value) {
+                            apiHostProvider.setDuration(value.toInt());
+                          }),
                     ),
-                  );
-                }),
+                    ListTile(
+                        title: TextFormField(
+                      controller: _mainHostController,
+                      focusNode: mainHostFocusNode,
+                      onTapOutside: (event) {
+                        mainHostFocusNode.unfocus();
+                      },
+                      onChanged: (value) {
+                        apiHostProvider.saveHost(value);
+                      },
+                      decoration: InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        hintText: "v6.vbb.transport.rest",
+                        labelText: appLocalizations.settingsApiHostLabel,
+                      ),
+                    )),
+                  ]);
+                },
               ),
               ListTile(
                 title: Text(appLocalizations.settingsReset),
@@ -202,19 +222,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
-                title: Text(appLocalizations.settingsAboutAppButton),
-                trailing: const Icon(Icons.info_outline),
-                onTap: () {
-                  PackageInfo.fromPlatform().then((PackageInfo info) {
-                    if (!context.mounted) return;
-
-                    showAboutDialog(
-                      context: context,
-                      applicationName: appLocalizations.appTitle,
-                      applicationVersion: "v${info.version}",
-                      applicationLegalese: "© drenkmann 2024",
-                    );
-                  });
+                title: Text("Support the developer"),
+                trailing: Icon(Icons.coffee_outlined),
+                onTap: () async {
+                  if (!await launchUrlString("https://ko-fi.com/drenkmann")) {
+                    throw Exception("Could not open ko-fi URL");
+                  }
                 },
               ),
               ListTile(
@@ -241,7 +254,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text(appLocalizations.settingsOpenDeviceSettingsButton),
                 trailing: const Icon(Icons.settings_outlined),
                 onTap: Geolocator.openAppSettings,
-              )
+              ),
+              ListTile(
+                title: Text(appLocalizations.settingsOpenSourceLicensesButton),
+                trailing: const Icon(Icons.description_outlined),
+                onTap: () => showLicensePage(context: context),
+              ),
+              ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "v${_packageInfo?.version ?? ""} - © drenkmann 2024",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Theme.of(context).hintColor),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         )

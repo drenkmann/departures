@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:departures/provider/api_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:departures/widgets/bus_display.dart';
 import 'package:departures/enums/line_types.dart';
@@ -39,17 +40,19 @@ class _StationDeparturesState extends State<StationDepartures> {
     super.didChangeDependencies();
     _timeDisplaySettingsProvider =
         Provider.of<TimeDisplaySettingsProvider>(context);
+    _apiSettingsProvider = Provider.of<ApiSettingsProvider>(context);
   }
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
   late TimeDisplaySettingsProvider _timeDisplaySettingsProvider;
+  late ApiSettingsProvider _apiSettingsProvider;
 
   String stationId = "";
   List<Departure> _departures = [];
 
   bool _isProgrammaticRefresh = false;
-  int _duration = 30;
+  int _offset = 0;
   TimeOfDay? _when;
 
   DateTime getDisplayTime(Departure departure) {
@@ -62,11 +65,11 @@ class _StationDeparturesState extends State<StationDepartures> {
   Future<void> _updateDepartures() async {
     if (_isProgrammaticRefresh) {
       setState(() {
-        _duration += 30;
+        _offset += _apiSettingsProvider.duration;
       });
     } else {
       setState(() {
-        _duration = 30;
+        _offset = 0;
       });
     }
 
@@ -75,7 +78,7 @@ class _StationDeparturesState extends State<StationDepartures> {
     });
 
     final departures = await VbbApi.getDeparturesAtStop(stationId, context,
-        duration: _duration, when: _when);
+        duration: _apiSettingsProvider.duration + _offset, when: _when);
     departures.sort(
       (a, b) {
         final timeA = getDisplayTime(a);
@@ -105,7 +108,7 @@ class _StationDeparturesState extends State<StationDepartures> {
     if (selectedTime != null) {
       setState(() {
         _when = selectedTime;
-        _duration = 30;
+        _offset = 0;
       });
 
       _refreshIndicatorKey.currentState?.show();
