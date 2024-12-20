@@ -151,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainHostFocusNode.unfocus();
                     },
                     onChanged: (value) {
-                      apiHostProvider.saveHostPreference(value);
+                      apiHostProvider.saveHost(value);
                     },
                     decoration: InputDecoration(
                       border: const UnderlineInputBorder(),
