@@ -139,27 +139,41 @@ class _SettingsPageState extends State<SettingsPage> {
                       ?.copyWith(color: theme.colorScheme.primary),
                 ),
               ),
-              ListTile(
-                title: Consumer<ApiSettingsProvider>(
-                    builder: (context, apiHostProvider, child) {
+              Consumer<ApiSettingsProvider>(
+                builder: (context, apiHostProvider, child) {
                   _mainHostController.text = apiHostProvider.mainHost;
 
-                  return TextFormField(
-                    controller: _mainHostController,
-                    focusNode: mainHostFocusNode,
-                    onTapOutside: (event) {
-                      mainHostFocusNode.unfocus();
-                    },
-                    onChanged: (value) {
-                      apiHostProvider.saveHost(value);
-                    },
-                    decoration: InputDecoration(
-                      border: const UnderlineInputBorder(),
-                      hintText: "v6.vbb.transport.rest",
-                      labelText: appLocalizations.settingsApiHostLabel,
+                  return Column(children: [
+                    ListTile(
+                      title: Text("Duration"),
+                      subtitle: Slider(
+                          min: 10,
+                          max: 120,
+                          divisions: 11,
+                          label: "${apiHostProvider.duration}min.",
+                          value: apiHostProvider.duration.toDouble(),
+                          onChanged: (value) {
+                            apiHostProvider.setDuration(value.toInt());
+                          }),
                     ),
-                  );
-                }),
+                    ListTile(
+                        title: TextFormField(
+                      controller: _mainHostController,
+                      focusNode: mainHostFocusNode,
+                      onTapOutside: (event) {
+                        mainHostFocusNode.unfocus();
+                      },
+                      onChanged: (value) {
+                        apiHostProvider.saveHost(value);
+                      },
+                      decoration: InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        hintText: "v6.vbb.transport.rest",
+                        labelText: appLocalizations.settingsApiHostLabel,
+                      ),
+                    )),
+                  ]);
+                },
               ),
               ListTile(
                 title: Text(appLocalizations.settingsReset),
