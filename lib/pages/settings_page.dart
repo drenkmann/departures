@@ -21,12 +21,18 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late TextEditingController _mainHostController;
   FocusNode mainHostFocusNode = FocusNode();
+  PackageInfo? _packageInfo;
 
   @override
   void initState() {
     super.initState();
 
     _mainHostController = TextEditingController();
+    PackageInfo.fromPlatform().then((packageInfo) {
+      setState(() {
+        _packageInfo = packageInfo;
+      });
+    });
 
     final apiHostProvider =
         Provider.of<ApiSettingsProvider>(context, listen: false);
@@ -202,22 +208,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
-                title: Text(appLocalizations.settingsAboutAppButton),
-                trailing: const Icon(Icons.info_outline),
-                onTap: () {
-                  PackageInfo.fromPlatform().then((PackageInfo info) {
-                    if (!context.mounted) return;
-
-                    showAboutDialog(
-                      context: context,
-                      applicationName: appLocalizations.appTitle,
-                      applicationVersion: "v${info.version}",
-                      applicationLegalese: "© drenkmann 2024",
-                    );
-                  });
-                },
-              ),
-              ListTile(
                 title: Text(appLocalizations.settingsOpenGithubButton),
                 trailing: const Icon(Icons.code_outlined),
                 onTap: () async {
@@ -241,7 +231,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text(appLocalizations.settingsOpenDeviceSettingsButton),
                 trailing: const Icon(Icons.settings_outlined),
                 onTap: Geolocator.openAppSettings,
-              )
+              ),
+              ListTile(
+                title: Text("Show Open Source Licenses"),
+                trailing: const Icon(Icons.description_outlined),
+                onTap: () => showLicensePage(context: context),
+              ),
+              ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "v${_packageInfo?.version ?? ""} - © drenkmann 2024",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Theme.of(context).hintColor),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         )
