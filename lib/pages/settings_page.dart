@@ -233,7 +233,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 onTap: Geolocator.openAppSettings,
               ),
               ListTile(
-                title: Text("Show Open Source Licenses"),
+                title: Text(appLocalizations.settingsOpenSourceLicensesButton),
                 trailing: const Icon(Icons.description_outlined),
                 onTap: () => showLicensePage(context: context),
               ),

@@ -132,14 +132,14 @@
     "@settingsApiHostLabel": {
         "description": "Label of the text field for the api host to be used"
     },
-    "settingsAboutAppButton": "About Departures",
-    "@settingsAboutAppButton": {},
     "settingsOpenDeviceSettingsButton": "Open Device Settings",
     "@settingsOpenDeviceSettingsButton": {},
     "settingsOpenGithubButton": "Open Github",
     "@settingsOpenGithubButton": {},
     "settingsOpenPrivacyPolicyButton": "Open Privacy Policy",
     "@settingsOpenPrivacyPolicyButton": {},
+    "settingsOpenSourceLicensesButton": "Show Open Source Licenses",
+    "@settingsOpenSourceLicensesButton": {},
     "searchBarPlaceholder": "Enter station name",
     "@searchBarPlaceholder": {
         "description": "Placeholder for station search bar"
