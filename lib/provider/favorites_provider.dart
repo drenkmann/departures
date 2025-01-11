@@ -47,14 +47,17 @@ class FavoritesProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? favoritesJson = prefs.getStringList('favorites');
     if (favoritesJson != null) {
-      _favorites = favoritesJson.map((json) => StationDisplay.fromJson(jsonDecode(json))).toList();
+      _favorites = favoritesJson
+          .map((json) => StationDisplay.fromJson(jsonDecode(json)))
+          .toList();
     }
     notifyListeners();
   }
 
   void _saveFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> favoritesJson = _favorites.map((station) => jsonEncode(station.toJson())).toList();
+    List<String> favoritesJson =
+        _favorites.map((station) => jsonEncode(station.toJson())).toList();
     prefs.setStringList('favorites', favoritesJson);
   }
 }

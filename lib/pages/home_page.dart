@@ -28,7 +28,8 @@ class _HomePageState extends State<HomePage> {
 
   AppLocalizations? _appLocalizations;
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
 
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
@@ -47,23 +48,25 @@ class _HomePageState extends State<HomePage> {
       });
 
       if (!mounted) return null;
-      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: Text(_appLocalizations!.locationNotEnabledError),
-        content: Text(_appLocalizations!.locationDisabledAdvice),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(_appLocalizations!.close),
-          ),
-          TextButton(
-            onPressed: () {
-              Geolocator.openLocationSettings();
-              Navigator.pop(context);
-            },
-            child: Text(_appLocalizations!.openSettings),
-          ),
-        ],
-      ));
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: Text(_appLocalizations!.locationNotEnabledError),
+                content: Text(_appLocalizations!.locationDisabledAdvice),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(_appLocalizations!.close),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Geolocator.openLocationSettings();
+                      Navigator.pop(context);
+                    },
+                    child: Text(_appLocalizations!.openSettings),
+                  ),
+                ],
+              ));
 
       return null;
     }
@@ -77,23 +80,26 @@ class _HomePageState extends State<HomePage> {
         });
 
         if (!mounted) return null;
-        showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-          title: Text(_appLocalizations!.permissionsError),
-          content: Text(_appLocalizations!.locationPermissionDeniedAdvice),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(_appLocalizations!.close),
-            ),
-            TextButton(
-              onPressed: () {
-                Geolocator.openAppSettings();
-                Navigator.pop(context);
-              },
-              child: Text(_appLocalizations!.openSettings),
-            ),
-          ],
-        ));
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+                  title: Text(_appLocalizations!.permissionsError),
+                  content:
+                      Text(_appLocalizations!.locationPermissionDeniedAdvice),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(_appLocalizations!.close),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Geolocator.openAppSettings();
+                        Navigator.pop(context);
+                      },
+                      child: Text(_appLocalizations!.openSettings),
+                    ),
+                  ],
+                ));
 
         return null;
       }
@@ -104,28 +110,32 @@ class _HomePageState extends State<HomePage> {
       });
 
       if (!mounted) return null;
-      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: Text(_appLocalizations!.permissionsError),
-        content: Text(_appLocalizations!.locationPermissionDeniedAdvice),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(_appLocalizations!.close),
-          ),
-          TextButton(
-            onPressed: () {
-              Geolocator.openAppSettings();
-              Navigator.pop(context);
-            },
-            child: Text(_appLocalizations!.openSettings),
-          ),
-        ],
-      ));
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: Text(_appLocalizations!.permissionsError),
+                content:
+                    Text(_appLocalizations!.locationPermissionDeniedAdvice),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(_appLocalizations!.close),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Geolocator.openAppSettings();
+                      Navigator.pop(context);
+                    },
+                    child: Text(_appLocalizations!.openSettings),
+                  ),
+                ],
+              ));
 
       return null;
     }
 
-    final LocationAccuracyStatus accuracy = await Geolocator.getLocationAccuracy();
+    final LocationAccuracyStatus accuracy =
+        await Geolocator.getLocationAccuracy();
 
     if (!(accuracy == LocationAccuracyStatus.precise)) {
       setState(() {
@@ -133,23 +143,25 @@ class _HomePageState extends State<HomePage> {
       });
 
       if (!mounted) return null;
-      showDialog(context: context, builder: (BuildContext context) => AlertDialog(
-        title: Text(_appLocalizations!.permissionsError),
-        content: Text(_appLocalizations!.locationNotPreciseAdvice),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(_appLocalizations!.close),
-          ),
-          TextButton(
-            onPressed: () {
-              Geolocator.openAppSettings();
-              Navigator.pop(context);
-            },
-            child: Text(_appLocalizations!.openSettings),
-          ),
-        ],
-      ));
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: Text(_appLocalizations!.permissionsError),
+                content: Text(_appLocalizations!.locationNotPreciseAdvice),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(_appLocalizations!.close),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Geolocator.openAppSettings();
+                      Navigator.pop(context);
+                    },
+                    child: Text(_appLocalizations!.openSettings),
+                  ),
+                ],
+              ));
 
       return null;
     }
@@ -202,7 +214,10 @@ class _HomePageState extends State<HomePage> {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(_appLocalizations!.nearbyStationsTitle, style: Theme.of(context).textTheme.headlineMedium,),
+            child: Text(
+              _appLocalizations!.nearbyStationsTitle,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ),
         ),
         Expanded(
@@ -210,62 +225,64 @@ class _HomePageState extends State<HomePage> {
             onRefresh: _updateNearbyStations,
             key: _refreshIndicatorKey,
             child: _nearbyStations.isEmpty
-              ? LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: constraints.maxWidth,
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: Center(
-                      child: Text(
-                        emptyListExplanation,
-                        textAlign: TextAlign.center,
+                ? LayoutBuilder(
+                    builder: (context, constraints) => SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: constraints.maxWidth,
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: Center(
+                          child: Text(
+                            emptyListExplanation,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              )
-              : ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: _nearbyStations.length + 1,
-              itemBuilder: (context, index) {
-                if (index == _nearbyStations.length) {
-                  return ListTile(
-                    title: Center(
-                      child: Text(
-                        _appLocalizations!.loadMore,
-                        style: TextStyle(
-                          color: Theme.of(context).hintColor,
-                          decoration: TextDecoration.underline
-                        ),
-                      )
-                    ),
-                    onTap: () {
-                      _isProgrammaticRefresh = true;
-                      _refreshIndicatorKey.currentState?.show();
-                    },
-                  );
-                }
+                  )
+                : ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: _nearbyStations.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == _nearbyStations.length) {
+                        return ListTile(
+                          title: Center(
+                              child: Text(
+                            _appLocalizations!.loadMore,
+                            style: TextStyle(
+                                color: Theme.of(context).hintColor,
+                                decoration: TextDecoration.underline),
+                          )),
+                          onTap: () {
+                            _isProgrammaticRefresh = true;
+                            _refreshIndicatorKey.currentState?.show();
+                          },
+                        );
+                      }
 
-                Map<String, LineType> lineTypes = {};
+                      Map<String, LineType> lineTypes = {};
 
-                for (final line in _nearbyStations[index].lines!) {
-                  if (LineType.values.map((e) => e.name).contains(line.product) && line.name != null) {
-                    lineTypes[line.name!] = LineType.values.byName(line.product!);
-                  }
-                }
+                      for (final line in _nearbyStations[index].lines!) {
+                        if (LineType.values
+                                .map((e) => e.name)
+                                .contains(line.product) &&
+                            line.name != null) {
+                          lineTypes[line.name!] =
+                              LineType.values.byName(line.product!);
+                        }
+                      }
 
-                return StationDisplay(
-                  stationName: _nearbyStations[index].name!
-                    .replaceAll("(Berlin)", "")
-                    .trim(),
-                  stationId: _nearbyStations[index].id!,
-                  lines: lineTypes,
-                );
-              }
-            ),
+                      return StationDisplay(
+                        stationName: _nearbyStations[index]
+                            .name!
+                            .replaceAll("(Berlin)", "")
+                            .trim(),
+                        stationId: _nearbyStations[index].id!,
+                        lines: lineTypes,
+                      );
+                    }),
           ),
         ),
       ],
