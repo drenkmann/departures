@@ -7,7 +7,7 @@ publish_to: 'none'
 # Increment MINOR when introducing new features
 # Increment PATCH when fixing bugs/refactoring
 # Changes that do not modify code (e.g. README) should not increment the version number
-version: 2.3.3+21
+version: 2.3.4+22
 
 environment:
   sdk: ^3.6.0
