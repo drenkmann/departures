@@ -46,64 +46,75 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            AppLocalizations.of(context)!.searchTitle,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        )),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: TextField(
-            onSubmitted: (_) => _refreshIndicatorKey.currentState?.show(),
-            onTapOutside: (event) {
-              _searchFocusNode.unfocus();
-            },
-            controller: _searchController,
-            focusNode: _searchFocusNode,
-            autofocus: false,
-            maxLines: 1,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.searchBarPlaceholder,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        SliverAppBar(
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.zero,
+            title: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                spacing: 8,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.searchTitle,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 56,
+                      child: TextField(
+                        onSubmitted: (_) =>
+                            _refreshIndicatorKey.currentState?.show(),
+                        onTapOutside: (event) {
+                          _searchFocusNode.unfocus();
+                        },
+                        controller: _searchController,
+                        focusNode: _searchFocusNode,
+                        autofocus: false,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!
+                              .searchBarPlaceholder,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+          pinned: true,
+          expandedHeight: 90,
         ),
-        Expanded(
-            child: RefreshIndicator(
-          key: _refreshIndicatorKey,
-          onRefresh: () => _getStops(_searchController.text),
-          notificationPredicate: (_) => false,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: _stops.length,
-            itemBuilder: (context, index) {
-              Map<String, LineType> lineTypes = {};
-
-              for (final line in _stops[index].lines!) {
-                if (LineType.values.map((e) => e.name).contains(line.product)) {
-                  lineTypes[line.name!] = LineType.values.byName(line.product!);
-                }
-              }
-
-              return StationDisplay(
-                stationName:
-                    _stops[index].name!.replaceAll("(Berlin)", "").trim(),
-                stationId: _stops[index].id!,
-                lines: lineTypes,
-              );
-            },
-          ),
-        )),
       ],
+      body: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: () => _getStops(_searchController.text),
+        notificationPredicate: (_) => false,
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: _stops.length,
+          itemBuilder: (context, index) {
+            Map<String, LineType> lineTypes = {};
+
+            for (final line in _stops[index].lines!) {
+              if (LineType.values.map((e) => e.name).contains(line.product)) {
+                lineTypes[line.name!] = LineType.values.byName(line.product!);
+              }
+            }
+
+            return StationDisplay(
+              stationName:
+                  _stops[index].name!.replaceAll("(Berlin)", "").trim(),
+              stationId: _stops[index].id!,
+              lines: lineTypes,
+            );
+          },
+        ),
+      ),
     );
   }
 }
