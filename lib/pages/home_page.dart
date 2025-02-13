@@ -207,85 +207,82 @@ class _HomePageState extends State<HomePage> {
     _appLocalizations = AppLocalizations.of(context);
     emptyListExplanation = _appLocalizations!.homeNoNearbyStations;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              _appLocalizations!.nearbyStationsTitle,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ),
-        ),
-        Expanded(
-          child: RefreshIndicator(
-            onRefresh: _updateNearbyStations,
-            key: _refreshIndicatorKey,
-            child: _nearbyStations.isEmpty
-                ? LayoutBuilder(
-                    builder: (context, constraints) => SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minWidth: constraints.maxWidth,
-                          minHeight: constraints.maxHeight,
-                        ),
-                        child: Center(
-                          child: Text(
-                            emptyListExplanation,
-                            textAlign: TextAlign.center,
-                          ),
+    return NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverAppBar(
+                pinned: true,
+                expandedHeight: 90,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Text(_appLocalizations!.nearbyStationsTitle),
+                  ),
+                  titlePadding: EdgeInsets.zero,
+                ),
+              )
+            ],
+        body: RefreshIndicator(
+          onRefresh: _updateNearbyStations,
+          key: _refreshIndicatorKey,
+          child: _nearbyStations.isEmpty
+              ? LayoutBuilder(
+                  builder: (context, constraints) => SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: constraints.maxWidth,
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Center(
+                        child: Text(
+                          emptyListExplanation,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                  )
-                : ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: _nearbyStations.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index == _nearbyStations.length) {
-                        return ListTile(
-                          title: Center(
-                              child: Text(
-                            _appLocalizations!.loadMore,
-                            style: TextStyle(
-                                color: Theme.of(context).hintColor,
-                                decoration: TextDecoration.underline),
-                          )),
-                          onTap: () {
-                            _isProgrammaticRefresh = true;
-                            _refreshIndicatorKey.currentState?.show();
-                          },
-                        );
-                      }
-
-                      Map<String, LineType> lineTypes = {};
-
-                      for (final line in _nearbyStations[index].lines!) {
-                        if (LineType.values
-                                .map((e) => e.name)
-                                .contains(line.product) &&
-                            line.name != null) {
-                          lineTypes[line.name!] =
-                              LineType.values.byName(line.product!);
-                        }
-                      }
-
-                      return StationDisplay(
-                        stationName: _nearbyStations[index]
-                            .name!
-                            .replaceAll("(Berlin)", "")
-                            .trim(),
-                        stationId: _nearbyStations[index].id!,
-                        lines: lineTypes,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _nearbyStations.length + 1,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    if (index == _nearbyStations.length) {
+                      return ListTile(
+                        title: Center(
+                            child: Text(
+                          _appLocalizations!.loadMore,
+                          style: TextStyle(
+                              color: Theme.of(context).hintColor,
+                              decoration: TextDecoration.underline),
+                        )),
+                        onTap: () {
+                          _isProgrammaticRefresh = true;
+                          _refreshIndicatorKey.currentState?.show();
+                        },
                       );
-                    }),
-          ),
-        ),
-      ],
-    );
+                    }
+
+                    Map<String, LineType> lineTypes = {};
+
+                    for (final line in _nearbyStations[index].lines!) {
+                      if (LineType.values
+                              .map((e) => e.name)
+                              .contains(line.product) &&
+                          line.name != null) {
+                        lineTypes[line.name!] =
+                            LineType.values.byName(line.product!);
+                      }
+                    }
+
+                    return StationDisplay(
+                      stationName: _nearbyStations[index]
+                          .name!
+                          .replaceAll("(Berlin)", "")
+                          .trim(),
+                      stationId: _nearbyStations[index].id!,
+                      lines: lineTypes,
+                    );
+                  }),
+        ));
   }
 }
