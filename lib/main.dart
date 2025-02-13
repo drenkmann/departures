@@ -27,19 +27,7 @@ class DeparturesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
-      final SystemUiOverlayStyle overlayStyle = SystemUiOverlayStyle(
-          statusBarIconBrightness: switch (
-              themeProvider.appThemeMode.themeMode) {
-        ThemeMode.system =>
-          WidgetsBinding.instance.platformDispatcher.platformBrightness ==
-                  Brightness.light
-              ? Brightness.dark
-              : Brightness.light,
-        ThemeMode.dark => Brightness.light,
-        ThemeMode.light => Brightness.dark,
-      });
-
-      SystemChrome.setSystemUIOverlayStyle(overlayStyle);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
       return DynamicColorBuilder(builder:
           (ColorScheme? lightDynamicColor, ColorScheme? darkDynamicColor) {
@@ -146,7 +134,6 @@ class _AppMainPageState extends State<AppMainPage> {
           ),
         ],
       ),
-      // appBar: AppBar(title: Text(_titles[_currentIndex])),
     );
   }
 }
