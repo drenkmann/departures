@@ -260,7 +260,7 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "v${_packageInfo?.version ?? ""} - © drenkmann 2024",
+                  "v${_packageInfo?.version ?? ""} - © drenkmann 2025",
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall!
