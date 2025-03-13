@@ -4,13 +4,11 @@ import 'package:departures/services/stop.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:departures/l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -49,24 +47,26 @@ class _HomePageState extends State<HomePage> {
 
       if (!mounted) return null;
       showDialog(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-                title: Text(_appLocalizations!.locationNotEnabledError),
-                content: Text(_appLocalizations!.locationDisabledAdvice),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(_appLocalizations!.close),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Geolocator.openLocationSettings();
-                      Navigator.pop(context);
-                    },
-                    child: Text(_appLocalizations!.openSettings),
-                  ),
-                ],
-              ));
+        context: context,
+        builder:
+            (BuildContext context) => AlertDialog(
+              title: Text(_appLocalizations!.locationNotEnabledError),
+              content: Text(_appLocalizations!.locationDisabledAdvice),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(_appLocalizations!.close),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Geolocator.openLocationSettings();
+                    Navigator.pop(context);
+                  },
+                  child: Text(_appLocalizations!.openSettings),
+                ),
+              ],
+            ),
+      );
 
       return null;
     }
@@ -81,41 +81,13 @@ class _HomePageState extends State<HomePage> {
 
         if (!mounted) return null;
         showDialog(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-                  title: Text(_appLocalizations!.permissionsError),
-                  content:
-                      Text(_appLocalizations!.locationPermissionDeniedAdvice),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(_appLocalizations!.close),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Geolocator.openAppSettings();
-                        Navigator.pop(context);
-                      },
-                      child: Text(_appLocalizations!.openSettings),
-                    ),
-                  ],
-                ));
-
-        return null;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      setState(() {
-        emptyListExplanation = _appLocalizations!.locationCouldNotBeAccessed;
-      });
-
-      if (!mounted) return null;
-      showDialog(
           context: context,
-          builder: (BuildContext context) => AlertDialog(
+          builder:
+              (BuildContext context) => AlertDialog(
                 title: Text(_appLocalizations!.permissionsError),
-                content:
-                    Text(_appLocalizations!.locationPermissionDeniedAdvice),
+                content: Text(
+                  _appLocalizations!.locationPermissionDeniedAdvice,
+                ),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () => Navigator.pop(context),
@@ -129,7 +101,39 @@ class _HomePageState extends State<HomePage> {
                     child: Text(_appLocalizations!.openSettings),
                   ),
                 ],
-              ));
+              ),
+        );
+
+        return null;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      setState(() {
+        emptyListExplanation = _appLocalizations!.locationCouldNotBeAccessed;
+      });
+
+      if (!mounted) return null;
+      showDialog(
+        context: context,
+        builder:
+            (BuildContext context) => AlertDialog(
+              title: Text(_appLocalizations!.permissionsError),
+              content: Text(_appLocalizations!.locationPermissionDeniedAdvice),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(_appLocalizations!.close),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Geolocator.openAppSettings();
+                    Navigator.pop(context);
+                  },
+                  child: Text(_appLocalizations!.openSettings),
+                ),
+              ],
+            ),
+      );
 
       return null;
     }
@@ -144,24 +148,26 @@ class _HomePageState extends State<HomePage> {
 
       if (!mounted) return null;
       showDialog(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-                title: Text(_appLocalizations!.permissionsError),
-                content: Text(_appLocalizations!.locationNotPreciseAdvice),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(_appLocalizations!.close),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Geolocator.openAppSettings();
-                      Navigator.pop(context);
-                    },
-                    child: Text(_appLocalizations!.openSettings),
-                  ),
-                ],
-              ));
+        context: context,
+        builder:
+            (BuildContext context) => AlertDialog(
+              title: Text(_appLocalizations!.permissionsError),
+              content: Text(_appLocalizations!.locationNotPreciseAdvice),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(_appLocalizations!.close),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Geolocator.openAppSettings();
+                    Navigator.pop(context);
+                  },
+                  child: Text(_appLocalizations!.openSettings),
+                ),
+              ],
+            ),
+      );
 
       return null;
     }
@@ -222,65 +228,71 @@ class _HomePageState extends State<HomePage> {
       body: RefreshIndicator(
         onRefresh: _updateNearbyStations,
         key: _refreshIndicatorKey,
-        child: _nearbyStations.isEmpty
-            ? LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: constraints.maxWidth,
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: Center(
-                      child: Text(
-                        emptyListExplanation,
-                        textAlign: TextAlign.center,
+        child:
+            _nearbyStations.isEmpty
+                ? LayoutBuilder(
+                  builder:
+                      (context, constraints) => SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minWidth: constraints.maxWidth,
+                            minHeight: constraints.maxHeight,
+                          ),
+                          child: Center(
+                            child: Text(
+                              emptyListExplanation,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              )
-            : ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: _nearbyStations.length + 1,
-                itemBuilder: (context, index) {
-                  if (index == _nearbyStations.length) {
-                    return ListTile(
-                      title: Center(
+                )
+                : ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _nearbyStations.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index == _nearbyStations.length) {
+                      return ListTile(
+                        title: Center(
                           child: Text(
-                        _appLocalizations!.loadMore,
-                        style: TextStyle(
-                            color: Theme.of(context).hintColor,
-                            decoration: TextDecoration.underline),
-                      )),
-                      onTap: () {
-                        _isProgrammaticRefresh = true;
-                        _refreshIndicatorKey.currentState?.show();
-                      },
-                    );
-                  }
-
-                  Map<String, LineType> lineTypes = {};
-
-                  for (final line in _nearbyStations[index].lines!) {
-                    if (LineType.values
-                            .map((e) => e.name)
-                            .contains(line.product) &&
-                        line.name != null) {
-                      lineTypes[line.name!] =
-                          LineType.values.byName(line.product!);
+                            _appLocalizations!.loadMore,
+                            style: TextStyle(
+                              color: Theme.of(context).hintColor,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          _isProgrammaticRefresh = true;
+                          _refreshIndicatorKey.currentState?.show();
+                        },
+                      );
                     }
-                  }
 
-                  return StationDisplay(
-                    stationName: _nearbyStations[index]
-                        .name!
-                        .replaceAll("(Berlin)", "")
-                        .trim(),
-                    stationId: _nearbyStations[index].id!,
-                    lines: lineTypes,
-                  );
-                }),
+                    Map<String, LineType> lineTypes = {};
+
+                    for (final line in _nearbyStations[index].lines!) {
+                      if (LineType.values
+                              .map((e) => e.name)
+                              .contains(line.product) &&
+                          line.name != null) {
+                        lineTypes[line.name!] = LineType.values.byName(
+                          line.product!,
+                        );
+                      }
+                    }
+
+                    return StationDisplay(
+                      stationName:
+                          _nearbyStations[index].name!
+                              .replaceAll("(Berlin)", "")
+                              .trim(),
+                      stationId: _nearbyStations[index].id!,
+                      lines: lineTypes,
+                    );
+                  },
+                ),
       ),
     );
   }
