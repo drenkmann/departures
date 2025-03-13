@@ -66,11 +66,13 @@ class DeparturesApp extends StatelessWidget {
               theme: ThemeData(
                 useMaterial3: true,
                 colorScheme: lightColorScheme,
+                // ignore: deprecated_member_use
                 sliderTheme: const SliderThemeData(year2023: false),
               ),
               darkTheme: ThemeData(
                 useMaterial3: true,
                 colorScheme: darkColorScheme,
+                // ignore: deprecated_member_use
                 sliderTheme: const SliderThemeData(year2023: false),
               ),
               themeMode: themeProvider.appThemeMode.themeMode,
