@@ -47,9 +47,10 @@ class FavoritesProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? favoritesJson = prefs.getStringList('favorites');
     if (favoritesJson != null) {
-      _favorites = favoritesJson
-          .map((json) => StationDisplay.fromJson(jsonDecode(json)))
-          .toList();
+      _favorites =
+          favoritesJson
+              .map((json) => StationDisplay.fromJson(jsonDecode(json)))
+              .toList();
     }
     notifyListeners();
   }

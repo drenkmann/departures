@@ -3,12 +3,10 @@ import 'package:departures/services/stop.dart';
 import 'package:departures/services/api.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:departures/l10n/app_localizations.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({
-    super.key,
-  });
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();

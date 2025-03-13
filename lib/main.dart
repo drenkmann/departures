@@ -9,16 +9,21 @@ import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:departures/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => ThemeProvider()),
-    ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
-    ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
-    ChangeNotifierProvider(create: (_) => FavoritesProvider()),
-  ], child: const DeparturesApp()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
+        ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+      ],
+      child: const DeparturesApp(),
+    ),
+  );
 }
 
 class DeparturesApp extends StatelessWidget {
@@ -26,43 +31,53 @@ class DeparturesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-      return DynamicColorBuilder(builder:
-          (ColorScheme? lightDynamicColor, ColorScheme? darkDynamicColor) {
-        ColorScheme lightColorScheme;
-        ColorScheme darkColorScheme;
+        return DynamicColorBuilder(
+          builder: (
+            ColorScheme? lightDynamicColor,
+            ColorScheme? darkDynamicColor,
+          ) {
+            ColorScheme lightColorScheme;
+            ColorScheme darkColorScheme;
 
-        if (themeProvider.materialYou &&
-            lightDynamicColor != null &&
-            darkDynamicColor != null) {
-          lightColorScheme = lightDynamicColor.harmonized();
-          darkColorScheme = darkDynamicColor.harmonized();
-        } else {
-          lightColorScheme =
-              ColorScheme.fromSeed(seedColor: const Color(0xfff0ca00));
-          darkColorScheme = ColorScheme.fromSeed(
-              seedColor: const Color(0xfff0ca00), brightness: Brightness.dark);
-        }
+            if (themeProvider.materialYou &&
+                lightDynamicColor != null &&
+                darkDynamicColor != null) {
+              lightColorScheme = lightDynamicColor.harmonized();
+              darkColorScheme = darkDynamicColor.harmonized();
+            } else {
+              lightColorScheme = ColorScheme.fromSeed(
+                seedColor: const Color(0xfff0ca00),
+              );
+              darkColorScheme = ColorScheme.fromSeed(
+                seedColor: const Color(0xfff0ca00),
+                brightness: Brightness.dark,
+              );
+            }
 
-        return MaterialApp(
-          onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: lightColorScheme,
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: darkColorScheme,
-          ),
-          themeMode: themeProvider.appThemeMode.themeMode,
-          home: const AppMainPage(),
+            return MaterialApp(
+              onGenerateTitle:
+                  (context) => AppLocalizations.of(context)!.appTitle,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: ThemeData(
+                useMaterial3: true,
+                colorScheme: lightColorScheme,
+              ),
+              darkTheme: ThemeData(
+                useMaterial3: true,
+                colorScheme: darkColorScheme,
+              ),
+              themeMode: themeProvider.appThemeMode.themeMode,
+              home: const AppMainPage(),
+            );
+          },
         );
-      });
-    });
+      },
+    );
   }
 }
 
@@ -98,10 +113,7 @@ class _AppMainPageState extends State<AppMainPage> {
     final appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: IndexedStack(
-        index: _activePage,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _activePage, children: _pages),
       key: scaffoldKey,
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
