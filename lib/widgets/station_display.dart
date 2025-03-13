@@ -2,7 +2,7 @@ import 'package:departures/enums/line_types.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:departures/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class StationDisplay extends StatelessWidget {
@@ -28,9 +28,12 @@ class StationDisplay extends StatelessWidget {
     return StationDisplay(
       stationName: json['stationName'],
       stationId: json['stationId'],
-      lines: (json['lines'] as Map<String, dynamic>).map((key, value) =>
-          MapEntry(
-              key, LineType.values.firstWhere((e) => e.toString() == value))),
+      lines: (json['lines'] as Map<String, dynamic>).map(
+        (key, value) => MapEntry(
+          key,
+          LineType.values.firstWhere((e) => e.toString() == value),
+        ),
+      ),
     );
   }
 
@@ -59,27 +62,37 @@ class StationDisplay extends StatelessWidget {
         final provider = Provider.of<FavoritesProvider>(context, listen: false);
         final justSaved = !provider.favorites.contains(this);
         provider.toggleFavorite(this);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(appLocalizations.undoFavoriteToggle(
-              justSaved.toString(), stationName)),
-          duration: const Duration(seconds: 1),
-          action: SnackBarAction(
-            label: appLocalizations.undo,
-            onPressed: () {
-              provider.toggleFavorite(this);
-            },
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              appLocalizations.undoFavoriteToggle(
+                justSaved.toString(),
+                stationName,
+              ),
+            ),
+            duration: const Duration(seconds: 1),
+            action: SnackBarAction(
+              label: appLocalizations.undo,
+              onPressed: () {
+                provider.toggleFavorite(this);
+              },
+            ),
           ),
-        ));
+        );
 
         return Future.value(false);
       },
       child: ListTile(
         title: Text(stationName),
-        subtitle: Wrap(spacing: 5, runSpacing: 5, children: [
-          for (final line in lines.entries)
-            if ((line.key as String).isNotEmpty)
-              LineTag(lineType: line.value, lineName: line.key)
-        ]),
+        subtitle: Wrap(
+          spacing: 5,
+          runSpacing: 5,
+          children: [
+            for (final line in lines.entries)
+              if ((line.key as String).isNotEmpty)
+                LineTag(lineType: line.value, lineName: line.key),
+          ],
+        ),
         onTap: () {
           showModalBottomSheet(
             context: context,
@@ -100,11 +113,7 @@ class StationDisplay extends StatelessWidget {
 }
 
 class LineTag extends StatelessWidget {
-  const LineTag({
-    super.key,
-    required this.lineType,
-    required this.lineName,
-  });
+  const LineTag({super.key, required this.lineType, required this.lineName});
 
   final LineType lineType;
   final String lineName;
@@ -114,11 +123,10 @@ class LineTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 3, right: 3),
       decoration: BoxDecoration(
-          color: lineType.color, borderRadius: BorderRadius.circular(3)),
-      child: Text(
-        lineName,
-        style: const TextStyle(color: Colors.white),
+        color: lineType.color,
+        borderRadius: BorderRadius.circular(3),
       ),
+      child: Text(lineName, style: const TextStyle(color: Colors.white)),
     );
   }
 }

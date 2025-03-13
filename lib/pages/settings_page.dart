@@ -3,7 +3,7 @@ import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:departures/l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +34,10 @@ class _SettingsPageState extends State<SettingsPage> {
       });
     });
 
-    final apiHostProvider =
-        Provider.of<ApiSettingsProvider>(context, listen: false);
+    final apiHostProvider = Provider.of<ApiSettingsProvider>(
+      context,
+      listen: false,
+    );
     _mainHostController.text = apiHostProvider.mainHost;
   }
 
@@ -70,80 +72,93 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               appLocalizations.settingsSectionAppearance,
-              style: theme.textTheme.titleMedium
-                  ?.copyWith(color: theme.colorScheme.primary),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
           ListTile(
             title: Text(appLocalizations.settingsThemeTitle),
             trailing: Consumer<ThemeProvider>(
-                builder: (context, themeProvider, child) {
-              return DropdownMenu(
-                initialSelection: themeProvider.appThemeMode,
-                inputDecorationTheme: InputDecorationTheme(
+              builder: (context, themeProvider, child) {
+                return DropdownMenu(
+                  initialSelection: themeProvider.appThemeMode,
+                  inputDecorationTheme: InputDecorationTheme(
                     isDense: true,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                    constraints:
-                        BoxConstraints.tight(const Size.fromHeight(40)),
+                    constraints: BoxConstraints.tight(
+                      const Size.fromHeight(40),
+                    ),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8))),
-                dropdownMenuEntries: [
-                  DropdownMenuEntry(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  dropdownMenuEntries: [
+                    DropdownMenuEntry(
                       value: AppThemeMode.system,
-                      label: appLocalizations.settingsThemeSystem),
-                  DropdownMenuEntry(
+                      label: appLocalizations.settingsThemeSystem,
+                    ),
+                    DropdownMenuEntry(
                       value: AppThemeMode.dark,
-                      label: appLocalizations.settingsThemeDark),
-                  DropdownMenuEntry(
+                      label: appLocalizations.settingsThemeDark,
+                    ),
+                    DropdownMenuEntry(
                       value: AppThemeMode.light,
-                      label: appLocalizations.settingsThemeLight),
-                  DropdownMenuEntry(
-                      value: AppThemeMode.you, label: "Material You")
-                ],
-                onSelected: (AppThemeMode? themeMode) {
-                  if (themeMode != null) {
-                    themeProvider.setThemeMode(themeMode);
-                  }
-                },
-              );
-            }),
-          ),
-          Consumer<TimeDisplaySettingsProvider>(
-            builder: (context, timeDisplayProvider, child) => ListTile(
-              title: Text(appLocalizations.settingsShowActualTimeTitle),
-              subtitle: timeDisplayProvider.showActualTime
-                  ? Text(appLocalizations.settingsShowActualTimeSubtitleOn)
-                  : Text(appLocalizations.settingsShowActualTimeSubtitleOff),
-              trailing: Switch(
-                value: timeDisplayProvider.showActualTime,
-                onChanged: (value) {
-                  timeDisplayProvider.setShowActualTime(value);
-                },
-              ),
+                      label: appLocalizations.settingsThemeLight,
+                    ),
+                    DropdownMenuEntry(
+                      value: AppThemeMode.you,
+                      label: "Material You",
+                    ),
+                  ],
+                  onSelected: (AppThemeMode? themeMode) {
+                    if (themeMode != null) {
+                      themeProvider.setThemeMode(themeMode);
+                    }
+                  },
+                );
+              },
             ),
           ),
-          const Divider(
-            indent: 16,
-            endIndent: 16,
-            height: 24,
-            thickness: 1,
+          Consumer<TimeDisplaySettingsProvider>(
+            builder:
+                (context, timeDisplayProvider, child) => ListTile(
+                  title: Text(appLocalizations.settingsShowActualTimeTitle),
+                  subtitle:
+                      timeDisplayProvider.showActualTime
+                          ? Text(
+                            appLocalizations.settingsShowActualTimeSubtitleOn,
+                          )
+                          : Text(
+                            appLocalizations.settingsShowActualTimeSubtitleOff,
+                          ),
+                  trailing: Switch(
+                    value: timeDisplayProvider.showActualTime,
+                    onChanged: (value) {
+                      timeDisplayProvider.setShowActualTime(value);
+                    },
+                  ),
+                ),
           ),
+          const Divider(indent: 16, endIndent: 16, height: 24, thickness: 1),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               appLocalizations.settingsSectionAdvanced,
-              style: theme.textTheme.titleMedium
-                  ?.copyWith(color: theme.colorScheme.primary),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
           Consumer<ApiSettingsProvider>(
             builder: (context, apiHostProvider, child) {
               _mainHostController.text = apiHostProvider.mainHost;
 
-              return Column(children: [
-                ListTile(
-                  title: Text("Duration"),
-                  subtitle: Slider(
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text("Duration"),
+                    subtitle: Slider(
                       min: 10,
                       max: 120,
                       divisions: 11,
@@ -151,25 +166,28 @@ class _SettingsPageState extends State<SettingsPage> {
                       value: apiHostProvider.duration.toDouble(),
                       onChanged: (value) {
                         apiHostProvider.setDuration(value.toInt());
-                      }),
-                ),
-                ListTile(
-                    title: TextFormField(
-                  controller: _mainHostController,
-                  focusNode: mainHostFocusNode,
-                  onTapOutside: (event) {
-                    mainHostFocusNode.unfocus();
-                  },
-                  onChanged: (value) {
-                    apiHostProvider.saveHost(value);
-                  },
-                  decoration: InputDecoration(
-                    border: const UnderlineInputBorder(),
-                    hintText: "v6.vbb.transport.rest",
-                    labelText: appLocalizations.settingsApiHostLabel,
+                      },
+                    ),
                   ),
-                )),
-              ]);
+                  ListTile(
+                    title: TextFormField(
+                      controller: _mainHostController,
+                      focusNode: mainHostFocusNode,
+                      onTapOutside: (event) {
+                        mainHostFocusNode.unfocus();
+                      },
+                      onChanged: (value) {
+                        apiHostProvider.saveHost(value);
+                      },
+                      decoration: InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        hintText: "v6.vbb.transport.rest",
+                        labelText: appLocalizations.settingsApiHostLabel,
+                      ),
+                    ),
+                  ),
+                ],
+              );
             },
           ),
           ListTile(
@@ -177,43 +195,40 @@ class _SettingsPageState extends State<SettingsPage> {
             trailing: const Icon(Icons.restart_alt_outlined),
             onTap: () {
               showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: Text(appLocalizations.settingsResetTitle),
-                        content:
-                            Text(appLocalizations.settingsResetConfirmation),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              SharedPreferences.getInstance().then((prefs) {
-                                prefs.clear().then((_) => Restart.restartApp());
-                              });
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(appLocalizations.yes),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(appLocalizations.no),
-                          )
-                        ],
-                      ));
+                context: context,
+                builder:
+                    (context) => AlertDialog(
+                      title: Text(appLocalizations.settingsResetTitle),
+                      content: Text(appLocalizations.settingsResetConfirmation),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            SharedPreferences.getInstance().then((prefs) {
+                              prefs.clear().then((_) => Restart.restartApp());
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(appLocalizations.yes),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(appLocalizations.no),
+                        ),
+                      ],
+                    ),
+              );
             },
           ),
-          const Divider(
-            indent: 16,
-            endIndent: 16,
-            height: 24,
-            thickness: 1,
-          ),
+          const Divider(indent: 16, endIndent: 16, height: 24, thickness: 1),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               appLocalizations.settingsSectionAbout,
-              style: theme.textTheme.titleMedium
-                  ?.copyWith(color: theme.colorScheme.primary),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
           ListTile(
@@ -230,7 +245,8 @@ class _SettingsPageState extends State<SettingsPage> {
             trailing: const Icon(Icons.code_outlined),
             onTap: () async {
               if (!await launchUrlString(
-                  "https://github.com/drenkmann/departures")) {
+                "https://github.com/drenkmann/departures",
+              )) {
                 throw Exception("Could not open github URL");
               }
             },
@@ -240,7 +256,8 @@ class _SettingsPageState extends State<SettingsPage> {
             trailing: const Icon(Icons.privacy_tip_outlined),
             onTap: () async {
               if (!await launchUrlString(
-                  "https://github.com/drenkmann/departures")) {
+                "https://github.com/drenkmann/departures",
+              )) {
                 throw Exception("Could not open github URL");
               }
             },
@@ -260,12 +277,11 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "v${_packageInfo?.version ?? ""} - © drenkmann 2024",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: Theme.of(context).hintColor),
-                )
+                  "v${_packageInfo?.version ?? ""} - © drenkmann 2025",
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
               ],
             ),
           ),

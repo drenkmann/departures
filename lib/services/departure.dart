@@ -17,21 +17,22 @@ class Departure {
   bool? cancelled;
   CurrentTripPosition? currentTripPosition;
 
-  Departure(
-      {this.tripId,
-      this.when,
-      this.plannedWhen,
-      this.delay,
-      this.platform,
-      this.plannedPlatform,
-      this.prognosisType,
-      this.direction,
-      this.line,
-      this.remarks,
-      this.origin,
-      this.destination,
-      this.cancelled,
-      this.currentTripPosition});
+  Departure({
+    this.tripId,
+    this.when,
+    this.plannedWhen,
+    this.delay,
+    this.platform,
+    this.plannedPlatform,
+    this.prognosisType,
+    this.direction,
+    this.line,
+    this.remarks,
+    this.origin,
+    this.destination,
+    this.cancelled,
+    this.currentTripPosition,
+  });
 
   Departure.fromJson(Map<String, dynamic> json) {
     tripId = json['tripId'];
@@ -53,9 +54,10 @@ class Departure {
     destination =
         json['destination'] != null ? Stop.fromJson(json['destination']) : null;
     cancelled = json['cancelled'];
-    currentTripPosition = json['currentTripPosition'] != null
-        ? CurrentTripPosition.fromJson(json['currentTripPosition'])
-        : null;
+    currentTripPosition =
+        json['currentTripPosition'] != null
+            ? CurrentTripPosition.fromJson(json['currentTripPosition'])
+            : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -123,14 +125,15 @@ class Products {
   bool? express;
   bool? regional;
 
-  Products(
-      {this.suburban,
-      this.subway,
-      this.tram,
-      this.bus,
-      this.ferry,
-      this.express,
-      this.regional});
+  Products({
+    this.suburban,
+    this.subway,
+    this.tram,
+    this.bus,
+    this.ferry,
+    this.express,
+    this.regional,
+  });
 
   Products.fromJson(Map<String, dynamic> json) {
     suburban = json['suburban'];
@@ -168,18 +171,19 @@ class Line {
   Operator? operator;
   Color? color;
 
-  Line(
-      {this.type,
-      this.id,
-      this.fahrtNr,
-      this.name,
-      this.public,
-      this.adminCode,
-      this.productName,
-      this.mode,
-      this.product,
-      this.operator,
-      this.color});
+  Line({
+    this.type,
+    this.id,
+    this.fahrtNr,
+    this.name,
+    this.public,
+    this.adminCode,
+    this.productName,
+    this.mode,
+    this.product,
+    this.operator,
+    this.color,
+  });
 
   Line.fromJson(Map<String, dynamic> json) {
     type = json['type'];

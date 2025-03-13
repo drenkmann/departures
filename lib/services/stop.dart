@@ -8,23 +8,25 @@ class Stop {
   String? stationDHID;
   int? distance;
 
-  Stop(
-      {this.type,
-      this.id,
-      this.name,
-      this.location,
-      this.products,
-      this.lines,
-      this.stationDHID,
-      this.distance});
+  Stop({
+    this.type,
+    this.id,
+    this.name,
+    this.location,
+    this.products,
+    this.lines,
+    this.stationDHID,
+    this.distance,
+  });
 
   Stop.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     name = json['name'];
-    location = json['location'] != null
-        ? StationLocation.fromJson(json['location'])
-        : null;
+    location =
+        json['location'] != null
+            ? StationLocation.fromJson(json['location'])
+            : null;
     products =
         json['products'] != null ? Products.fromJson(json['products']) : null;
     if (json['lines'] != null) {
@@ -91,14 +93,15 @@ class Products {
   bool? express;
   bool? regional;
 
-  Products(
-      {this.suburban,
-      this.subway,
-      this.tram,
-      this.bus,
-      this.ferry,
-      this.express,
-      this.regional});
+  Products({
+    this.suburban,
+    this.subway,
+    this.tram,
+    this.bus,
+    this.ferry,
+    this.express,
+    this.regional,
+  });
 
   Products.fromJson(Map<String, dynamic> json) {
     suburban = json['suburban'];
@@ -133,15 +136,16 @@ class Lines {
   String? product;
   Color? color;
 
-  Lines(
-      {this.type,
-      this.id,
-      this.name,
-      this.public,
-      this.productName,
-      this.mode,
-      this.product,
-      this.color});
+  Lines({
+    this.type,
+    this.id,
+    this.name,
+    this.public,
+    this.productName,
+    this.mode,
+    this.product,
+    this.color,
+  });
 
   Lines.fromJson(Map<String, dynamic> json) {
     type = json['type'];
