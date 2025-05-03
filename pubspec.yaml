@@ -22,7 +22,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   shared_preferences: ^2.5.3
-  provider: ^6.1.4
+  provider: ^6.1.5
   package_info_plus: ^8.3.0
   url_launcher: ^6.3.1
   geolocator: ^14.0.0
