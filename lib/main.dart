@@ -8,7 +8,6 @@ import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:departures/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -33,8 +32,6 @@ class DeparturesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
         return DynamicColorBuilder(
           builder: (
             ColorScheme? lightDynamicColor,
