@@ -27,8 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeNoNearbyStations => 'No nearby stations found.';
 
   @override
-  String get locationCouldNotBeAccessed =>
-      'Location could not be accessed.\nPlease check your permission settings and restart the app.';
+  String get locationCouldNotBeAccessed => 'Location could not be accessed.\nPlease check your permission settings and restart the app.';
 
   @override
   String locationCouldNotBeAccessedReason(String error) {
@@ -45,16 +44,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionsError => 'Permissions Error';
 
   @override
-  String get locationDisabledAdvice =>
-      'Please enable location services in your device settings.';
+  String get locationDisabledAdvice => 'Please enable location services in your device settings.';
 
   @override
-  String get locationPermissionDeniedAdvice =>
-      'Please grant location permissions to the app in your device settings.';
+  String get locationPermissionDeniedAdvice => 'Please grant location permissions to the app in your device settings.';
 
   @override
-  String get locationNotPreciseAdvice =>
-      'Please grant precise location permissions to the app in your device settings.';
+  String get locationNotPreciseAdvice => 'Please grant precise location permissions to the app in your device settings.';
 
   @override
   String get locationNotPrecise => 'Location not precise enough.';
@@ -66,8 +62,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection Error';
 
   @override
-  String get connectionErrorAdvice =>
-      'Please check your internet connection and try again.';
+  String get connectionErrorAdvice => 'Please check your internet connection and try again.';
 
   @override
   String get httpError => 'HTTP Error';
@@ -157,23 +152,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsReset => 'Reset everything';
 
   @override
-  String get settingsResetConfirmation =>
-      'Do you really want to reset all settings and favorites? This will restart the app.';
+  String get settingsResetConfirmation => 'Do you really want to reset all settings and favorites? This will restart the app.';
 
   @override
   String get settingsResetTitle => 'Reset everything?';
 
   @override
-  String get favoritesEmpty =>
-      'No stations saved.\nTo save a station, swipe on it.';
+  String get favoritesEmpty => 'No stations saved.\nTo save a station, swipe on it.';
 
   @override
   String undoFavoriteToggle(String wasSaved, String stationName) {
-    String _temp0 = intl.Intl.selectLogic(wasSaved, {
-      'true': 'Saved',
-      'false': 'Unsaved',
-      'other': 'Error updating',
-    });
+    String _temp0 = intl.Intl.selectLogic(
+      wasSaved,
+      {
+        'true': 'Saved',
+        'false': 'Unsaved',
+        'other': 'Error updating',
+      },
+    );
     return '$_temp0 $stationName';
   }
 }
