@@ -6,3 +6,16 @@ updates:
     schedule:
       interval: "monthly"
     target-branch: "dev"
+    groups:
+      dev-dependencies:
+        patterns:
+          - "flutter_test"
+          - "flutter_lints"
+          - "flutter_launcher_icons"
+      dependencies:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "flutter_test"
+          - "flutter_lints"
+          - "flutter_launcher_icons"
