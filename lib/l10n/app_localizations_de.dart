@@ -27,7 +27,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homeNoNearbyStations => 'Keine Stationen in der Nähe gefunden.';
 
   @override
-  String get locationCouldNotBeAccessed => 'Standort konnte nicht ermittelt werden.\nBitte überprüfe die App Berechtigungen und starte die App neu.';
+  String get locationCouldNotBeAccessed =>
+      'Standort konnte nicht ermittelt werden.\nBitte überprüfe die App Berechtigungen und starte die App neu.';
 
   @override
   String locationCouldNotBeAccessedReason(String error) {
@@ -44,13 +45,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get permissionsError => 'Berechtigungs Fehler';
 
   @override
-  String get locationDisabledAdvice => 'Bitte aktiviere Standort Dienste in den Geräte Einstellungen.';
+  String get locationDisabledAdvice =>
+      'Bitte aktiviere Standort Dienste in den Geräte Einstellungen.';
 
   @override
-  String get locationPermissionDeniedAdvice => 'Bitte gewähre der App Standort Berechtigungen in den Geräte Einstellungen.';
+  String get locationPermissionDeniedAdvice =>
+      'Bitte gewähre der App Standort Berechtigungen in den Geräte Einstellungen.';
 
   @override
-  String get locationNotPreciseAdvice => 'Bitte aktiviere der App genaue Standort Berechtigungen in den Geräte Einstellungen.';
+  String get locationNotPreciseAdvice =>
+      'Bitte aktiviere der App genaue Standort Berechtigungen in den Geräte Einstellungen.';
 
   @override
   String get locationNotPrecise => 'Standort nicht genau genug.';
@@ -62,7 +66,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get connectionError => 'Verbindungsfehler';
 
   @override
-  String get connectionErrorAdvice => 'Bitte überprüfe deine Internetverbindung.';
+  String get connectionErrorAdvice =>
+      'Bitte überprüfe deine Internetverbindung.';
 
   @override
   String get httpError => 'HTTP Fehler';
@@ -131,7 +136,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsOpenPrivacyPolicyButton => 'Datenschutzrichtlinie öffnen';
 
   @override
-  String get settingsOpenSourceLicensesButton => 'Open Source Lizenzen anzeigen';
+  String get settingsOpenSourceLicensesButton =>
+      'Open Source Lizenzen anzeigen';
 
   @override
   String get searchBarPlaceholder => 'Haltestelle eingeben';
@@ -152,24 +158,23 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsReset => 'Alles zurücksetzen';
 
   @override
-  String get settingsResetConfirmation => 'Sind Sie sicher, dass Sie alle Einstellungen und gespeicherte Stationen zurücksetzen möchten? Die App wird danach neusstarten.';
+  String get settingsResetConfirmation =>
+      'Sind Sie sicher, dass Sie alle Einstellungen und gespeicherte Stationen zurücksetzen möchten? Die App wird danach neusstarten.';
 
   @override
   String get settingsResetTitle => 'Alles zurücksetzen?';
 
   @override
-  String get favoritesEmpty => 'Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite.';
+  String get favoritesEmpty =>
+      'Keine Stationen gespeichert.\nUm eine Station zu speichern, wische zur Seite.';
 
   @override
   String undoFavoriteToggle(String wasSaved, String stationName) {
-    String _temp0 = intl.Intl.selectLogic(
-      wasSaved,
-      {
-        'true': 'gespeichert',
-        'false': 'entfernt',
-        'other': 'Update fehlgeschlagen',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(wasSaved, {
+      'true': 'gespeichert',
+      'false': 'entfernt',
+      'other': 'Update fehlgeschlagen',
+    });
     return '$stationName $_temp0.';
   }
 }
