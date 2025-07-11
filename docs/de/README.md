@@ -7,7 +7,6 @@
 
 [[EN](../../README.md)/DE]
 
-A simple app that displays the departures of the public transport lines in Berlin.
 Eine einfache App, die die Abfahrten der Öffentlichen Verkehrsmittel in Berlin anzeigt.
 
 <table>
