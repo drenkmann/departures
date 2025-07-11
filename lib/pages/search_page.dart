@@ -78,8 +78,9 @@ class _SearchPageState extends State<SearchPage> {
                   autofocus: false,
                   maxLines: 1,
                   decoration: InputDecoration(
-                    hintText:
-                        AppLocalizations.of(context)!.searchBarPlaceholder,
+                    hintText: AppLocalizations.of(
+                      context,
+                    )!.searchBarPlaceholder,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -97,8 +98,9 @@ class _SearchPageState extends State<SearchPage> {
             }
 
             return StationDisplay(
-              stationName:
-                  _stops[index - 1].name!.replaceAll("(Berlin)", "").trim(),
+              stationName: _stops[index - 1].name!
+                  .replaceAll("(Berlin)", "")
+                  .trim(),
               stationId: _stops[index - 1].id!,
               lines: lineTypes,
             );

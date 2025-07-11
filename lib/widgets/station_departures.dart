@@ -57,10 +57,9 @@ class _StationDeparturesState extends State<StationDepartures> {
   TimeOfDay? _when;
 
   DateTime getDisplayTime(Departure departure) {
-    final departureTimeString =
-        _timeDisplaySettingsProvider.showActualTime
-            ? (departure.when ?? departure.plannedWhen!)
-            : departure.plannedWhen!;
+    final departureTimeString = _timeDisplaySettingsProvider.showActualTime
+        ? (departure.when ?? departure.plannedWhen!)
+        : departure.plannedWhen!;
     return DateTime.parse(departureTimeString).toLocal();
   }
 
@@ -195,20 +194,18 @@ class _StationDeparturesState extends State<StationDepartures> {
                 }
 
                 return Consumer<TimeDisplaySettingsProvider>(
-                  builder:
-                      (context, timeDisplayProvider, child) => BusDisplay(
-                        direction: _departures[index].direction!,
-                        line: _departures[index].line!.name!,
-                        lineType: LineType.values.byName(
-                          _departures[index].line!.product!,
-                        ),
-                        departureTime: getDisplayTime(_departures[index]),
-                        delay:
-                            _departures[index].delay == null
-                                ? null
-                                : (_departures[index].delay! / 60).round(),
-                        cancelled: _departures[index].cancelled,
-                      ),
+                  builder: (context, timeDisplayProvider, child) => BusDisplay(
+                    direction: _departures[index].direction!,
+                    line: _departures[index].line!.name!,
+                    lineType: LineType.values.byName(
+                      _departures[index].line!.product!,
+                    ),
+                    departureTime: getDisplayTime(_departures[index]),
+                    delay: _departures[index].delay == null
+                        ? null
+                        : (_departures[index].delay! / 60).round(),
+                    cancelled: _departures[index].cancelled,
+                  ),
                 );
               },
             ),

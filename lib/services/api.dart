@@ -41,18 +41,17 @@ class VbbApi {
 
     showDialog(
       context: context,
-      builder:
-          (BuildContext context) => AlertDialog(
-            title: Text(title ?? appLocalizations.generalError),
-            content: Text(errorMessage),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(appLocalizations.ok),
-              ),
-              ...actions ?? [],
-            ],
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title ?? appLocalizations.generalError),
+        content: Text(errorMessage),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(appLocalizations.ok),
           ),
+          ...actions ?? [],
+        ],
+      ),
     );
   }
 
