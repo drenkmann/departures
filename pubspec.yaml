@@ -10,7 +10,7 @@ publish_to: 'none'
 version: 2.3.8+26
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
