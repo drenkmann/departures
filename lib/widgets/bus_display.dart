@@ -41,39 +41,36 @@ class BusDisplay extends StatelessWidget {
               TextSpan(
                 text:
                     "${TimeOfDay.fromDateTime(departureTime).format(context)} ",
-                style:
-                    cancelled ?? false
-                        ? const TextStyle(
-                          color: Colors.redAccent,
-                          decorationColor: Colors.redAccent,
-                          decoration: TextDecoration.lineThrough,
-                          decorationThickness: 2,
-                          height: 1.2,
-                        )
-                        : null,
+                style: cancelled ?? false
+                    ? const TextStyle(
+                        color: Colors.redAccent,
+                        decorationColor: Colors.redAccent,
+                        decoration: TextDecoration.lineThrough,
+                        decorationThickness: 2,
+                        height: 1.2,
+                      )
+                    : null,
               ),
               if (cancelled == null || (cancelled != null && !cancelled!))
                 TextSpan(
-                  text:
-                      delay == null
-                          ? "(?)"
-                          : "(${delay == 0
-                              ? "±"
-                              : delay! > 0
-                              ? "+"
-                              : ""}$delay)",
-                  style:
-                      delay == null
-                          ? const TextStyle(color: Colors.grey)
-                          : delay == 0
-                          ? const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w500,
-                          )
-                          : const TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.w500,
-                          ),
+                  text: delay == null
+                      ? "(?)"
+                      : "(${delay == 0
+                            ? "±"
+                            : delay! > 0
+                            ? "+"
+                            : ""}$delay)",
+                  style: delay == null
+                      ? const TextStyle(color: Colors.grey)
+                      : delay == 0
+                      ? const TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.w500,
+                        )
+                      : const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                        ),
                 ),
             ],
           ),

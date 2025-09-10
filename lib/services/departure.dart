@@ -51,13 +51,13 @@ class Departure {
       });
     }
     origin = json['origin'];
-    destination =
-        json['destination'] != null ? Stop.fromJson(json['destination']) : null;
+    destination = json['destination'] != null
+        ? Stop.fromJson(json['destination'])
+        : null;
     cancelled = json['cancelled'];
-    currentTripPosition =
-        json['currentTripPosition'] != null
-            ? CurrentTripPosition.fromJson(json['currentTripPosition'])
-            : null;
+    currentTripPosition = json['currentTripPosition'] != null
+        ? CurrentTripPosition.fromJson(json['currentTripPosition'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -195,8 +195,9 @@ class Line {
     productName = json['productName'];
     mode = json['mode'];
     product = json['product'];
-    operator =
-        json['operator'] != null ? Operator.fromJson(json['operator']) : null;
+    operator = json['operator'] != null
+        ? Operator.fromJson(json['operator'])
+        : null;
     color = json['color'] != null ? Color.fromJson(json['color']) : null;
   }
 

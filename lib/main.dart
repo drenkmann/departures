@@ -33,49 +33,48 @@ class DeparturesApp extends StatelessWidget {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
         return DynamicColorBuilder(
-          builder: (
-            ColorScheme? lightDynamicColor,
-            ColorScheme? darkDynamicColor,
-          ) {
-            ColorScheme lightColorScheme;
-            ColorScheme darkColorScheme;
+          builder:
+              (ColorScheme? lightDynamicColor, ColorScheme? darkDynamicColor) {
+                ColorScheme lightColorScheme;
+                ColorScheme darkColorScheme;
 
-            if (themeProvider.materialYou &&
-                lightDynamicColor != null &&
-                darkDynamicColor != null) {
-              lightColorScheme = lightDynamicColor.harmonized();
-              darkColorScheme = darkDynamicColor.harmonized();
-            } else {
-              lightColorScheme = ColorScheme.fromSeed(
-                seedColor: const Color(0xfff0ca00),
-              );
-              darkColorScheme = ColorScheme.fromSeed(
-                seedColor: const Color(0xfff0ca00),
-                brightness: Brightness.dark,
-              );
-            }
+                if (themeProvider.materialYou &&
+                    lightDynamicColor != null &&
+                    darkDynamicColor != null) {
+                  lightColorScheme = lightDynamicColor.harmonized();
+                  darkColorScheme = darkDynamicColor.harmonized();
+                } else {
+                  lightColorScheme = ColorScheme.fromSeed(
+                    seedColor: const Color(0xfff0ca00),
+                  );
+                  darkColorScheme = ColorScheme.fromSeed(
+                    seedColor: const Color(0xfff0ca00),
+                    brightness: Brightness.dark,
+                  );
+                }
 
-            return MaterialApp(
-              onGenerateTitle:
-                  (context) => AppLocalizations.of(context)!.appTitle,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              theme: ThemeData(
-                useMaterial3: true,
-                colorScheme: lightColorScheme,
-                // ignore: deprecated_member_use
-                sliderTheme: const SliderThemeData(year2023: false),
-              ),
-              darkTheme: ThemeData(
-                useMaterial3: true,
-                colorScheme: darkColorScheme,
-                // ignore: deprecated_member_use
-                sliderTheme: const SliderThemeData(year2023: false),
-              ),
-              themeMode: themeProvider.appThemeMode.themeMode,
-              home: const AppMainPage(),
-            );
-          },
+                return MaterialApp(
+                  onGenerateTitle: (context) =>
+                      AppLocalizations.of(context)!.appTitle,
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  theme: ThemeData(
+                    useMaterial3: true,
+                    colorScheme: lightColorScheme,
+                    // ignore: deprecated_member_use
+                    sliderTheme: const SliderThemeData(year2023: false),
+                  ),
+                  darkTheme: ThemeData(
+                    useMaterial3: true,
+                    colorScheme: darkColorScheme,
+                    // ignore: deprecated_member_use
+                    sliderTheme: const SliderThemeData(year2023: false),
+                  ),
+                  themeMode: themeProvider.appThemeMode.themeMode,
+                  home: const AppMainPage(),
+                );
+              },
         );
       },
     );

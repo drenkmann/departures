@@ -23,12 +23,12 @@ class Stop {
     type = json['type'];
     id = json['id'];
     name = json['name'];
-    location =
-        json['location'] != null
-            ? StationLocation.fromJson(json['location'])
-            : null;
-    products =
-        json['products'] != null ? Products.fromJson(json['products']) : null;
+    location = json['location'] != null
+        ? StationLocation.fromJson(json['location'])
+        : null;
+    products = json['products'] != null
+        ? Products.fromJson(json['products'])
+        : null;
     if (json['lines'] != null) {
       lines = <Lines>[];
       json['lines'].forEach((v) {

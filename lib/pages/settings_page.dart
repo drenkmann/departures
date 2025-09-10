@@ -121,24 +121,18 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Consumer<TimeDisplaySettingsProvider>(
-            builder:
-                (context, timeDisplayProvider, child) => ListTile(
-                  title: Text(appLocalizations.settingsShowActualTimeTitle),
-                  subtitle:
-                      timeDisplayProvider.showActualTime
-                          ? Text(
-                            appLocalizations.settingsShowActualTimeSubtitleOn,
-                          )
-                          : Text(
-                            appLocalizations.settingsShowActualTimeSubtitleOff,
-                          ),
-                  trailing: Switch(
-                    value: timeDisplayProvider.showActualTime,
-                    onChanged: (value) {
-                      timeDisplayProvider.setShowActualTime(value);
-                    },
-                  ),
-                ),
+            builder: (context, timeDisplayProvider, child) => ListTile(
+              title: Text(appLocalizations.settingsShowActualTimeTitle),
+              subtitle: timeDisplayProvider.showActualTime
+                  ? Text(appLocalizations.settingsShowActualTimeSubtitleOn)
+                  : Text(appLocalizations.settingsShowActualTimeSubtitleOff),
+              trailing: Switch(
+                value: timeDisplayProvider.showActualTime,
+                onChanged: (value) {
+                  timeDisplayProvider.setShowActualTime(value);
+                },
+              ),
+            ),
           ),
           const Divider(indent: 16, endIndent: 16, height: 24, thickness: 1),
           Padding(
@@ -196,28 +190,27 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {
               showDialog(
                 context: context,
-                builder:
-                    (context) => AlertDialog(
-                      title: Text(appLocalizations.settingsResetTitle),
-                      content: Text(appLocalizations.settingsResetConfirmation),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            SharedPreferences.getInstance().then((prefs) {
-                              prefs.clear().then((_) => Restart.restartApp());
-                            });
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(appLocalizations.yes),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(appLocalizations.no),
-                        ),
-                      ],
+                builder: (context) => AlertDialog(
+                  title: Text(appLocalizations.settingsResetTitle),
+                  content: Text(appLocalizations.settingsResetConfirmation),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        SharedPreferences.getInstance().then((prefs) {
+                          prefs.clear().then((_) => Restart.restartApp());
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(appLocalizations.yes),
                     ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(appLocalizations.no),
+                    ),
+                  ],
+                ),
               );
             },
           ),
