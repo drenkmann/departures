@@ -93,6 +93,7 @@ class _SearchPageState extends State<SearchPage> {
 
             for (final line in _stops[index - 1].lines!) {
               if (LineType.values.map((e) => e.name).contains(line.product)) {
+                if (lineTypes.containsKey(line.name!)) continue;
                 lineTypes[line.name!] = LineType.values.byName(line.product!);
               }
             }

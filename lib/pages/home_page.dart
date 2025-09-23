@@ -269,6 +269,7 @@ class _HomePageState extends State<HomePage> {
                             .map((e) => e.name)
                             .contains(line.product) &&
                         line.name != null) {
+                      if (lineTypes.containsKey(line.name!)) continue;
                       lineTypes[line.name!] = LineType.values.byName(
                         line.product!,
                       );
