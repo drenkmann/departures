@@ -14,6 +14,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   List<Stop> _stops = [];
+  final lineTypeNames = LineType.values.map((e) => e.name);
 
   late TextEditingController _searchController;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
@@ -91,7 +92,6 @@ class _SearchPageState extends State<SearchPage> {
 
             Map<String, LineType> lineTypes = {};
 
-            final lineTypeNames = LineType.values.map((e) => e.name);
             for (final line in _stops[index - 1].lines!) {
               if (lineTypeNames.contains(line.product)) {
                 if (lineTypes.containsKey(line.name!)) continue;

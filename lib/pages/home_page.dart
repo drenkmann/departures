@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
 
+  final lineTypeNames = LineType.values.map((e) => e.name);
   List<Stop> _nearbyStations = [];
   String emptyListExplanation = "";
 
@@ -241,7 +242,6 @@ class _HomePageState extends State<HomePage> {
         }
 
         Map<String, LineType> lineTypes = {};
-        final lineTypeNames = LineType.values.map((e) => e.name);
         for (final line in _nearbyStations[index].lines!) {
           if (lineTypeNames.contains(line.product) && line.name != null) {
             if (lineTypes.containsKey(line.name!)) continue;
