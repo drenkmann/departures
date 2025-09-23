@@ -202,6 +202,64 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  Widget _buildEmptyListView(BuildContext context, BoxConstraints constraints) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: constraints.maxWidth,
+          minHeight: constraints.maxHeight,
+        ),
+        child: Center(
+          child: Text(emptyListExplanation, textAlign: TextAlign.center),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStationListView(BuildContext context) {
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      itemCount: _nearbyStations.length + 1,
+      itemBuilder: (context, index) {
+        if (index == _nearbyStations.length) {
+          return ListTile(
+            title: Center(
+              child: Text(
+                _appLocalizations!.loadMore,
+                style: TextStyle(
+                  color: Theme.of(context).hintColor,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+            onTap: () {
+              _isProgrammaticRefresh = true;
+              _refreshIndicatorKey.currentState?.show();
+            },
+          );
+        }
+
+        Map<String, LineType> lineTypes = {};
+        for (final line in _nearbyStations[index].lines!) {
+          if (LineType.values.map((e) => e.name).contains(line.product) &&
+              line.name != null) {
+            if (lineTypes.containsKey(line.name!)) continue;
+            lineTypes[line.name!] = LineType.values.byName(line.product!);
+          }
+        }
+
+        return StationDisplay(
+          stationName: _nearbyStations[index].name!
+              .replaceAll("(Berlin)", "")
+              .trim(),
+          stationId: _nearbyStations[index].id!,
+          lines: lineTypes,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _appLocalizations = AppLocalizations.of(context);
@@ -224,67 +282,10 @@ class _HomePageState extends State<HomePage> {
         key: _refreshIndicatorKey,
         child: _nearbyStations.isEmpty
             ? LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: constraints.maxWidth,
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: Center(
-                      child: Text(
-                        emptyListExplanation,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
+                builder: (context, constraints) =>
+                    _buildEmptyListView(context, constraints),
               )
-            : ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: _nearbyStations.length + 1,
-                itemBuilder: (context, index) {
-                  if (index == _nearbyStations.length) {
-                    return ListTile(
-                      title: Center(
-                        child: Text(
-                          _appLocalizations!.loadMore,
-                          style: TextStyle(
-                            color: Theme.of(context).hintColor,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        _isProgrammaticRefresh = true;
-                        _refreshIndicatorKey.currentState?.show();
-                      },
-                    );
-                  }
-
-                  Map<String, LineType> lineTypes = {};
-
-                  for (final line in _nearbyStations[index].lines!) {
-                    if (LineType.values
-                            .map((e) => e.name)
-                            .contains(line.product) &&
-                        line.name != null) {
-                      if (lineTypes.containsKey(line.name!)) continue;
-                      lineTypes[line.name!] = LineType.values.byName(
-                        line.product!,
-                      );
-                    }
-                  }
-
-                  return StationDisplay(
-                    stationName: _nearbyStations[index].name!
-                        .replaceAll("(Berlin)", "")
-                        .trim(),
-                    stationId: _nearbyStations[index].id!,
-                    lines: lineTypes,
-                  );
-                },
-              ),
+            : _buildStationListView(context),
       ),
     );
   }
