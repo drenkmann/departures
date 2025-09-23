@@ -49,7 +49,8 @@ jobs:
           if [ "$current_version" = "$tag_version" ]; then
             echo "Version number has not increased!"
             exit 1
-          elif [ "$current_version" \< "$tag_version" ]; then
+          fi
+          if [[ $(printf '%s\n' "$current_version" "$tag_version" | sort -V | head -n1) == "$current_version" ]]; then
             echo "Current version is lower than the latest tag!"
             exit 1
           else
