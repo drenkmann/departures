@@ -1,6 +1,6 @@
 ## Contents
-- [Privacy Policy in simple terms (English)](#Privacy-Policy-in-simple-terms-(English))
-- [Privacy Policy in einfachen Worten (Deutsch)](#Privacy-Policy-in-einfachen-Worten-(Deutsch))
+- [Privacy Policy in simple terms (English)](#privacy-policy-in-simple-terms-english)
+- [Privacy Policy in einfachen Worten (Deutsch)](#privacy-policy-in-einfachen-worten-deutsch)
 - [The full and effective privacy policy](#Privacy-Policy)
 
 ## Privacy Policy in simple terms (English)
