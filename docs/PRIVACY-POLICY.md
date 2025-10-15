@@ -9,7 +9,7 @@ I hereby declare that, to the best of my knowledge, the information contained in
 
 ### Data collected by the app
 
-**No data** is stored for any longer than absolutely necessary from a technical standpoint. I do not store your location or even the way you use the app. The API might cache the coordinates of your position for a few minutes to allow for faster response times, however that data is in not linked to your person. For a detailed short but detailed breakdown of the exact data used, please read the following.
+**No data** is stored for any longer than absolutely necessary from a technical standpoint. I do not store your location or even the way you use the app. The API might cache the coordinates of your position for a few minutes to allow for faster response times, however that data is in not linked to your person. For a short but detailed breakdown of the exact data used, please read the following.
 
 #### Location
 
@@ -24,6 +24,8 @@ The application checks the status of your connection (whether or not you are con
 #### Usage Data
 
 By default, the Google Play store collects **some** data about the way you interact with any app. This mostly includes crash analytics to allow the developer (me) to fix problems that may be present in the app. I do **not** collect any data that may be linked to your person in any way. Furthermore, I personally don’t collect any data **at all**. Any data collection present is, to the best of my knowledge, done automatically by the Google Play store.
+
+Should you wish to avoid the collection of such data, you can install the app through means other than the Google Play Store, as described in the [README](/README.md)
 
 ## Privacy Policy in einfachen Worten (Deutsch)
 
@@ -47,9 +49,11 @@ Die Anwendung überprüft den Status Ihrer Verbindung (ob Sie mit dem Internet v
 
 Standardmäßig erfasst der Google Play Store einige Daten darüber, wie Sie mit einer App interagieren. Dazu gehören hauptsächlich Absturzanalysen, damit der Entwickler (ich) Probleme beheben kann, die möglicherweise in der App auftreten. Ich erfasse **keinerlei** Daten, die in irgendeiner Weise mit Ihrer Person in Verbindung gebracht werden könnten. Genauer erfasse ich persönlich **überhaupt keine** Daten. Jegliche Datenerfassung der App erfolgt, soweit mir bekannt ist, automatisch durch den Google Play Store.
 
+Falls die Erhebung dieser Daten nicht erwünscht ist kann die App über andere Wege, wie im [README](/docs/de/README.md) beschrieben installiert werden.
+
 ## Privacy Policy
 
-This privacy policy applies to the Departures app (hereby referred to as "Application") for mobile devices that was created by Linus von Drenkmann (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the Departures app (hereby referred to as "Application") for mobile devices that was created by Linus von Drenkmann (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS". The Service Provider provides no warranty and assumes no liability.
 
 ### Information Collection and Use
 
