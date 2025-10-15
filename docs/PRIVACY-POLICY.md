@@ -25,7 +25,7 @@ The application checks the status of your connection (whether or not you are con
 
 By default, the Google Play store collects **some** data about the way you interact with any app. This mostly includes crash analytics to allow the developer (me) to fix problems that may be present in the app. I do **not** collect any data that may be linked to your person in any way. Furthermore, I personally don’t collect any data **at all**. Any data collection present is, to the best of my knowledge, done automatically by the Google Play store.
 
-Should you wish to avoid the collection of such data, you can install the app through means other than the Google Play Store, as described in the [README](/README.md)
+Should you wish to avoid the collection of such data, you can install the app through means other than the Google Play Store, as described in the [README](/README.md).
 
 ## Privacy Policy in einfachen Worten (Deutsch)
 
@@ -49,7 +49,7 @@ Die Anwendung überprüft den Status Ihrer Verbindung (ob Sie mit dem Internet v
 
 Standardmäßig erfasst der Google Play Store einige Daten darüber, wie Sie mit einer App interagieren. Dazu gehören hauptsächlich Absturzanalysen, damit der Entwickler (ich) Probleme beheben kann, die möglicherweise in der App auftreten. Ich erfasse **keinerlei** Daten, die in irgendeiner Weise mit Ihrer Person in Verbindung gebracht werden könnten. Genauer erfasse ich persönlich **überhaupt keine** Daten. Jegliche Datenerfassung der App erfolgt, soweit mir bekannt ist, automatisch durch den Google Play Store.
 
-Falls die Erhebung dieser Daten nicht erwünscht ist kann die App über andere Wege, wie im [README](/docs/de/README.md) beschrieben installiert werden.
+Falls die Erhebung dieser Daten nicht erwünscht ist kann die App über andere Wege - wie im [README](/docs/de/README.md) beschrieben - installiert werden.
 
 ## Privacy Policy
 
