@@ -1,6 +1,59 @@
+## Contents
+- [Privacy Policy in simple terms (English)](#privacy-policy-in-simple-terms-english)
+- [Privacy Policy in einfachen Worten (Deutsch)](#privacy-policy-in-einfachen-worten-deutsch)
+- [The full and effective privacy policy](#privacy-policy)
+
+## Privacy Policy in simple terms (English)
+
+I hereby declare that, to the best of my knowledge, the information contained in this section is accurate and current. Any inaccuracies, errors or omissions are unintended.
+
+### Data collected by the app
+
+**No data** is stored for any longer than absolutely necessary from a technical standpoint. I do not store your location or even the way you use the app. The API might cache the coordinates of your position for a few minutes to allow for faster response times, however that data is not linked to your person. For a short but detailed breakdown of the exact data used, please read the following.
+
+#### Location
+
+This application gathers the precise location of your device to provide you with a list of the nearby public transport. The exact coordinates of your device are shared with the service found at https://v6.vbb.transport.rest, or the API endpoint specified in the settings of the app. The only data shared that may link the coordinates to your person is the IP of your device. Please note that in most countries, including Germany, only the government is able to link your IP to your person. For detailed information about linking your IP to your person, please refer to this page: https://www.whatismyip.com/can-someone-find-me-with-my-ip-address/.
+
+The API (https://v6.vbb.transport.rest) is **not** hosted or managed by me. It is, however, open source (meaning the exact code is openly available) and is hosted and developed by Jannis Redmann (@derhuerst). I simply make use of it. For detailed information about the API, please refer to its GitHub repository: https://github.com/derhuerst/vbb-rest. If you have any questions about the API, please contact me (departures-support@drenkmann.dev) first, as Mr. Redmann is not responsible for this project in any way.
+
+#### Connection Status
+
+The application checks the status of your connection (whether or not you are connected to the internet) to verify if public transport data is able to be gathered.
+
+#### Usage Data
+
+By default, the Google Play Store collects **some** data about the way you interact with any app. This mostly includes crash analytics to allow the developer (me) to fix problems that may be present in the app. I do **not** collect any data that may be linked to your person in any way. Furthermore, I personally don’t collect any data **at all**. Any data collection present is, to the best of my knowledge, done automatically by the Google Play Store.
+
+Should you wish to avoid the collection of such data, you can install the app through means other than the Google Play Store, as described in the [README](/README.md).
+
+## Privacy Policy in einfachen Worten (Deutsch)
+
+Ich erkläre hiermit, dass die in diesem Abschnitt enthaltenen Informationen nach meinem besten Wissen korrekt und aktuell sind. Ungenauigkeiten, Fehler oder Auslassungen sind unbeabsichtigt.
+
+### Von der App erfasste Daten
+
+Es werden **keine Daten** länger gespeichert, als aus technischer Sicht unbedingt erforderlich ist. Ich speichere weder Ihren Standort noch die Art und Weise, wie Sie die App nutzen. Die API speichert möglicherweise die Koordinaten Ihres Standorts für einige Minuten im Cache, um schnellere Reaktionszeiten zu ermöglichen, jedoch sind diese Daten nicht mit Ihrer Person verknüpft. Eine kurze, aber detaillierte Aufschlüsselung der genau verwendeten Daten finden Sie im Folgenden.
+
+#### Standort
+
+Diese Anwendung erfasst den genauen Standort Ihres Geräts, um Ihnen eine Liste der öffentlichen Verkehrsmittel in Ihrer Nähe anzuzeigen. Die genauen Koordinaten Ihres Geräts werden an den Dienst unter https://v6.vbb.transport.rest oder an den in den Einstellungen der App angegebenen API-Endpunkt weitergegeben. Die einzigen weitergegebenen Daten, die die Koordinaten mit Ihrer Person in Verbindung bringen könnten, ist die IP-Adresse Ihres Geräts. Bitte beachten Sie, dass in den meisten Ländern, einschließlich Deutschland, nur die Regierung in der Lage ist, Ihre IP-Adresse mit Ihrer Person in Verbindung zu bringen. Ausführliche Informationen zur Verknüpfung Ihrer IP-Adresse mit Ihrer Person finden Sie auf dieser (englischen) Seite: https://www.whatismyip.com/can-someone-find-me-with-my-ip-address/.
+
+Die API (https://v6.vbb.transport.rest) wird **nicht** von mir gehostet oder verwaltet, ich nutze sie lediglich. Sie ist jedoch Open Source (d. h. der genaue Code ist öffentlich zugänglich) und wird von Jannis Redmann (@derhuerst) gehostet und entwickelt. Ausführliche Informationen zur API finden Sie im GitHub-Repository: https://github.com/derhuerst/vbb-rest. Wenn Sie Fragen zur API haben, wenden Sie sich bitte zunächst an mich (departures-support@drenkmann.dev), da Herr Redmann in keiner Weise für dieses Projekt verantwortlich ist.
+
+#### Verbindungsstatus
+
+Die Anwendung überprüft den Status Ihrer Verbindung (ob Sie mit dem Internet verbunden sind oder nicht), um zu überprüfen, ob Daten zum öffentlichen Nahverkehr erfasst werden können.
+
+#### Nutzungsdaten
+
+Standardmäßig erfasst der Google Play Store einige Daten darüber, wie Sie mit einer App interagieren. Dazu gehören hauptsächlich Absturzanalysen, damit der Entwickler (ich) Probleme beheben kann, die möglicherweise in der App auftreten. Ich erfasse **keinerlei** Daten, die in irgendeiner Weise mit Ihrer Person in Verbindung gebracht werden könnten. Genauer erfasse ich persönlich **überhaupt keine** Daten. Jegliche Datenerfassung der App erfolgt, soweit mir bekannt ist, automatisch durch den Google Play Store.
+
+Falls die Erhebung dieser Daten nicht erwünscht ist, kann die App über andere Wege - wie im [README](/docs/de/README.md) beschrieben - installiert werden.
+
 ## Privacy Policy
 
-This privacy policy applies to the Departures app (hereby referred to as "Application") for mobile devices that was created by Linus von Drenkmann (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the Departures app (hereby referred to as "Application") for mobile devices that was created by Linus von Drenkmann (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS". The Service Provider provides no warranty and assumes no liability.
 
 ### Information Collection and Use
 
