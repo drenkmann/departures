@@ -23,7 +23,7 @@ The application checks the status of your connection (whether or not you are con
 
 #### Usage Data
 
-By default, the Google Play store collects **some** data about the way you interact with any app. This mostly includes crash analytics to allow the developer (me) to fix problems that may be present in the app. I do **not** collect any data that may be linked to your person in any way. Furthermore, I personally don’t collect any data **at all**. Any data collection present is, to the best of my knowledge, done automatically by the Google Play store.
+By default, the Google Play Store collects **some** data about the way you interact with any app. This mostly includes crash analytics to allow the developer (me) to fix problems that may be present in the app. I do **not** collect any data that may be linked to your person in any way. Furthermore, I personally don’t collect any data **at all**. Any data collection present is, to the best of my knowledge, done automatically by the Google Play Store.
 
 Should you wish to avoid the collection of such data, you can install the app through means other than the Google Play Store, as described in the [README](/README.md).
 
