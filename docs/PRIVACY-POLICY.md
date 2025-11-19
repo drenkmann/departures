@@ -1,15 +1,15 @@
 ## Contents
 - [Privacy Policy in simple terms (English)](#privacy-policy-in-simple-terms-english)
 - [Privacy Policy in einfachen Worten (Deutsch)](#privacy-policy-in-einfachen-worten-deutsch)
-- [The full and effective privacy policy](#Privacy-Policy)
+- [The full and effective privacy policy](#privacy-policy)
 
 ## Privacy Policy in simple terms (English)
 
-I hereby declare that, to the best of my knowledge, the information contained in this section is accurate and current. Any inaccuracies, errors or omnissions are unintended.
+I hereby declare that, to the best of my knowledge, the information contained in this section is accurate and current. Any inaccuracies, errors or omissions are unintended.
 
 ### Data collected by the app
 
-**No data** is stored for any longer than absolutely necessary from a technical standpoint. I do not store your location or even the way you use the app. The API might cache the coordinates of your position for a few minutes to allow for faster response times, however that data is in not linked to your person. For a short but detailed breakdown of the exact data used, please read the following.
+**No data** is stored for any longer than absolutely necessary from a technical standpoint. I do not store your location or even the way you use the app. The API might cache the coordinates of your position for a few minutes to allow for faster response times, however that data is not linked to your person. For a short but detailed breakdown of the exact data used, please read the following.
 
 #### Location
 
@@ -37,7 +37,7 @@ Es werden **keine Daten** länger gespeichert, als aus technischer Sicht unbedin
 
 #### Standort
 
-Diese Anwendung erfasst den genauen Standort Ihres Geräts, um Ihnen eine Liste der öffentlichen Verkehrsmittel in Ihrer Nähe anzuzeigen. Die genauen Koordinaten Ihres Geräts werden an den Dienst unter https://v6.vbb.transport.rest oder an den in den Einstellungen der App angegebenen API-Endpunkt weitergegeben. Die einzigen weitergegebene Daten, die die Koordinaten mit Ihrer Person in Verbindung bringen könnten, ist die IP-Adresse Ihres Geräts. Bitte beachten Sie, dass in den meisten Ländern, einschließlich Deutschland, nur die Regierung in der Lage ist, Ihre IP-Adresse mit Ihrer Person in Verbindung zu bringen. Ausführliche Informationen zur Verknüpfung Ihrer IP-Adresse mit Ihrer Person finden Sie auf dieser (englischen) Seite: https://www.whatismyip.com/can-someone-find-me-with-my-ip-address/.
+Diese Anwendung erfasst den genauen Standort Ihres Geräts, um Ihnen eine Liste der öffentlichen Verkehrsmittel in Ihrer Nähe anzuzeigen. Die genauen Koordinaten Ihres Geräts werden an den Dienst unter https://v6.vbb.transport.rest oder an den in den Einstellungen der App angegebenen API-Endpunkt weitergegeben. Die einzigen weitergegebenen Daten, die die Koordinaten mit Ihrer Person in Verbindung bringen könnten, ist die IP-Adresse Ihres Geräts. Bitte beachten Sie, dass in den meisten Ländern, einschließlich Deutschland, nur die Regierung in der Lage ist, Ihre IP-Adresse mit Ihrer Person in Verbindung zu bringen. Ausführliche Informationen zur Verknüpfung Ihrer IP-Adresse mit Ihrer Person finden Sie auf dieser (englischen) Seite: https://www.whatismyip.com/can-someone-find-me-with-my-ip-address/.
 
 Die API (https://v6.vbb.transport.rest) wird **nicht** von mir gehostet oder verwaltet, ich nutze sie lediglich. Sie ist jedoch Open Source (d. h. der genaue Code ist öffentlich zugänglich) und wird von Jannis Redmann (@derhuerst) gehostet und entwickelt. Ausführliche Informationen zur API finden Sie im GitHub-Repository: https://github.com/derhuerst/vbb-rest. Wenn Sie Fragen zur API haben, wenden Sie sich bitte zunächst an mich (departures-support@drenkmann.dev), da Herr Redmann in keiner Weise für dieses Projekt verantwortlich ist.
 
