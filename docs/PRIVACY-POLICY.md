@@ -15,7 +15,7 @@ I hereby declare that, to the best of my knowledge, the information contained in
 
 This application gathers the precise location of your device to provide you with a list of the nearby public transport. The exact coordinates of your device are shared with the service found at https://v6.vbb.transport.rest, or the API endpoint specified in the settings of the app. The only data shared that may link the coordinates to your person is the IP of your device. Please note that in most countries, including Germany, only the government is able to link your IP to your person. For detailed information about linking your IP to your person, please refer to this page: https://www.whatismyip.com/can-someone-find-me-with-my-ip-address/.
 
-The API (https://v6.vbb.transport.rest) is **not** hosted or managed by me. It is, however, open source (meaning the exact code is openly available) and hosted and developed by Jannis Redmann (@derhuerst) and I simply make use of it. For detailed information about the API, please refer to its GitHub repository: https://github.com/derhuerst/vbb-rest. If you have any questions about the API, please contact me (departures-support@drenkmann.dev) first, as Mr. Redmann is not responsible for this project in any way.
+The API (https://v6.vbb.transport.rest) is **not** hosted or managed by me. It is, however, open source (meaning the exact code is openly available) and is hosted and developed by Jannis Redmann (@derhuerst). I simply make use of it. For detailed information about the API, please refer to its GitHub repository: https://github.com/derhuerst/vbb-rest. If you have any questions about the API, please contact me (departures-support@drenkmann.dev) first, as Mr. Redmann is not responsible for this project in any way.
 
 #### Connection Status
 
@@ -49,7 +49,7 @@ Die Anwendung überprüft den Status Ihrer Verbindung (ob Sie mit dem Internet v
 
 Standardmäßig erfasst der Google Play Store einige Daten darüber, wie Sie mit einer App interagieren. Dazu gehören hauptsächlich Absturzanalysen, damit der Entwickler (ich) Probleme beheben kann, die möglicherweise in der App auftreten. Ich erfasse **keinerlei** Daten, die in irgendeiner Weise mit Ihrer Person in Verbindung gebracht werden könnten. Genauer erfasse ich persönlich **überhaupt keine** Daten. Jegliche Datenerfassung der App erfolgt, soweit mir bekannt ist, automatisch durch den Google Play Store.
 
-Falls die Erhebung dieser Daten nicht erwünscht ist kann die App über andere Wege - wie im [README](/docs/de/README.md) beschrieben - installiert werden.
+Falls die Erhebung dieser Daten nicht erwünscht ist, kann die App über andere Wege - wie im [README](/docs/de/README.md) beschrieben - installiert werden.
 
 ## Privacy Policy
 
