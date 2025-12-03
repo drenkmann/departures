@@ -69,11 +69,19 @@ jobs:
           echo "$COMMITS" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Delete current release and tag
+        run: |
+          gh release delete continuous --cleanup-tag -y || true
+          git push origin :refs/tags/continuous || true
+          git tag -d continuous || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create/update release
         uses: ncipollo/release-action@v1
         with:
           tag: continuous
-          commit: dev
+          commit: ${{ github.sha }}
           name: Continuous Release
           prerelease: true
           allowUpdates: true
