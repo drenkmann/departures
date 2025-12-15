@@ -49,6 +49,9 @@ jobs:
       - name: Build split APKs
         run: flutter build apk --release --split-per-abi
 
+      - name: Build appbundle
+        run: flutter build appbundle --release
+
       - name: Get Last Commit on Previous Release
         id: last_release
         run: |
@@ -76,6 +79,18 @@ jobs:
           git tag -d continuous || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-builds
+          retention-days: 30
+          path: |
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-x86_64-release.apk
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
 
       - name: Create/update release
         uses: ncipollo/release-action@v1
