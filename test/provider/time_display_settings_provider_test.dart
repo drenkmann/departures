@@ -35,7 +35,7 @@ void main() {
         notified = true;
       });
 
-      await provider.setShowActualTime(false);
+      provider.setShowActualTime(false);
       await Future.delayed(const Duration(milliseconds: 100));
 
       expect(provider.showActualTime, isFalse);
@@ -67,7 +67,7 @@ void main() {
         notificationCount++;
       });
 
-      await provider.setShowActualTime(false);
+      provider.setShowActualTime(false);
       await Future.delayed(const Duration(milliseconds: 100));
 
       expect(notificationCount, greaterThan(0));
@@ -77,15 +77,15 @@ void main() {
       final provider = TimeDisplaySettingsProvider();
       await Future.delayed(Duration.zero);
 
-      await provider.setShowActualTime(false);
+      provider.setShowActualTime(false);
       await Future.delayed(const Duration(milliseconds: 50));
       expect(provider.showActualTime, isFalse);
 
-      await provider.setShowActualTime(true);
+      provider.setShowActualTime(true);
       await Future.delayed(const Duration(milliseconds: 50));
       expect(provider.showActualTime, isTrue);
 
-      await provider.setShowActualTime(false);
+      provider.setShowActualTime(false);
       await Future.delayed(const Duration(milliseconds: 50));
       expect(provider.showActualTime, isFalse);
     });

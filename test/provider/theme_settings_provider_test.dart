@@ -48,7 +48,7 @@ void main() {
         notified = true;
       });
 
-      await provider.setThemeMode(AppThemeMode.dark);
+      provider.setThemeMode(AppThemeMode.dark);
       await Future.delayed(const Duration(milliseconds: 100));
 
       expect(provider.appThemeMode, equals(AppThemeMode.dark));
@@ -80,7 +80,7 @@ void main() {
         notificationCount++;
       });
 
-      await provider.setThemeMode(AppThemeMode.dark);
+      provider.setThemeMode(AppThemeMode.dark);
       await Future.delayed(const Duration(milliseconds: 100));
 
       expect(notificationCount, greaterThan(0));
@@ -91,7 +91,7 @@ void main() {
       await Future.delayed(Duration.zero);
 
       for (final mode in AppThemeMode.values) {
-        await provider.setThemeMode(mode);
+        provider.setThemeMode(mode);
         await Future.delayed(const Duration(milliseconds: 50));
         expect(provider.appThemeMode, equals(mode));
       }

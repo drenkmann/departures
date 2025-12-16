@@ -1,4 +1,5 @@
 import 'package:departures/enums/line_types.dart';
+import 'package:departures/l10n/app_localizations.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: ChangeNotifierProvider(
               create: (_) => FavoritesProvider(),
@@ -46,6 +49,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: ChangeNotifierProvider(
               create: (_) => FavoritesProvider(),
@@ -71,6 +76,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: ChangeNotifierProvider(
               create: (_) => FavoritesProvider(),
@@ -94,6 +101,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: ChangeNotifierProvider(
               create: (_) => FavoritesProvider(),
@@ -117,6 +126,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: ChangeNotifierProvider(
               create: (_) => FavoritesProvider(),
