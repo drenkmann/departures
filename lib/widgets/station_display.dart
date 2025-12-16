@@ -93,11 +93,9 @@ class StationDisplay extends StatelessWidget {
         title: Row(
           children: [
             Text(stationName),
-            Spacer(),
-            Text(
-              distance != null ? ' (${distance}m)' : '',
-              style: TextStyle(color: theme.hintColor),
-            ),
+            const Spacer(),
+            if (distance != null)
+              Text(' (${distance}m)', style: TextStyle(color: theme.hintColor)),
           ],
         ),
         subtitle: Wrap(
