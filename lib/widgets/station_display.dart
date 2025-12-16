@@ -67,7 +67,9 @@ class StationDisplay extends StatelessWidget {
           stationId: stationId,
           lines: lines,
         );
-        final justSaved = !provider.favorites.contains(save);
+        final justSaved = !provider.favorites.any(
+          (fav) => fav.stationId == save.stationId,
+        );
         provider.toggleFavorite(save);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
