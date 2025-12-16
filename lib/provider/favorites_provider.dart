@@ -19,12 +19,11 @@ class FavoritesProvider with ChangeNotifier {
     }
   }
 
+  // ! When calling, ensure no duplicate favorites are added
   void addFavorite(StationDisplay station) {
-    if (!_favorites.any((fav) => fav.stationId == station.stationId)) {
-      _favorites.add(station);
-      _saveFavorites();
-      notifyListeners();
-    }
+    _favorites.add(station);
+    _saveFavorites();
+    notifyListeners();
   }
 
   void removeFavorite(StationDisplay station) {
