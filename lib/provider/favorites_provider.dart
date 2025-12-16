@@ -13,20 +13,20 @@ class FavoritesProvider with ChangeNotifier {
 
   void toggleFavorite(StationDisplay station) {
     if (_favorites.any((fav) => fav.stationId == station.stationId)) {
-      removeFavorite(station);
+      _removeFavorite(station);
     } else {
-      addFavorite(station);
+      _addFavorite(station);
     }
   }
 
   // ! When calling, ensure no duplicate favorites are added
-  void addFavorite(StationDisplay station) {
+  void _addFavorite(StationDisplay station) {
     _favorites.add(station);
     _saveFavorites();
     notifyListeners();
   }
 
-  void removeFavorite(StationDisplay station) {
+  void _removeFavorite(StationDisplay station) {
     _favorites.removeWhere((fav) => fav.stationId == station.stationId);
     _saveFavorites();
     notifyListeners();
