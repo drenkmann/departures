@@ -255,6 +255,7 @@ class _HomePageState extends State<HomePage> {
               .trim(),
           stationId: _nearbyStations[index].id!,
           lines: lineTypes,
+          distance: _nearbyStations[index].distance,
         );
       },
     );

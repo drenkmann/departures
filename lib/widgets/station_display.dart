@@ -10,11 +10,13 @@ class StationDisplay extends StatelessWidget {
     required this.stationName,
     required this.lines,
     required this.stationId,
+    this.distance,
   }) : super(key: Key(stationId));
 
   final String stationName;
   final String stationId;
   final Map lines;
+  final int? distance;
 
   Map<String, dynamic> toJson() {
     return {
@@ -60,8 +62,15 @@ class StationDisplay extends StatelessWidget {
       ),
       confirmDismiss: (_) {
         final provider = Provider.of<FavoritesProvider>(context, listen: false);
-        final justSaved = !provider.favorites.contains(this);
-        provider.toggleFavorite(this);
+        var save = StationDisplay(
+          stationName: stationName,
+          stationId: stationId,
+          lines: lines,
+        );
+        final justSaved = !provider.favorites.any(
+          (fav) => fav.stationId == save.stationId,
+        );
+        provider.toggleFavorite(save);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -74,7 +83,7 @@ class StationDisplay extends StatelessWidget {
             action: SnackBarAction(
               label: appLocalizations.undo,
               onPressed: () {
-                provider.toggleFavorite(this);
+                provider.toggleFavorite(save);
               },
             ),
           ),
@@ -83,7 +92,14 @@ class StationDisplay extends StatelessWidget {
         return Future.value(false);
       },
       child: ListTile(
-        title: Text(stationName),
+        title: Row(
+          children: [
+            Text(stationName),
+            const Spacer(),
+            if (distance != null)
+              Text(' (${distance}m)', style: TextStyle(color: theme.hintColor)),
+          ],
+        ),
         subtitle: Wrap(
           spacing: 5,
           runSpacing: 5,
