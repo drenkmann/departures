@@ -1,6 +1,9 @@
-# Unit Tests for Departures App
+# Unit Tests
 
-This directory contains comprehensive unit tests for the entire Departures application.
+## Disclaimer
+These tests were written using AI. I did, however, go over every single file and test. These tests are far from perfect, but they are better than nothing. DO NOT RELY ON THESE TESTS FOR TEST DRIVEN DEVELOPMENT. They are not covering everything and they weren't written in anticipation of new features. They soley exist as a baseline check to verify that no existing functionality was broken.
+
+If any of these tests fail, something is either VERY broken, or the core of the codebase was changed in a way that requires further attention and rewriting of the tests.
 
 ## Test Structure
 
@@ -27,25 +30,6 @@ The tests are organized by component type:
 
 ### Main App (`test/`)
 - `widget_test.dart` - Integration tests for the main app navigation and structure
-
-## Running the Tests
-
-To run all tests:
-```bash
-flutter test
-```
-
-To run specific test files:
-```bash
-flutter test test/enums/app_theme_modes_test.dart
-flutter test test/services/api_test.dart
-flutter test test/provider/favorites_provider_test.dart
-```
-
-To run tests with coverage:
-```bash
-flutter test --coverage
-```
 
 ## Test Coverage
 
