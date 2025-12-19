@@ -1,30 +1,125 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:departures/main.dart';
+import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/favorites_provider.dart';
+import 'package:departures/provider/theme_settings_provider.dart';
+import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:departures/main.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const DeparturesApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  Widget createTestApp() {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
+        ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+      ],
+      child: const DeparturesApp(),
+    );
+  }
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  group('DeparturesApp', () {
+    testWidgets('should create app and show navigation', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(createTestApp());
+      // Use pump instead of pumpAndSettle to avoid timeout from async operations
+      await tester.pump();
+
+      // The app should have a navigation bar
+      expect(find.byType(NavigationBar), findsOneWidget);
+    });
+
+    testWidgets('should have four navigation destinations', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(createTestApp());
+      await tester.pump();
+
+      // Should have 4 navigation destinations
+      expect(find.byType(NavigationDestination), findsNWidgets(4));
+    });
+
+    testWidgets('should start on home page', (WidgetTester tester) async {
+      await tester.pumpWidget(createTestApp());
+      await tester.pump();
+
+      // First navigation destination should be selected
+      final navigationBar = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
+      expect(navigationBar.selectedIndex, equals(0));
+    });
+  });
+
+  group('AppMainPage', () {
+    testWidgets('should navigate between pages', (WidgetTester tester) async {
+      await tester.pumpWidget(createTestApp());
+      await tester.pump();
+
+      // Initial page should be home (index 0)
+      final navigationBar = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
+      expect(navigationBar.selectedIndex, equals(0));
+
+      // Tap on favorites (index 1)
+      await tester.tap(find.byType(NavigationDestination).at(1));
+      await tester.pump();
+
+      final navigationBar2 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
+      expect(navigationBar2.selectedIndex, equals(1));
+
+      // Tap on search (index 2)
+      await tester.tap(find.byType(NavigationDestination).at(2));
+      await tester.pump();
+
+      final navigationBar3 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
+      expect(navigationBar3.selectedIndex, equals(2));
+
+      // Tap on settings (index 3)
+      await tester.tap(find.byType(NavigationDestination).at(3));
+      await tester.pump();
+
+      final navigationBar4 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
+      expect(navigationBar4.selectedIndex, equals(3));
+    });
+
+    testWidgets('should use IndexedStack to preserve page state', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(createTestApp());
+      await tester.pump();
+
+      // Should have an IndexedStack for page management
+      expect(find.byType(IndexedStack), findsOneWidget);
+    });
+
+    testWidgets('should have correct number of pages in IndexedStack', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(createTestApp());
+      await tester.pump();
+
+      final indexedStack = tester.widget<IndexedStack>(
+        find.byType(IndexedStack),
+      );
+      expect(indexedStack.children.length, equals(4));
+    });
   });
 }
