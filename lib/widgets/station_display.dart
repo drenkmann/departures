@@ -108,8 +108,6 @@ class StationDisplay extends StatelessWidget {
                 );
               },
             ),
-            // if (distance != null)
-            //   Text(' (${distance}m)', style: TextStyle(color: theme.hintColor)),
           ],
         ),
         subtitle: Wrap(
