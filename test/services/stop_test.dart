@@ -215,10 +215,7 @@ void main() {
         'type': 'line',
         'id': 'u8',
         'name': 'U8',
-        'color': {
-          'fg': '#FFFFFF',
-          'bg': '#004F8D',
-        },
+        'color': {'fg': '#FFFFFF', 'bg': '#004F8D'},
       };
 
       final lines = Lines.fromJson(json);
@@ -231,10 +228,7 @@ void main() {
 
   group('Color', () {
     test('should create Color from JSON', () {
-      final json = {
-        'fg': '#FFFFFF',
-        'bg': '#004F8D',
-      };
+      final json = {'fg': '#FFFFFF', 'bg': '#004F8D'};
 
       final color = Color.fromJson(json);
 

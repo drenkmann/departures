@@ -1,6 +1,5 @@
 import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,8 +20,10 @@ void main() {
     });
 
     test('should return true for materialYou when theme is you', () async {
-      SharedPreferences.setMockInitialValues({'themeMode': AppThemeMode.you.index});
-      
+      SharedPreferences.setMockInitialValues({
+        'themeMode': AppThemeMode.you.index,
+      });
+
       final provider = ThemeProvider();
       await Future.delayed(const Duration(milliseconds: 100));
 
@@ -31,7 +32,9 @@ void main() {
     });
 
     test('should load saved theme preference', () async {
-      SharedPreferences.setMockInitialValues({'themeMode': AppThemeMode.dark.index});
+      SharedPreferences.setMockInitialValues({
+        'themeMode': AppThemeMode.dark.index,
+      });
 
       final provider = ThemeProvider();
       await Future.delayed(const Duration(milliseconds: 100));

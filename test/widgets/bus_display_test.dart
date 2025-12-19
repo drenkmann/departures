@@ -5,7 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('BusDisplay', () {
-    testWidgets('should display departure information', (WidgetTester tester) async {
+    testWidgets('should display departure information', (
+      WidgetTester tester,
+    ) async {
       final departureTime = DateTime(2024, 12, 15, 14, 30);
 
       await tester.pumpWidget(
@@ -112,7 +114,9 @@ void main() {
       expect(find.textContaining('(?)'), findsOneWidget);
     });
 
-    testWidgets('should use correct color for line type', (WidgetTester tester) async {
+    testWidgets('should use correct color for line type', (
+      WidgetTester tester,
+    ) async {
       final departureTime = DateTime(2024, 12, 15, 14, 30);
 
       await tester.pumpWidget(
@@ -130,11 +134,15 @@ void main() {
         ),
       );
 
-      final circleAvatar = tester.widget<CircleAvatar>(find.byType(CircleAvatar));
+      final circleAvatar = tester.widget<CircleAvatar>(
+        find.byType(CircleAvatar),
+      );
       expect(circleAvatar.backgroundColor, equals(LineType.subway.color));
     });
 
-    testWidgets('should display different line types correctly', (WidgetTester tester) async {
+    testWidgets('should display different line types correctly', (
+      WidgetTester tester,
+    ) async {
       final departureTime = DateTime(2024, 12, 15, 14, 30);
 
       for (final lineType in LineType.values) {
@@ -153,7 +161,9 @@ void main() {
           ),
         );
 
-        final circleAvatar = tester.widget<CircleAvatar>(find.byType(CircleAvatar));
+        final circleAvatar = tester.widget<CircleAvatar>(
+          find.byType(CircleAvatar),
+        );
         expect(circleAvatar.backgroundColor, equals(lineType.color));
       }
     });

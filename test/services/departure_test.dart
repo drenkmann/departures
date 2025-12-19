@@ -1,5 +1,4 @@
 import 'package:departures/services/departure.dart';
-import 'package:departures/services/stop.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -15,12 +14,7 @@ void main() {
         'prognosisType': 'prognosed',
         'direction': 'Alexanderplatz',
         'cancelled': false,
-        'line': {
-          'type': 'line',
-          'id': 'u8',
-          'name': 'U8',
-          'product': 'subway',
-        },
+        'line': {'type': 'line', 'id': 'u8', 'name': 'U8', 'product': 'subway'},
         'destination': {
           'type': 'stop',
           'id': '900000100001',
@@ -68,9 +62,7 @@ void main() {
     });
 
     test('should handle null values in fromJson', () {
-      final json = {
-        'tripId': '1|123456|0|80|15122024',
-      };
+      final json = {'tripId': '1|123456|0|80|15122024'};
 
       final departure = Departure.fromJson(json);
 
@@ -90,7 +82,7 @@ void main() {
             'type': 'hint',
             'code': 'text.hint.FB.disruption',
             'text': 'Service disruption',
-          }
+          },
         ],
       };
 
@@ -175,11 +167,7 @@ void main() {
         'type': 'line',
         'id': 'u8',
         'name': 'U8',
-        'operator': {
-          'type': 'operator',
-          'id': 'bvg',
-          'name': 'BVG',
-        },
+        'operator': {'type': 'operator', 'id': 'bvg', 'name': 'BVG'},
       };
 
       final line = Line.fromJson(json);
@@ -193,11 +181,7 @@ void main() {
 
   group('Operator', () {
     test('should create Operator from JSON', () {
-      final json = {
-        'type': 'operator',
-        'id': 'bvg',
-        'name': 'BVG',
-      };
+      final json = {'type': 'operator', 'id': 'bvg', 'name': 'BVG'};
 
       final operator = Operator.fromJson(json);
 

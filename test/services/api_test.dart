@@ -12,7 +12,10 @@ void main() {
         // The result should contain the time portion
         expect(iso8601, contains('14:30:00'));
         // Should include timezone offset
-        expect(iso8601, matches(RegExp(r'\d{4}-\d{2}-\d{2}T14:30:00[+-]\d{2}:\d{2}')));
+        expect(
+          iso8601,
+          matches(RegExp(r'\d{4}-\d{2}-\d{2}T14:30:00[+-]\d{2}:\d{2}')),
+        );
       });
 
       test('should handle midnight', () {
@@ -20,7 +23,10 @@ void main() {
         final iso8601 = VbbApi.getIso8601FromTimeOfDay(timeOfDay);
 
         expect(iso8601, contains('00:00:00'));
-        expect(iso8601, matches(RegExp(r'\d{4}-\d{2}-\d{2}T00:00:00[+-]\d{2}:\d{2}')));
+        expect(
+          iso8601,
+          matches(RegExp(r'\d{4}-\d{2}-\d{2}T00:00:00[+-]\d{2}:\d{2}')),
+        );
       });
 
       test('should handle noon', () {
@@ -28,7 +34,10 @@ void main() {
         final iso8601 = VbbApi.getIso8601FromTimeOfDay(timeOfDay);
 
         expect(iso8601, contains('12:00:00'));
-        expect(iso8601, matches(RegExp(r'\d{4}-\d{2}-\d{2}T12:00:00[+-]\d{2}:\d{2}')));
+        expect(
+          iso8601,
+          matches(RegExp(r'\d{4}-\d{2}-\d{2}T12:00:00[+-]\d{2}:\d{2}')),
+        );
       });
 
       test('should handle end of day', () {
@@ -36,7 +45,10 @@ void main() {
         final iso8601 = VbbApi.getIso8601FromTimeOfDay(timeOfDay);
 
         expect(iso8601, contains('23:59:00'));
-        expect(iso8601, matches(RegExp(r'\d{4}-\d{2}-\d{2}T23:59:00[+-]\d{2}:\d{2}')));
+        expect(
+          iso8601,
+          matches(RegExp(r'\d{4}-\d{2}-\d{2}T23:59:00[+-]\d{2}:\d{2}')),
+        );
       });
 
       test('should use current date for the datetime', () {

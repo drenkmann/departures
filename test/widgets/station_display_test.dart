@@ -66,7 +66,9 @@ void main() {
       expect(find.text('M48'), findsOneWidget);
     });
 
-    testWidgets('should display distance when provided', (WidgetTester tester) async {
+    testWidgets('should display distance when provided', (
+      WidgetTester tester,
+    ) async {
       final station = StationDisplay(
         stationName: 'Alexanderplatz',
         stationId: '900000100001',
@@ -92,7 +94,9 @@ void main() {
       expect(find.textContaining('150m'), findsOneWidget);
     });
 
-    testWidgets('should not display distance when not provided', (WidgetTester tester) async {
+    testWidgets('should not display distance when not provided', (
+      WidgetTester tester,
+    ) async {
       final station = StationDisplay(
         stationName: 'Alexanderplatz',
         stationId: '900000100001',
@@ -144,7 +148,9 @@ void main() {
       expect(find.byType(LineTag), findsOneWidget);
     });
 
-    testWidgets('toJson should serialize station correctly', (WidgetTester tester) async {
+    testWidgets('toJson should serialize station correctly', (
+      WidgetTester tester,
+    ) async {
       final station = StationDisplay(
         stationName: 'Alexanderplatz',
         stationId: '900000100001',
@@ -160,14 +166,13 @@ void main() {
       expect(json['lines']['M48'], equals(LineType.bus.toString()));
     });
 
-    testWidgets('fromJson should deserialize station correctly', (WidgetTester tester) async {
+    testWidgets('fromJson should deserialize station correctly', (
+      WidgetTester tester,
+    ) async {
       final json = {
         'stationName': 'Alexanderplatz',
         'stationId': '900000100001',
-        'lines': {
-          'U8': 'LineType.subway',
-          'M48': 'LineType.bus',
-        },
+        'lines': {'U8': 'LineType.subway', 'M48': 'LineType.bus'},
       };
 
       final station = StationDisplay.fromJson(json);
@@ -184,10 +189,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LineTag(
-              lineType: LineType.subway,
-              lineName: 'U8',
-            ),
+            body: LineTag(lineType: LineType.subway, lineName: 'U8'),
           ),
         ),
       );
@@ -195,14 +197,13 @@ void main() {
       expect(find.text('U8'), findsOneWidget);
     });
 
-    testWidgets('should use correct color for line type', (WidgetTester tester) async {
+    testWidgets('should use correct color for line type', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LineTag(
-              lineType: LineType.subway,
-              lineName: 'U8',
-            ),
+            body: LineTag(lineType: LineType.subway, lineName: 'U8'),
           ),
         ),
       );
@@ -212,15 +213,14 @@ void main() {
       expect(decoration.color, equals(LineType.subway.color));
     });
 
-    testWidgets('should display different line types with correct colors', (WidgetTester tester) async {
+    testWidgets('should display different line types with correct colors', (
+      WidgetTester tester,
+    ) async {
       for (final lineType in LineType.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: LineTag(
-                lineType: lineType,
-                lineName: 'TEST',
-              ),
+              body: LineTag(lineType: lineType, lineName: 'TEST'),
             ),
           ),
         );
@@ -235,10 +235,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LineTag(
-              lineType: LineType.subway,
-              lineName: 'U8',
-            ),
+            body: LineTag(lineType: LineType.subway, lineName: 'U8'),
           ),
         ),
       );
@@ -251,10 +248,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LineTag(
-              lineType: LineType.subway,
-              lineName: 'U8',
-            ),
+            body: LineTag(lineType: LineType.subway, lineName: 'U8'),
           ),
         ),
       );
