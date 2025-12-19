@@ -164,6 +164,18 @@
     "@settingsShowActualTimeSubtitleOff": {
         "description": "Subtitle when the show actual time toggle is off"
     },
+    "settingsShowDistanceTitle": "Show distance",
+    "@settingsShowDistanceTitle": {
+        "description": "Label for the show distance to station toggle in the settings"
+    },
+    "settingsShowDistanceSubtitleOn": "Showing distance to stations",
+    "@settingsShowDistanceSubtitleOn": {
+        "description": "Subtitle when the show distance to station toggle is on"
+    },
+    "settingsShowDistanceSubtitleOff": "Hiding distance to stations",
+    "@settingsShowDistanceSubtitleOff": {
+        "description": "Subtitle when the show distance to station toggle is off"
+    },
     "settingsReset": "Reset everything",
     "@settingsReset": {
         "description": "Button to reset all data"
