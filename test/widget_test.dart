@@ -28,7 +28,9 @@ void main() {
   }
 
   group('DeparturesApp', () {
-    testWidgets('should create app and show navigation', (WidgetTester tester) async {
+    testWidgets('should create app and show navigation', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(createTestApp());
       // Use pump instead of pumpAndSettle to avoid timeout from async operations
       await tester.pump();
@@ -37,7 +39,9 @@ void main() {
       expect(find.byType(NavigationBar), findsOneWidget);
     });
 
-    testWidgets('should have four navigation destinations', (WidgetTester tester) async {
+    testWidgets('should have four navigation destinations', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(createTestApp());
       await tester.pump();
 
@@ -50,7 +54,9 @@ void main() {
       await tester.pump();
 
       // First navigation destination should be selected
-      final navigationBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
+      final navigationBar = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
       expect(navigationBar.selectedIndex, equals(0));
     });
   });
@@ -61,32 +67,42 @@ void main() {
       await tester.pump();
 
       // Initial page should be home (index 0)
-      final navigationBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
+      final navigationBar = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
       expect(navigationBar.selectedIndex, equals(0));
 
       // Tap on favorites (index 1)
       await tester.tap(find.byType(NavigationDestination).at(1));
       await tester.pump();
 
-      final navigationBar2 = tester.widget<NavigationBar>(find.byType(NavigationBar));
+      final navigationBar2 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
       expect(navigationBar2.selectedIndex, equals(1));
 
       // Tap on search (index 2)
       await tester.tap(find.byType(NavigationDestination).at(2));
       await tester.pump();
 
-      final navigationBar3 = tester.widget<NavigationBar>(find.byType(NavigationBar));
+      final navigationBar3 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
       expect(navigationBar3.selectedIndex, equals(2));
 
       // Tap on settings (index 3)
       await tester.tap(find.byType(NavigationDestination).at(3));
       await tester.pump();
 
-      final navigationBar4 = tester.widget<NavigationBar>(find.byType(NavigationBar));
+      final navigationBar4 = tester.widget<NavigationBar>(
+        find.byType(NavigationBar),
+      );
       expect(navigationBar4.selectedIndex, equals(3));
     });
 
-    testWidgets('should use IndexedStack to preserve page state', (WidgetTester tester) async {
+    testWidgets('should use IndexedStack to preserve page state', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(createTestApp());
       await tester.pump();
 
@@ -94,11 +110,15 @@ void main() {
       expect(find.byType(IndexedStack), findsOneWidget);
     });
 
-    testWidgets('should have correct number of pages in IndexedStack', (WidgetTester tester) async {
+    testWidgets('should have correct number of pages in IndexedStack', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(createTestApp());
       await tester.pump();
 
-      final indexedStack = tester.widget<IndexedStack>(find.byType(IndexedStack));
+      final indexedStack = tester.widget<IndexedStack>(
+        find.byType(IndexedStack),
+      );
       expect(indexedStack.children.length, equals(4));
     });
   });
