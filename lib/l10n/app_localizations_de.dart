@@ -155,6 +155,17 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsShowActualTimeSubtitleOff => 'Zeigt geplante Zeit';
 
   @override
+  String get settingsShowDistanceTitle => 'Entfernung anzeigen';
+
+  @override
+  String get settingsShowDistanceSubtitleOn =>
+      'Zeigt Entfernung zur Haltestelle';
+
+  @override
+  String get settingsShowDistanceSubtitleOff =>
+      'Versteckt Entfernung zur Haltestelle';
+
+  @override
   String get settingsReset => 'Alles zurücksetzen';
 
   @override

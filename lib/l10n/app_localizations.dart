@@ -374,6 +374,24 @@ abstract class AppLocalizations {
   /// **'Showing planned time'**
   String get settingsShowActualTimeSubtitleOff;
 
+  /// Label for the show distance to station toggle in the settings
+  ///
+  /// In en, this message translates to:
+  /// **'Show distance'**
+  String get settingsShowDistanceTitle;
+
+  /// Subtitle when the show distance to station toggle is on
+  ///
+  /// In en, this message translates to:
+  /// **'Showing distance to stations'**
+  String get settingsShowDistanceSubtitleOn;
+
+  /// Subtitle when the show distance to station toggle is off
+  ///
+  /// In en, this message translates to:
+  /// **'Hiding distance to stations'**
+  String get settingsShowDistanceSubtitleOff;
+
   /// Button to reset all data
   ///
   /// In en, this message translates to:
