@@ -1,5 +1,6 @@
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/l10n/app_localizations.dart';
+import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,13 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
-            body: ChangeNotifierProvider(
-              create: (_) => FavoritesProvider(),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+                ChangeNotifierProvider(
+                  create: (_) => DistanceSettingsProvider(),
+                ),
+              ],
               child: station,
             ),
           ),
@@ -52,8 +58,13 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
-            body: ChangeNotifierProvider(
-              create: (_) => FavoritesProvider(),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+                ChangeNotifierProvider(
+                  create: (_) => DistanceSettingsProvider(),
+                ),
+              ],
               child: station,
             ),
           ),
@@ -69,6 +80,7 @@ void main() {
     testWidgets('should display distance when provided', (
       WidgetTester tester,
     ) async {
+      SharedPreferences.setMockInitialValues({'showDistance': true});
       final station = StationDisplay(
         stationName: 'Alexanderplatz',
         stationId: '900000100001',
@@ -81,8 +93,13 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
-            body: ChangeNotifierProvider(
-              create: (_) => FavoritesProvider(),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+                ChangeNotifierProvider(
+                  create: (_) => DistanceSettingsProvider(),
+                ),
+              ],
               child: station,
             ),
           ),
@@ -108,8 +125,13 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
-            body: ChangeNotifierProvider(
-              create: (_) => FavoritesProvider(),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+                ChangeNotifierProvider(
+                  create: (_) => DistanceSettingsProvider(),
+                ),
+              ],
               child: station,
             ),
           ),
@@ -133,8 +155,13 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
-            body: ChangeNotifierProvider(
-              create: (_) => FavoritesProvider(),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+                ChangeNotifierProvider(
+                  create: (_) => DistanceSettingsProvider(),
+                ),
+              ],
               child: station,
             ),
           ),

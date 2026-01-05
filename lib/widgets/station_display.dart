@@ -1,5 +1,6 @@
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/provider/favorites_provider.dart';
+import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
 import 'package:departures/l10n/app_localizations.dart';
@@ -96,8 +97,17 @@ class StationDisplay extends StatelessWidget {
           children: [
             Text(stationName),
             const Spacer(),
-            if (distance != null)
-              Text(' (${distance}m)', style: TextStyle(color: theme.hintColor)),
+            Consumer<DistanceSettingsProvider>(
+              builder: (context, distanceSettingsProvider, child) {
+                if (!distanceSettingsProvider.showDistance) {
+                  return const SizedBox.shrink();
+                }
+                return Text(
+                  ' (${distance}m)',
+                  style: TextStyle(color: theme.hintColor),
+                );
+              },
+            ),
           ],
         ),
         subtitle: Wrap(

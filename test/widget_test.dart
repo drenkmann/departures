@@ -1,5 +1,6 @@
 import 'package:departures/main.dart';
 import 'package:departures/provider/api_settings_provider.dart';
+import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
@@ -22,6 +23,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ApiSettingsProvider()),
         ChangeNotifierProvider(create: (_) => TimeDisplaySettingsProvider()),
         ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (_) => DistanceSettingsProvider()),
       ],
       child: const DeparturesApp(),
     );

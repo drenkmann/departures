@@ -154,6 +154,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsShowActualTimeSubtitleOff => 'Showing planned time';
 
   @override
+  String get settingsShowDistanceTitle => 'Show distance';
+
+  @override
+  String get settingsShowDistanceSubtitleOn => 'Showing distance to stations';
+
+  @override
+  String get settingsShowDistanceSubtitleOff => 'Hiding distance to stations';
+
+  @override
   String get settingsReset => 'Reset everything';
 
   @override

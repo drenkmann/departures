@@ -1,5 +1,6 @@
 import 'package:departures/provider/api_settings_provider.dart';
 import 'package:departures/enums/app_theme_modes.dart';
+import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:flutter/material.dart';
@@ -130,6 +131,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 value: timeDisplayProvider.showActualTime,
                 onChanged: (value) {
                   timeDisplayProvider.setShowActualTime(value);
+                },
+              ),
+            ),
+          ),
+          Consumer<DistanceSettingsProvider>(
+            builder: (context, distanceSettingsProvider, child) => ListTile(
+              title: Text(appLocalizations.settingsShowDistanceTitle),
+              subtitle: distanceSettingsProvider.showDistance
+                  ? Text(appLocalizations.settingsShowDistanceSubtitleOn)
+                  : Text(appLocalizations.settingsShowDistanceSubtitleOff),
+              trailing: Switch(
+                value: distanceSettingsProvider.showDistance,
+                onChanged: (value) {
+                  distanceSettingsProvider.setShowDistance(value);
                 },
               ),
             ),
