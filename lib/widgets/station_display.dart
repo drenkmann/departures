@@ -99,7 +99,8 @@ class StationDisplay extends StatelessWidget {
             const Spacer(),
             Consumer<DistanceSettingsProvider>(
               builder: (context, distanceSettingsProvider, child) {
-                if (!distanceSettingsProvider.showDistance) {
+                if (!distanceSettingsProvider.showDistance ||
+                    distance == null) {
                   return const SizedBox.shrink();
                 }
                 return Text(
