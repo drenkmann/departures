@@ -94,9 +94,9 @@ class StationDisplay extends StatelessWidget {
       },
       child: ListTile(
         title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(stationName),
-            const Spacer(),
+            Expanded(child: Text(stationName, softWrap: true)),
             Consumer<DistanceSettingsProvider>(
               builder: (context, distanceSettingsProvider, child) {
                 if (!distanceSettingsProvider.showDistance ||
@@ -105,6 +105,7 @@ class StationDisplay extends StatelessWidget {
                 }
                 return Text(
                   ' (${distance}m)',
+                  softWrap: false,
                   style: TextStyle(color: theme.hintColor),
                 );
               },
