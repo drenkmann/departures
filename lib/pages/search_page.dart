@@ -36,6 +36,10 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> _getStops(String query) async {
+    if (query.isEmpty) {
+      return;
+    }
+
     final stops = await VbbApi.getStations(query, context);
 
     setState(() {
@@ -70,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
               return Padding(
                 padding: const EdgeInsets.all(12),
                 child: TextField(
-                  onSubmitted: (_) => _refreshIndicatorKey.currentState?.show(),
+                  onChanged: (_) => _refreshIndicatorKey.currentState?.show(),
                   onTapOutside: (event) {
                     _searchFocusNode.unfocus();
                   },

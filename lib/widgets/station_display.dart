@@ -1,5 +1,6 @@
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/provider/favorites_provider.dart';
+import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:flutter/material.dart';
 import 'package:departures/l10n/app_localizations.dart';
@@ -10,11 +11,13 @@ class StationDisplay extends StatelessWidget {
     required this.stationName,
     required this.lines,
     required this.stationId,
+    this.distance,
   }) : super(key: Key(stationId));
 
   final String stationName;
   final String stationId;
   final Map lines;
+  final int? distance;
 
   Map<String, dynamic> toJson() {
     return {
@@ -60,8 +63,15 @@ class StationDisplay extends StatelessWidget {
       ),
       confirmDismiss: (_) {
         final provider = Provider.of<FavoritesProvider>(context, listen: false);
-        final justSaved = !provider.favorites.contains(this);
-        provider.toggleFavorite(this);
+        var save = StationDisplay(
+          stationName: stationName,
+          stationId: stationId,
+          lines: lines,
+        );
+        final justSaved = !provider.favorites.any(
+          (fav) => fav.stationId == save.stationId,
+        );
+        provider.toggleFavorite(save);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -74,7 +84,7 @@ class StationDisplay extends StatelessWidget {
             action: SnackBarAction(
               label: appLocalizations.undo,
               onPressed: () {
-                provider.toggleFavorite(this);
+                provider.toggleFavorite(save);
               },
             ),
           ),
@@ -83,7 +93,25 @@ class StationDisplay extends StatelessWidget {
         return Future.value(false);
       },
       child: ListTile(
-        title: Text(stationName),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Text(stationName, softWrap: true)),
+            Consumer<DistanceSettingsProvider>(
+              builder: (context, distanceSettingsProvider, child) {
+                if (!distanceSettingsProvider.showDistance ||
+                    distance == null) {
+                  return const SizedBox.shrink();
+                }
+                return Text(
+                  ' (${distance}m)',
+                  softWrap: false,
+                  style: TextStyle(color: theme.hintColor),
+                );
+              },
+            ),
+          ],
+        ),
         subtitle: Wrap(
           spacing: 5,
           runSpacing: 5,
