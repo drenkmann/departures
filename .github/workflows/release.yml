@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -83,12 +86,20 @@ jobs:
           VERSION_NAME=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
 
+      - name: Delete existing release and tag
+        run: |
+          gh release delete "${{ steps.version.outputs.version_name }}" --cleanup-tag -y || true
+          git push origin ":refs/tags/${{ steps.version.outputs.version_name }}" || true
+          git tag -d "${{ steps.version.outputs.version_name }}" || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: main-${{ github.run_number }}
+          tag: ${{ steps.version.outputs.version_name }}
           commit: ${{ github.sha }}
-          name: Release ${{ steps.version.outputs.version_name }} (${{ github.run_number }})
+          name: ${{ steps.version.outputs.version_name }}
           prerelease: false
           allowUpdates: false
           draft: false
