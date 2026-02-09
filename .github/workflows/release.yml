@@ -71,17 +71,18 @@ jobs:
           echo "Internal track response: $INTERNAL_TRACK"
 
           VERSION_CODE=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]?.versionCodes[]? | tonumber] | max')
-          RELEASE_NAME=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]? | select(.versionCodes[]? == ($vc|tonumber)) | .name] | first' --arg vc "$VERSION_CODE")
           if [[ -z "$VERSION_CODE" || "$VERSION_CODE" == "null" ]]; then
             echo "No version codes found in internal track."
             exit 1
           fi
 
-          if [[ -z "$RELEASE_NAME" || "$RELEASE_NAME" == "null" ]]; then
-            RELEASE_NAME="Promoted from internal"
+          RELEASE_PAYLOAD=$(echo "$INTERNAL_TRACK" | jq -c --arg vc "$VERSION_CODE" '[.releases[]? | select(.versionCodes[]? == $vc)][0]' )
+          if [[ -z "$RELEASE_PAYLOAD" || "$RELEASE_PAYLOAD" == "null" ]]; then
+            echo "No matching release found for version code $VERSION_CODE."
+            exit 1
           fi
 
-          BETA_BODY=$(jq -n --arg vc "$VERSION_CODE" --arg name "$RELEASE_NAME" '{track:"beta", releases:[{name:$name, status:"completed", versionCodes:[($vc|tonumber)]}]}')
+          BETA_BODY=$(jq -n --argjson release "$RELEASE_PAYLOAD" '{track:"beta", releases:[$release]}')
 
           curl -s -X PUT \
             -H "Authorization: Bearer $ACCESS_TOKEN" \
