@@ -48,13 +48,13 @@ jobs:
           echo "storeFile=keystore.jks" >> android/key.properties
 
       - name: Build APK
-        run: flutter build apk --release --build-number $GITHUB_RUN_ID
+        run: flutter build apk --release --build-number $GITHUB_RUN_NUMBER
 
       - name: Build split APKs
-        run: flutter build apk --release --split-per-abi --build-number $GITHUB_RUN_ID
+        run: flutter build apk --release --split-per-abi --build-number $GITHUB_RUN_NUMBER
 
       - name: Build appbundle
-        run: flutter build appbundle --release --build-number $GITHUB_RUN_ID
+        run: flutter build appbundle --release --build-number $GITHUB_RUN_NUMBER
 
       - name: Upload appbundle to internal testing
         uses: r0adkll/upload-google-play@v1
