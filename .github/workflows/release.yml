@@ -68,12 +68,17 @@ jobs:
             "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits/$EDIT_ID/tracks/internal")
 
           VERSION_CODE=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]?.versionCodes[]? | tonumber] | max')
+          RELEASE_NAME=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]? | select(.versionCodes[]? == ($vc|tonumber)) | .name] | first' --arg vc "$VERSION_CODE")
           if [[ -z "$VERSION_CODE" || "$VERSION_CODE" == "null" ]]; then
             echo "No version codes found in internal track."
             exit 1
           fi
 
-          BETA_BODY=$(jq -n --arg vc "$VERSION_CODE" '{track:"beta", releases:[{name:"Promoted from internal", status:"completed", versionCodes:[($vc|tonumber)]}]}')
+          if [[ -z "$RELEASE_NAME" || "$RELEASE_NAME" == "null" ]]; then
+            RELEASE_NAME="Promoted from internal"
+          fi
+
+          BETA_BODY=$(jq -n --arg vc "$VERSION_CODE" --arg name "$RELEASE_NAME" '{track:"beta", releases:[{name:$name, status:"completed", versionCodes:[($vc|tonumber)]}]}')
 
           curl -s -X PUT \
             -H "Authorization: Bearer $ACCESS_TOKEN" \
