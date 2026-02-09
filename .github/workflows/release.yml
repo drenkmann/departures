@@ -67,6 +67,8 @@ jobs:
             -H "Authorization: Bearer $ACCESS_TOKEN" \
             "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits/$EDIT_ID/tracks/internal")
 
+          echo "Internal track response: $INTERNAL_TRACK"
+
           VERSION_CODE=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]?.versionCodes[]? | tonumber] | max')
           RELEASE_NAME=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]? | select(.versionCodes[]? == ($vc|tonumber)) | .name] | first' --arg vc "$VERSION_CODE")
           if [[ -z "$VERSION_CODE" || "$VERSION_CODE" == "null" ]]; then
