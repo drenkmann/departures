@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release:
+  continuous-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -56,6 +56,12 @@ jobs:
       - name: Build appbundle
         run: flutter build appbundle --release --build-number $GITHUB_RUN_NUMBER
 
+      - name: Read version name
+        id: version
+        run: |
+          VERSION_NAME=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
       - name: Upload appbundle to internal testing
         uses: r0adkll/upload-google-play@v1
         with:
@@ -64,6 +70,7 @@ jobs:
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
           status: completed
+          releaseName: ${{ steps.version.outputs.version_name }} (${{ github.run_number }})
 
       - name: Get Last Commit on Previous Release
         id: last_release

@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,68 +24,79 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Set Up Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: 17
-          cache: gradle
-
-      - name: Set Up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Decode Keystore
+      - name: Wait for continuous release to finish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/keystore.jks
-
-      - name: Create key.properties
-        run: |
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
-          echo "storeFile=keystore.jks" >> android/key.properties
-
-      - name: Build APK
-        run: flutter build apk --release --build-number $GITHUB_RUN_NUMBER
-
-      - name: Build split APKs
-        run: flutter build apk --release --split-per-abi --build-number $GITHUB_RUN_NUMBER
-
-      - name: Build appbundle
-        run: flutter build appbundle --release --build-number $GITHUB_RUN_NUMBER
-
-      - name: Upload appbundle to open testing
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: dev.drenkmann.departures
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: beta
-          status: completed
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: flutter-builds
-          retention-days: 30
-          path: |
-            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-            build/app/outputs/flutter-apk/app-x86_64-release.apk
-            build/app/outputs/flutter-apk/app-release.apk
-            build/app/outputs/bundle/release/app-release.aab
+          set -euo pipefail
+          while true; do
+            IN_PROGRESS=$(gh api "/repos/${{ github.repository }}/actions/workflows/continuous-release.yml/runs?branch=dev&status=in_progress" -q '.total_count')
+            QUEUED=$(gh api "/repos/${{ github.repository }}/actions/workflows/continuous-release.yml/runs?branch=dev&status=queued" -q '.total_count')
+            if [[ "$IN_PROGRESS" == "0" && "$QUEUED" == "0" ]]; then
+              break
+            fi
+            echo "Waiting for continuous release to finish (in_progress=$IN_PROGRESS, queued=$QUEUED)..."
+            sleep 20
+          done
 
       - name: Read version name
         id: version
         run: |
           VERSION_NAME=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+      - name: Authenticate to Google Play
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          token_format: access_token
+
+      - name: Promote internal release to open testing
+        env:
+          ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          PACKAGE_NAME: dev.drenkmann.departures
+        run: |
+          set -euo pipefail
+          EDIT_ID=$(curl -s -X POST \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits" | jq -r '.id')
+
+          INTERNAL_TRACK=$(curl -s \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits/$EDIT_ID/tracks/internal")
+
+          VERSION_CODE=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]?.versionCodes[]? | tonumber] | max')
+          RELEASE_NAME=$(echo "$INTERNAL_TRACK" | jq -r '[.releases[]? | select(.versionCodes[]? == ($vc|tonumber)) | .name] | first' --arg vc "$VERSION_CODE")
+          if [[ -z "$VERSION_CODE" || "$VERSION_CODE" == "null" ]]; then
+            echo "No version codes found in internal track."
+            exit 1
+          fi
+
+          if [[ -z "$RELEASE_NAME" || "$RELEASE_NAME" == "null" ]]; then
+            RELEASE_NAME="Promoted from internal"
+          fi
+
+          BETA_BODY=$(jq -n --arg vc "$VERSION_CODE" --arg name "$RELEASE_NAME" '{track:"beta", releases:[{name:$name, status:"completed", versionCodes:[($vc|tonumber)]}]}')
+
+          curl -s -X PUT \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$BETA_BODY" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits/$EDIT_ID/tracks/beta" > /dev/null
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PACKAGE_NAME/edits/$EDIT_ID:commit" > /dev/null
+
+      - name: Download continuous release APKs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets
+          gh release download continuous --pattern "*.apk" --dir release-assets
 
       - name: Delete existing release and tag
         run: |
@@ -104,7 +116,4 @@ jobs:
           allowUpdates: false
           draft: false
           artifacts: |
-            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-            build/app/outputs/flutter-apk/app-x86_64-release.apk
-            build/app/outputs/flutter-apk/app-release.apk
+            release-assets/*.apk
