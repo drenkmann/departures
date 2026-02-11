@@ -11,6 +11,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VbbApi {
   VbbApi._();
 
+  static List<Stop>? testNearbyStations;
+  static List<Stop>? testSearchStations;
+  static List<Departure>? testDepartures;
+
   static String getIso8601FromTimeOfDay(TimeOfDay time) {
     final now = DateTime.now();
     final DateTime combinedDateTime = DateTime(
@@ -77,6 +81,10 @@ class VbbApi {
     BuildContext context, {
     int? count,
   }) async {
+    if (testNearbyStations != null) {
+      return testNearbyStations!;
+    }
+
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -140,6 +148,10 @@ class VbbApi {
     TimeOfDay? when,
     int? duration,
   }) async {
+    if (testDepartures != null) {
+      return testDepartures!;
+    }
+
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -203,6 +215,10 @@ class VbbApi {
     String query,
     BuildContext context,
   ) async {
+    if (testSearchStations != null) {
+      return testSearchStations!;
+    }
+
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(

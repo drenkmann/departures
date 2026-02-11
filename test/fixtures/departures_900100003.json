@@ -1,0 +1,622 @@
+{
+  "departures": [
+    {
+      "tripId": "1|44315|1|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:45:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 1",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Zoologischer Garten",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": "94569",
+        "name": "M49",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900004181",
+        "name": "Hertzallee (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900004181",
+          "latitude": 52.509229,
+          "longitude": 13.332612
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900004181"
+      },
+      "currentTripPosition": {
+        "type": "location",
+        "latitude": 52.505525,
+        "longitude": 13.326248
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|43264|3|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:46:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 1",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Zoologischer Garten",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": "92843",
+        "name": "M45",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900004181",
+        "name": "Hertzallee (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900004181",
+          "latitude": 52.509229,
+          "longitude": 13.332612
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900004181"
+      },
+      "currentTripPosition": {
+        "type": "location",
+        "latitude": 52.509633,
+        "longitude": 13.325088
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|35854|4|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:50:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 1",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Zoologischer Garten",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": "75995",
+        "name": "245",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900004181",
+        "name": "Hertzallee (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900004181",
+          "latitude": 52.509229,
+          "longitude": 13.332612
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900004181"
+      },
+      "currentTripPosition": {
+        "type": "location",
+        "latitude": 52.518659,
+        "longitude": 13.319892
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|44257|9|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:50:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 1",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Zoologischer Garten",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": "94717",
+        "name": "M49",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900004181",
+        "name": "Hertzallee (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900004181",
+          "latitude": 52.509229,
+          "longitude": 13.332612
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900004181"
+      },
+      "currentTripPosition": {
+        "type": "location",
+        "latitude": 52.505921,
+        "longitude": 13.319128
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|43392|0|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:51:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 2",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "Spandau, Johannesstift",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": "92490",
+        "name": "M45",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900027201",
+        "name": "Johannesstift (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900027201",
+          "latitude": 52.566715,
+          "longitude": 13.192623
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900027201"
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|35792|17|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:52:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 2",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Friedrichstr.",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": "76269",
+        "name": "245",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900100001",
+        "name": "S+U Friedrichstr. Bhf (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900100001",
+          "latitude": 52.520304,
+          "longitude": 13.387257
+        },
+        "products": {
+          "suburban": true,
+          "subway": true,
+          "tram": true,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": true
+        },
+        "stationDHID": "de:11000:900100001"
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|43264|4|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:54:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 1",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "S+U Zoologischer Garten",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": "92844",
+        "name": "M45",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900004181",
+        "name": "Hertzallee (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900004181",
+          "latitude": 52.509229,
+          "longitude": 13.332612
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900004181"
+      },
+      "currentTripPosition": {
+        "type": "location",
+        "latitude": 52.519279,
+        "longitude": 13.295127
+      },
+      "cancelled": true
+    },
+    {
+      "tripId": "1|43393|0|86|11022026",
+      "stop": {
+        "type": "stop",
+        "id": "900023172",
+        "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900023172",
+          "latitude": 52.507125,
+          "longitude": 13.330427
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900023172"
+      },
+      "when": null,
+      "plannedWhen": "2026-02-11T13:58:00+01:00",
+      "prognosedWhen": null,
+      "delay": null,
+      "platform": null,
+      "plannedPlatform": "Pos. 2",
+      "prognosedPlatform": null,
+      "prognosisType": null,
+      "direction": "Spandau, Johannesstift",
+      "provenance": null,
+      "line": {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": "92487",
+        "name": "M45",
+        "public": true,
+        "adminCode": "BVB---",
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus",
+        "operator": {
+          "type": "operator",
+          "id": "berliner-verkehrsbetriebe",
+          "name": "Berliner Verkehrsbetriebe"
+        }
+      },
+      "remarks": [],
+      "origin": null,
+      "destination": {
+        "type": "stop",
+        "id": "900027201",
+        "name": "Johannesstift (Berlin)",
+        "location": {
+          "type": "location",
+          "id": "900027201",
+          "latitude": 52.566715,
+          "longitude": 13.192623
+        },
+        "products": {
+          "suburban": false,
+          "subway": false,
+          "tram": false,
+          "bus": true,
+          "ferry": false,
+          "express": false,
+          "regional": false
+        },
+        "stationDHID": "de:11000:900027201"
+      },
+      "cancelled": true
+    }
+  ],
+  "realtimeDataUpdatedAt": 1770813790
+}
