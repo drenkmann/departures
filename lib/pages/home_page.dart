@@ -268,14 +268,10 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          spacing: 8,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.nearbyStationsTitle,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        title: Text(
+          AppLocalizations.of(context)!.nearbyStationsTitle,
+          style: Theme.of(context).textTheme.headlineMedium,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
       body: RefreshIndicator(
