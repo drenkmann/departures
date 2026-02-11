@@ -15,12 +15,14 @@ A simple app that displays the departures of the public transport lines in Berli
         <td><b>Saved</b></td>
         <td><b>Search</b></td>
         <td><b>Settings</b></td>
+        <td><b>Departures</b></td>
     </tr>
     <tr>
         <td><img src="./docs/images/en/Home.png" width=200/></td>
         <td><img src="./docs/images/en/Saved.png" width=200/></td>
         <td><img src="./docs/images/en/Search.png" width=200/></td>
         <td><img src="./docs/images/en/Settings.png" width=200/></td>
+        <td><img src="./docs/images/en/Departures.png" width=200/></td>
     </tr>
 </table>
 

@@ -4,6 +4,8 @@ import 'package:departures/l10n/app_localizations.dart';
 import 'package:departures/services/departure.dart' hide Color;
 import 'package:departures/services/stop.dart' hide Color;
 import 'package:departures/services/api.dart';
+import 'package:departures/widgets/bus_display.dart';
+import 'package:departures/widgets/station_departures.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -152,12 +154,13 @@ void main() {
                 theme: lightTheme,
                 darkTheme: darkTheme,
                 themeMode: ThemeMode.dark,
+                builder: (context, child) => GoldenTestDefaults.buildApp(
+                  home: child ?? const SizedBox.shrink(),
+                ),
                 locale: locale,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                home: GoldenTestDefaults.buildApp(
-                  home: const TestAppMainPage(initialIndex: 0),
-                ),
+                home: const TestAppMainPage(initialIndex: 0),
               ),
             );
 
@@ -184,12 +187,13 @@ void main() {
                 theme: lightTheme,
                 darkTheme: darkTheme,
                 themeMode: ThemeMode.dark,
+                builder: (context, child) => GoldenTestDefaults.buildApp(
+                  home: child ?? const SizedBox.shrink(),
+                ),
                 locale: locale,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                home: GoldenTestDefaults.buildApp(
-                  home: const TestAppMainPage(initialIndex: 1),
-                ),
+                home: const TestAppMainPage(initialIndex: 1),
               ),
             );
 
@@ -216,12 +220,13 @@ void main() {
                 theme: lightTheme,
                 darkTheme: darkTheme,
                 themeMode: ThemeMode.dark,
+                builder: (context, child) => GoldenTestDefaults.buildApp(
+                  home: child ?? const SizedBox.shrink(),
+                ),
                 locale: locale,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                home: GoldenTestDefaults.buildApp(
-                  home: const TestAppMainPage(initialIndex: 2),
-                ),
+                home: const TestAppMainPage(initialIndex: 2),
               ),
             );
 
@@ -248,12 +253,13 @@ void main() {
                 theme: lightTheme,
                 darkTheme: darkTheme,
                 themeMode: ThemeMode.dark,
+                builder: (context, child) => GoldenTestDefaults.buildApp(
+                  home: child ?? const SizedBox.shrink(),
+                ),
                 locale: locale,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                home: GoldenTestDefaults.buildApp(
-                  home: const TestAppMainPage(initialIndex: 3),
-                ),
+                home: const TestAppMainPage(initialIndex: 3),
               ),
             );
 
@@ -271,10 +277,66 @@ void main() {
               langCode: locale.languageCode,
             );
           });
+
+          testGoldens('Departures - ${goldenDevice.label}', (tester) async {
+            await tester.pumpWidget(
+              ScreenshotApp.withConditionalTitlebar(
+                device: goldenDevice.device,
+                title: 'Departures',
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: ThemeMode.dark,
+                builder: (context, child) => GoldenTestDefaults.buildApp(
+                  home: child ?? const SizedBox.shrink(),
+                ),
+                locale: locale,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                home: const TestAppMainPage(initialIndex: 0),
+              ),
+            );
+
+            await tester.loadAssets();
+            await tester.pumpFrames(
+              tester.widget(find.byType(ScreenshotApp)),
+              const Duration(seconds: 1),
+            );
+            await tester.pump(const Duration(milliseconds: 200));
+
+            await _pumpUntilFound(tester, find.byType(StationDisplay));
+            await tester.tap(find.byType(StationDisplay).first);
+            await tester.pump(const Duration(milliseconds: 300));
+            await _pumpUntilFound(tester, find.byType(StationDepartures));
+            await _pumpUntilFound(tester, find.byType(BusDisplay));
+            await tester.pump(const Duration(milliseconds: 300));
+
+            await tester.expectScreenshot(
+              goldenDevice.device,
+              'Departures',
+              finder: find.byType(ScreenshotApp),
+              langCode: locale.languageCode,
+            );
+          });
         }
       });
     }
   });
+}
+
+Future<void> _pumpUntilFound(
+  WidgetTester tester,
+  Finder finder, {
+  Duration timeout = const Duration(seconds: 2),
+  Duration step = const Duration(milliseconds: 50),
+}) async {
+  final end = DateTime.now().add(timeout);
+  while (DateTime.now().isBefore(end)) {
+    if (finder.evaluate().isNotEmpty) {
+      return;
+    }
+    await tester.pump(step);
+  }
+  throw Exception('Timed out waiting for ${finder.description}');
 }
 
 class _FakeConnectivityPlatform extends ConnectivityPlatform {

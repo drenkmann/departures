@@ -15,12 +15,14 @@ Eine einfache App, die die Abfahrten der Öffentlichen Verkehrsmittel in Berlin 
         <td><b>Gespeichert</b></td>
         <td><b>Suche</b></td>
         <td><b>Einstellungen</b></td>
+        <td><b>Abfahrten</b></td>
     </tr>
     <tr>
         <td><img src="../images/de/Home.png" width=200/></td>
         <td><img src="../images/de/Saved.png" width=200/></td>
         <td><img src="../images/de/Search.png" width=200/></td>
         <td><img src="../images/de/Settings.png" width=200/></td>
+        <td><img src="../images/de/Departures.png" width=200/></td>
     </tr>
 </table>
 
