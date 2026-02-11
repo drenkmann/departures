@@ -1,12 +1,19 @@
 import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/l10n/app_localizations.dart';
+import 'package:departures/services/departure.dart' hide Color;
+import 'package:departures/services/stop.dart' hide Color;
 import 'package:departures/services/api.dart';
 import 'package:departures/widgets/station_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_screenshot/golden_screenshot.dart';
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 
 import 'golden_screenshot_test_utils.dart';
 import 'widgets/test_app_main_page.dart';
@@ -49,24 +56,52 @@ void main() {
   group('screenshots', () {
     for (final locale in locales) {
       group('locale ${locale.languageCode}', () {
+        late List<Stop> nearbyStops;
+        late List<Stop> searchStops;
+        late List<Departure> departures;
+        late String nearbyStopsJson;
+        late String searchStopsJson;
+        late String departuresJson;
+
         setUpAll(() async {
-          final nearbyStops = await GoldenFixtureLoader.loadStops(
+          nearbyStopsJson = await rootBundle.loadString(
             'test/fixtures/nearby_stations.json',
           );
-          final searchStops = await GoldenFixtureLoader.loadStops(
+          searchStopsJson = await rootBundle.loadString(
             'test/fixtures/search_results.json',
           );
-          final departures = await GoldenFixtureLoader.loadDepartures(
+          departuresJson = await rootBundle.loadString(
             'test/fixtures/departures_900100003.json',
           );
 
-          VbbApi.testNearbyStations = nearbyStops;
-          VbbApi.testSearchStations = searchStops;
-          VbbApi.testDepartures = departures;
+          nearbyStops = await GoldenFixtureLoader.loadStops(
+            'test/fixtures/nearby_stations.json',
+          );
+          searchStops = await GoldenFixtureLoader.loadStops(
+            'test/fixtures/search_results.json',
+          );
+          departures = await GoldenFixtureLoader.loadDepartures(
+            'test/fixtures/departures_900100003.json',
+          );
+
+          VbbApi.client = MockClient((request) async {
+            if (request.url.path == '/locations/nearby') {
+              return http.Response(nearbyStopsJson, 200);
+            }
+            if (request.url.path == '/locations') {
+              return http.Response(searchStopsJson, 200);
+            }
+            if (request.url.path.contains('/departures')) {
+              return http.Response(departuresJson, 200);
+            }
+            return http.Response('[]', 200);
+          });
+
+          ConnectivityPlatform.instance = _FakeConnectivityPlatform();
 
           final favorites = nearbyStops.take(3).map((stop) {
             final lines = <String, LineType>{};
-            for (final line in stop.lines ?? []) {
+            for (final line in stop.lines ?? const []) {
               if (line.name == null || line.product == null) continue;
               final product = line.product!;
               if (!LineType.values.any((type) => type.name == product)) {
@@ -74,13 +109,14 @@ void main() {
               }
               lines[line.name!] = LineType.values.byName(product);
             }
+            final stationName = (stop.name ?? '')
+                .replaceAll('(Berlin)', '')
+                .replaceAll('[Tram]', '')
+                .replaceAll('[Bus]', '')
+                .trim();
             return StationDisplay(
-              stationName: stop.name!
-                  .replaceAll('(Berlin)', '')
-                  .replaceAll('[Tram]', '')
-                  .replaceAll('[Bus]', '')
-                  .trim(),
-              stationId: stop.id!,
+              stationName: stationName,
+              stationId: stop.id ?? '',
               lines: lines,
               distance: stop.distance,
             );
@@ -130,7 +166,7 @@ void main() {
               tester.widget(find.byType(ScreenshotApp)),
               const Duration(seconds: 1),
             );
-            await tester.pumpAndSettle();
+            await tester.pump(const Duration(milliseconds: 200));
 
             await tester.expectScreenshot(
               goldenDevice.device,
@@ -162,7 +198,7 @@ void main() {
               tester.widget(find.byType(ScreenshotApp)),
               const Duration(seconds: 1),
             );
-            await tester.pumpAndSettle();
+            await tester.pump(const Duration(milliseconds: 200));
 
             await tester.expectScreenshot(
               goldenDevice.device,
@@ -189,16 +225,12 @@ void main() {
               ),
             );
 
-            await tester.enterText(find.byType(TextField), 'Hauptbahnhof');
-            await tester.pump();
-            await tester.pump(const Duration(milliseconds: 200));
-
             await tester.loadAssets();
             await tester.pumpFrames(
               tester.widget(find.byType(ScreenshotApp)),
               const Duration(seconds: 1),
             );
-            await tester.pumpAndSettle();
+            await tester.pump(const Duration(milliseconds: 200));
 
             await tester.expectScreenshot(
               goldenDevice.device,
@@ -230,7 +262,7 @@ void main() {
               tester.widget(find.byType(ScreenshotApp)),
               const Duration(seconds: 1),
             );
-            await tester.pumpAndSettle();
+            await tester.pump(const Duration(milliseconds: 200));
 
             await tester.expectScreenshot(
               goldenDevice.device,
@@ -243,4 +275,15 @@ void main() {
       });
     }
   });
+}
+
+class _FakeConnectivityPlatform extends ConnectivityPlatform {
+  @override
+  Future<List<ConnectivityResult>> checkConnectivity() async => [
+    ConnectivityResult.wifi,
+  ];
+
+  @override
+  Stream<List<ConnectivityResult>> get onConnectivityChanged =>
+      Stream.value([ConnectivityResult.wifi]);
 }

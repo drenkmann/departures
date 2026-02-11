@@ -11,9 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VbbApi {
   VbbApi._();
 
-  static List<Stop>? testNearbyStations;
-  static List<Stop>? testSearchStations;
-  static List<Departure>? testDepartures;
+  static http.Client client = http.Client();
 
   static String getIso8601FromTimeOfDay(TimeOfDay time) {
     final now = DateTime.now();
@@ -81,10 +79,6 @@ class VbbApi {
     BuildContext context, {
     int? count,
   }) async {
-    if (testNearbyStations != null) {
-      return testNearbyStations!;
-    }
-
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -113,7 +107,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Iterable stations = json.decode(response.body);
@@ -148,10 +142,6 @@ class VbbApi {
     TimeOfDay? when,
     int? duration,
   }) async {
-    if (testDepartures != null) {
-      return testDepartures!;
-    }
-
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -180,7 +170,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> departuresAtStop = json.decode(response.body);
@@ -215,10 +205,6 @@ class VbbApi {
     String query,
     BuildContext context,
   ) async {
-    if (testSearchStations != null) {
-      return testSearchStations!;
-    }
-
     if (!await _hasInternetConnection()) {
       if (context.mounted) {
         _showError(
@@ -248,7 +234,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Iterable stationsRaw = json.decode(response.body);
