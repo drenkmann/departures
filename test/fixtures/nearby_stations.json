@@ -1,0 +1,1093 @@
+[
+  {
+    "type": "stop",
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023201",
+      "latitude": 52.506919,
+      "longitude": 13.332711
+    },
+    "products": {
+      "suburban": true,
+      "subway": true,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": true,
+      "regional": true
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": null,
+        "fahrtNr": null,
+        "name": "",
+        "public": true,
+        "mode": "train",
+        "product": "express"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-r-bahn-fex",
+        "fahrtNr": null,
+        "name": "FEX",
+        "public": true,
+        "productName": "RE",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#730050"
+        }
+      },
+      {
+        "type": "line",
+        "id": "rsmd-hbx",
+        "fahrtNr": null,
+        "name": "HBX",
+        "public": true,
+        "productName": "RE",
+        "mode": "train",
+        "product": "regional"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-r-bahn-rb14",
+        "fahrtNr": null,
+        "name": "RB14",
+        "public": true,
+        "productName": "RB",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#9900ff"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-r-bahn-rb21",
+        "fahrtNr": null,
+        "name": "RB21",
+        "public": true,
+        "productName": "RB",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#6d61f2"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-12054000-r-bahn-rb23",
+        "fahrtNr": null,
+        "name": "RB23",
+        "public": true,
+        "productName": "RB",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#9900ff"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-12052000-r-bahn-re1-odeg",
+        "fahrtNr": null,
+        "name": "RE1",
+        "public": true,
+        "productName": "RE",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#ff0000"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-r-bahn-re2-db",
+        "fahrtNr": null,
+        "name": "RE2",
+        "public": true,
+        "productName": "RE",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#000",
+          "bg": "#ffd502"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-12072477-r-bahn-re7",
+        "fahrtNr": null,
+        "name": "RE7",
+        "public": true,
+        "productName": "RE",
+        "mode": "train",
+        "product": "regional",
+        "color": {
+          "fg": "#fff",
+          "bg": "#00b300"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-s-bahn-s3",
+        "fahrtNr": null,
+        "name": "S3",
+        "public": true,
+        "productName": "S",
+        "mode": "train",
+        "product": "suburban",
+        "color": {
+          "fg": "#fff",
+          "bg": "#0079f2"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-s-bahn-s5",
+        "fahrtNr": null,
+        "name": "S5",
+        "public": true,
+        "productName": "S",
+        "mode": "train",
+        "product": "suburban",
+        "color": {
+          "fg": "#fff",
+          "bg": "#eb7405"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-s-bahn-s7",
+        "fahrtNr": null,
+        "name": "S7",
+        "public": true,
+        "productName": "S",
+        "mode": "train",
+        "product": "suburban",
+        "color": {
+          "fg": "#fff",
+          "bg": "#6d61f2"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-s-bahn-s9",
+        "fahrtNr": null,
+        "name": "S9",
+        "public": true,
+        "productName": "S",
+        "mode": "train",
+        "product": "suburban",
+        "color": {
+          "fg": "#fff",
+          "bg": "#992746"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-u-bahn-u2",
+        "fahrtNr": null,
+        "name": "U2",
+        "public": true,
+        "productName": "U",
+        "mode": "train",
+        "product": "subway",
+        "color": {
+          "fg": "#fff",
+          "bg": "#e75313"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-u-bahn-u9",
+        "fahrtNr": null,
+        "name": "U9",
+        "public": true,
+        "productName": "U",
+        "mode": "train",
+        "product": "subway",
+        "color": {
+          "fg": "#fff",
+          "bg": "#ff7300"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-100",
+        "fahrtNr": null,
+        "name": "100",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-109",
+        "fahrtNr": null,
+        "name": "109",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-110",
+        "fahrtNr": null,
+        "name": "110",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-200",
+        "fahrtNr": null,
+        "name": "200",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-204",
+        "fahrtNr": null,
+        "name": "204",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": null,
+        "name": "245",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-249",
+        "fahrtNr": null,
+        "name": "249",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": null,
+        "name": "M45",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m46",
+        "fahrtNr": null,
+        "name": "M46",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": null,
+        "name": "M49",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n1",
+        "fahrtNr": null,
+        "name": "N1",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n2",
+        "fahrtNr": null,
+        "name": "N2",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n7x",
+        "fahrtNr": null,
+        "name": "N7X",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n9",
+        "fahrtNr": null,
+        "name": "N9",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n10",
+        "fahrtNr": null,
+        "name": "N10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n26",
+        "fahrtNr": null,
+        "name": "N26",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x10",
+        "fahrtNr": null,
+        "name": "X10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x34",
+        "fahrtNr": null,
+        "name": "X34",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023201",
+    "distance": 57
+  },
+  {
+    "type": "stop",
+    "id": "900023172",
+    "name": "S+U Zoologischer Garten/Jebensstr. (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023172",
+      "latitude": 52.507125,
+      "longitude": 13.330427
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-100",
+        "fahrtNr": null,
+        "name": "100",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-200",
+        "fahrtNr": null,
+        "name": "200",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": null,
+        "name": "245",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": null,
+        "name": "M45",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": null,
+        "name": "M49",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n2",
+        "fahrtNr": null,
+        "name": "N2",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n9",
+        "fahrtNr": null,
+        "name": "N9",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023172",
+    "distance": 136
+  },
+  {
+    "type": "stop",
+    "id": "900004181",
+    "name": "Hertzallee (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900004181",
+      "latitude": 52.509229,
+      "longitude": 13.332612
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-100",
+        "fahrtNr": null,
+        "name": "100",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-109",
+        "fahrtNr": null,
+        "name": "109",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-110",
+        "fahrtNr": null,
+        "name": "110",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-200",
+        "fahrtNr": null,
+        "name": "200",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-204",
+        "fahrtNr": null,
+        "name": "204",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": null,
+        "name": "245",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-249",
+        "fahrtNr": null,
+        "name": "249",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": null,
+        "name": "M45",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m46",
+        "fahrtNr": null,
+        "name": "M46",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": null,
+        "name": "M49",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n1",
+        "fahrtNr": null,
+        "name": "N1",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n2",
+        "fahrtNr": null,
+        "name": "N2",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n9",
+        "fahrtNr": null,
+        "name": "N9",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n10",
+        "fahrtNr": null,
+        "name": "N10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n26",
+        "fahrtNr": null,
+        "name": "N26",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x10",
+        "fahrtNr": null,
+        "name": "X10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x34",
+        "fahrtNr": null,
+        "name": "X34",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900004181",
+    "distance": 204
+  },
+  {
+    "type": "stop",
+    "id": "900023206",
+    "name": "Theater des Westens (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023206",
+      "latitude": 52.505624,
+      "longitude": 13.32738
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": null,
+        "name": "M49",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x34",
+        "fahrtNr": null,
+        "name": "X34",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023206",
+    "distance": 392
+  },
+  {
+    "type": "stop",
+    "id": "900023203",
+    "name": "U Kurfuerstendamm (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023203",
+      "latitude": 52.503763,
+      "longitude": 13.331416
+    },
+    "products": {
+      "suburban": false,
+      "subway": true,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-u-bahn-u1",
+        "fahrtNr": null,
+        "name": "U1",
+        "public": true,
+        "productName": "U",
+        "mode": "train",
+        "product": "subway",
+        "color": {
+          "fg": "#fff",
+          "bg": "#55f200"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-u-bahn-u9",
+        "fahrtNr": null,
+        "name": "U9",
+        "public": true,
+        "productName": "U",
+        "mode": "train",
+        "product": "subway",
+        "color": {
+          "fg": "#fff",
+          "bg": "#ff7300"
+        }
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-109",
+        "fahrtNr": null,
+        "name": "109",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-110",
+        "fahrtNr": null,
+        "name": "110",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-204",
+        "fahrtNr": null,
+        "name": "204",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-249",
+        "fahrtNr": null,
+        "name": "249",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m19",
+        "fahrtNr": null,
+        "name": "M19",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m29",
+        "fahrtNr": null,
+        "name": "M29",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m46",
+        "fahrtNr": null,
+        "name": "M46",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n1",
+        "fahrtNr": null,
+        "name": "N1",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n2",
+        "fahrtNr": null,
+        "name": "N2",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n3",
+        "fahrtNr": null,
+        "name": "N3",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n7x",
+        "fahrtNr": null,
+        "name": "N7X",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n9",
+        "fahrtNr": null,
+        "name": "N9",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n10",
+        "fahrtNr": null,
+        "name": "N10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n26",
+        "fahrtNr": null,
+        "name": "N26",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x10",
+        "fahrtNr": null,
+        "name": "X10",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x34",
+        "fahrtNr": null,
+        "name": "X34",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023203",
+    "distance": 409
+  },
+  {
+    "type": "stop",
+    "id": "900023252",
+    "name": "Breitscheidplatz (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023252",
+      "latitude": 52.505049,
+      "longitude": 13.337205
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-100",
+        "fahrtNr": null,
+        "name": "100",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-200",
+        "fahrtNr": null,
+        "name": "200",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023252",
+    "distance": 417
+  },
+  {
+    "type": "stop",
+    "id": "900023105",
+    "name": "Uhlandstr./Kantstr. (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023105",
+      "latitude": 52.505624,
+      "longitude": 13.325735
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m49",
+        "fahrtNr": null,
+        "name": "M49",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-x34",
+        "fahrtNr": null,
+        "name": "X34",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023105",
+    "distance": 491
+  },
+  {
+    "type": "stop",
+    "id": "900023152",
+    "name": "Steinplatz (Berlin)",
+    "location": {
+      "type": "location",
+      "id": "900023152",
+      "latitude": 52.509283,
+      "longitude": 13.325807
+    },
+    "products": {
+      "suburban": false,
+      "subway": false,
+      "tram": false,
+      "bus": true,
+      "ferry": false,
+      "express": false,
+      "regional": false
+    },
+    "lines": [
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-245",
+        "fahrtNr": null,
+        "name": "245",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-m45",
+        "fahrtNr": null,
+        "name": "M45",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      },
+      {
+        "type": "line",
+        "id": "de-vbb-11000000-bus-n2",
+        "fahrtNr": null,
+        "name": "N2",
+        "public": true,
+        "productName": "Bus",
+        "mode": "bus",
+        "product": "bus"
+      }
+    ],
+    "stationDHID": "de:11000:900023152",
+    "distance": 492
+  }
+]
