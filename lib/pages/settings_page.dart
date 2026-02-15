@@ -285,7 +285,7 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "v${_packageInfo?.version ?? ""} - © drenkmann 2025",
+                  "v${_packageInfo?.version ?? ""} - © drenkmann 2026",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: Theme.of(context).hintColor,
                   ),

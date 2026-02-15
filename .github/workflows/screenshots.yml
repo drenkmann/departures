@@ -1,0 +1,44 @@
+name: Generate screenshots
+
+on:
+  workflow_dispatch:
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate screenshots
+        run: flutter test --update-goldens test/screenshots_test.dart
+
+      - name: Optimize PNGs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pngquant
+          find docs/images -name "*.png" -print0 | xargs -0 -I {} pngquant --quality=65-85 --force --output {} {}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(screenshots): update screenshots [skip ci]"
+          branch: "auto/screenshots-${{ github.sha }}"
+          title: "chore: update screenshots"
+          body: |
+            Automated screenshot update using golden_screenshot.
+            Locale coverage: en, de
+            Pages: Home, Saved, Search, Settings

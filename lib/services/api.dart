@@ -11,6 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VbbApi {
   VbbApi._();
 
+  static http.Client client = http.Client();
+
   static String getIso8601FromTimeOfDay(TimeOfDay time) {
     final now = DateTime.now();
     final DateTime combinedDateTime = DateTime(
@@ -105,7 +107,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Iterable stations = json.decode(response.body);
@@ -168,7 +170,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> departuresAtStop = json.decode(response.body);
@@ -232,7 +234,7 @@ class VbbApi {
     );
 
     try {
-      final response = await http.get(uri);
+      final response = await client.get(uri);
 
       if (response.statusCode == 200) {
         Iterable stationsRaw = json.decode(response.body);

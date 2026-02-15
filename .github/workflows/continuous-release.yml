@@ -70,7 +70,7 @@ jobs:
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
           status: completed
-          releaseName: ${{ steps.version.outputs.version_name }} (${{ github.run_number }})
+          releaseName: v${{ steps.version.outputs.version_name }} (${{ github.run_number }})
 
       - name: Get Last Commit on Previous Release
         id: last_release

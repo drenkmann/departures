@@ -7,10 +7,10 @@ publish_to: 'none'
 # Increment MINOR when introducing new features
 # Increment PATCH when fixing bugs/refactoring
 # Changes that do not modify code (e.g. README) should not increment the version number
-version: 2.4.1+0
+version: 2.4.2+0
 
 environment:
-  sdk: ^3.10.8
+  sdk: ^3.11.0
 
 dependencies:
   flutter:
@@ -36,10 +36,13 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
+  golden_screenshot: ^10.0.0
 
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - test/fixtures/
 
 flutter_launcher_icons:
   android: true
