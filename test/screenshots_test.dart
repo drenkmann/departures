@@ -1,7 +1,6 @@
 import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/l10n/app_localizations.dart';
-import 'package:departures/services/departure.dart' hide Color;
 import 'package:departures/services/stop.dart' hide Color;
 import 'package:departures/services/api.dart';
 import 'package:departures/widgets/bus_display.dart';
@@ -11,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_screenshot/golden_screenshot.dart';
+// ignore: depend_on_referenced_packages
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// ignore: depend_on_referenced_packages
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -59,8 +59,6 @@ void main() {
     for (final locale in locales) {
       group('locale ${locale.languageCode}', () {
         late List<Stop> nearbyStops;
-        late List<Stop> searchStops;
-        late List<Departure> departures;
         late String nearbyStopsJson;
         late String searchStopsJson;
         late String departuresJson;
@@ -78,12 +76,6 @@ void main() {
 
           nearbyStops = await GoldenFixtureLoader.loadStops(
             'test/fixtures/nearby_stations.json',
-          );
-          searchStops = await GoldenFixtureLoader.loadStops(
-            'test/fixtures/search_results.json',
-          );
-          departures = await GoldenFixtureLoader.loadDepartures(
-            'test/fixtures/departures_900100003.json',
           );
 
           VbbApi.client = MockClient((request) async {
@@ -340,7 +332,7 @@ Future<void> _pumpUntilFound(
     }
     await tester.pump(step);
   }
-  throw Exception('Timed out waiting for ${finder.description}');
+  throw Exception('Timed out waiting for ${finder.first}');
 }
 
 class _FakeConnectivityPlatform extends ConnectivityPlatform {
