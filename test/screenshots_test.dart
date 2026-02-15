@@ -232,6 +232,10 @@ void main() {
             await tester.enterText(find.byType(TextField), 'Hauptbahnhof');
             await tester.pump(const Duration(milliseconds: 200));
             await _pumpUntilFound(tester, find.byType(StationDisplay));
+            await _pumpUntilNotFound(
+              tester,
+              find.byType(RefreshProgressIndicator),
+            );
 
             await tester.expectScreenshot(
               goldenDevice.device,
@@ -333,6 +337,22 @@ Future<void> _pumpUntilFound(
     await tester.pump(step);
   }
   throw Exception('Timed out waiting for ${finder.first}');
+}
+
+Future<void> _pumpUntilNotFound(
+  WidgetTester tester,
+  Finder finder, {
+  Duration timeout = const Duration(seconds: 2),
+  Duration step = const Duration(milliseconds: 50),
+}) async {
+  final end = DateTime.now().add(timeout);
+  while (DateTime.now().isBefore(end)) {
+    if (finder.evaluate().isEmpty) {
+      return;
+    }
+    await tester.pump(step);
+  }
+  throw Exception('Timed out waiting for ${finder.first} to disappear');
 }
 
 class _FakeConnectivityPlatform extends ConnectivityPlatform {
