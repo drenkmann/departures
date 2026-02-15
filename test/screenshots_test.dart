@@ -237,6 +237,10 @@ void main() {
             );
             await tester.pump(const Duration(milliseconds: 200));
 
+            await tester.enterText(find.byType(TextField), 'Hauptbahnhof');
+            await tester.pump(const Duration(milliseconds: 200));
+            await _pumpUntilFound(tester, find.byType(StationDisplay));
+
             await tester.expectScreenshot(
               goldenDevice.device,
               'Search',
