@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'lib/**'
+      - 'android/**'
+      - 'assets/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
