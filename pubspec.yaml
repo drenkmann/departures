@@ -21,14 +21,14 @@ dependencies:
   permission_handler: ^12.0.0+1
   flutter_localizations:
     sdk: flutter
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   provider: ^6.1.5
-  package_info_plus: ^9.0.0
+  package_info_plus: ^9.0.1
   url_launcher: ^6.3.1
   geolocator: ^14.0.2
-  connectivity_plus: ^7.0.0
+  connectivity_plus: ^7.1.0
   dynamic_color: ^1.8.1
-  restart_app: ^1.7.2
+  restart_app: ^1.7.3
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +36,7 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
-  golden_screenshot: ^10.0.0
+  golden_screenshot: ^11.0.1
 
 flutter:
   uses-material-design: true
