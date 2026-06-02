@@ -18,7 +18,7 @@ dependencies:
 
   intl: ^0.20.2
   http: ^1.6.0
-  permission_handler: ^12.0.0+1
+  permission_handler: ^12.0.3
   flutter_localizations:
     sdk: flutter
   shared_preferences: ^2.5.5
@@ -28,7 +28,7 @@ dependencies:
   geolocator: ^14.0.2
   connectivity_plus: ^7.1.1
   dynamic_color: ^1.8.1
-  restart_app: ^1.7.3
+  restart_app: ^1.8.3
 
 dev_dependencies:
   flutter_test:
