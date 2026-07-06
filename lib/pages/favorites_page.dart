@@ -39,7 +39,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 )
               : ReorderableListView(
                   padding: EdgeInsets.zero,
-                  onReorder: (oldIndex, newIndex) {
+                  onReorderItem: (oldIndex, newIndex) {
                     favProvider.moveFavorite(oldIndex, newIndex);
                   },
                   children: favProvider.favorites,
