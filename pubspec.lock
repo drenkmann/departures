@@ -97,14 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  cupertino_ui:
-    dependency: transitive
-    description:
-      name: cupertino_ui
-      sha256: e003b87afde18cb396ec15928c7894063d64af04462c68df9a1404c461316dd2
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.5"
   dbus:
     dependency: transitive
     description:
@@ -117,10 +109,10 @@ packages:
     dependency: "direct main"
     description:
       name: dynamic_color
-      sha256: "869b3bce0100eb519768ecd71c0111f0b5ea679f5f62e1f59c49d80067e730c5"
+      sha256: "43a5a6679649a7731ab860334a5812f2067c2d9ce6452cf069c5e0c25336c17c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "1.8.1"
   fake_async:
     dependency: transitive
     description:
@@ -265,10 +257,10 @@ packages:
     dependency: "direct dev"
     description:
       name: golden_screenshot
-      sha256: f1e894eb4d4f8c87a65b7d43ee95d84733f9e1e7980e3e0be5c3165b8b030792
+      sha256: c3ebae338a174bc4e6c20c19201002b839da38948e853ae3965bacb694e3b2d5
       url: "https://pub.dev"
     source: hosted
-    version: "12.1.1"
+    version: "11.0.1"
   gsettings:
     dependency: transitive
     description:
@@ -365,14 +357,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
-  material_ui:
-    dependency: transitive
-    description:
-      name: material_ui
-      sha256: feb289df1e5f9ed9522f9fe3d909432a7f7bc76943f16abad09f80a16cd25196
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.9.0"
   meta:
     dependency: transitive
     description:
