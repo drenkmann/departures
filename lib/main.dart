@@ -8,8 +8,9 @@ import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:departures/l10n/app_localizations.dart';
+import 'package:departures/l10n/localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -58,8 +59,7 @@ class DeparturesApp extends StatelessWidget {
                 return MaterialApp(
                   onGenerateTitle: (context) =>
                       AppLocalizations.of(context)!.appTitle,
-                  localizationsDelegates:
-                      AppLocalizations.localizationsDelegates,
+                  localizationsDelegates: appLocalizationsDelegates,
                   supportedLocales: AppLocalizations.supportedLocales,
                   theme: ThemeData(
                     useMaterial3: true,

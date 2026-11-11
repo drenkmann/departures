@@ -27,8 +27,9 @@ dependencies:
   url_launcher: ^6.3.3
   geolocator: ^14.1.2
   connectivity_plus: ^7.2.0
-  dynamic_color: ^1.9.0
+  dynamic_color: ^2.1.0
   restart_app: ^1.10.2
+  material_ui: ^1.11.0
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +37,10 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
-  golden_screenshot: ^11.0.1
+  golden_screenshot: ^12.2.0
+
+  geolocator_platform_interface: ^4.4.1
+  connectivity_plus_platform_interface: ^2.1.0
 
 flutter:
   uses-material-design: true
