@@ -3,7 +3,7 @@ import 'package:departures/pages/favorites_page.dart';
 import 'package:departures/pages/home_page.dart';
 import 'package:departures/pages/search_page.dart';
 import 'package:departures/pages/settings_page.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TestAppMainPage extends StatefulWidget {
   const TestAppMainPage({super.key, required this.initialIndex});

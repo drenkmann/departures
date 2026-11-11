@@ -1,5 +1,5 @@
 import 'package:departures/enums/line_types.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class BusDisplay extends StatelessWidget {
   const BusDisplay({

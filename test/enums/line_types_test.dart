@@ -1,5 +1,5 @@
 import 'package:departures/enums/line_types.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
