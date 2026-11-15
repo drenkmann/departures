@@ -1,18 +1,17 @@
 import 'package:departures/enums/app_theme_modes.dart';
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/l10n/app_localizations.dart';
+import 'package:departures/l10n/localizations.dart';
 import 'package:departures/services/stop.dart' hide Color;
 import 'package:departures/services/api.dart';
 import 'package:departures/widgets/bus_display.dart';
 import 'package:departures/widgets/station_departures.dart';
 import 'package:departures/widgets/station_display.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_screenshot/golden_screenshot.dart';
-// ignore: depend_on_referenced_packages
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
-// ignore: depend_on_referenced_packages
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -150,7 +149,7 @@ void main() {
                   home: child ?? const SizedBox.shrink(),
                 ),
                 locale: locale,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: appLocalizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 home: const TestAppMainPage(initialIndex: 0),
               ),
@@ -183,7 +182,7 @@ void main() {
                   home: child ?? const SizedBox.shrink(),
                 ),
                 locale: locale,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: appLocalizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 home: const TestAppMainPage(initialIndex: 1),
               ),
@@ -216,7 +215,7 @@ void main() {
                   home: child ?? const SizedBox.shrink(),
                 ),
                 locale: locale,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: appLocalizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 home: const TestAppMainPage(initialIndex: 2),
               ),
@@ -257,7 +256,7 @@ void main() {
                   home: child ?? const SizedBox.shrink(),
                 ),
                 locale: locale,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: appLocalizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 home: const TestAppMainPage(initialIndex: 3),
               ),
@@ -290,7 +289,7 @@ void main() {
                   home: child ?? const SizedBox.shrink(),
                 ),
                 locale: locale,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: appLocalizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 home: const TestAppMainPage(initialIndex: 0),
               ),
