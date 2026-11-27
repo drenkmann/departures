@@ -9,9 +9,8 @@ import 'package:departures/provider/time_display_settings_provider.dart';
 import 'package:departures/services/departure.dart';
 import 'package:departures/services/stop.dart';
 import 'package:departures/widgets/station_display.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
-// ignore: depend_on_referenced_packages
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';

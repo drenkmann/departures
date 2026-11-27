@@ -2,7 +2,7 @@ import 'package:departures/enums/line_types.dart';
 import 'package:departures/services/api.dart';
 import 'package:departures/services/stop.dart';
 import 'package:departures/widgets/station_display.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:departures/l10n/app_localizations.dart';
 import 'package:geolocator/geolocator.dart';

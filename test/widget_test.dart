@@ -4,7 +4,7 @@ import 'package:departures/provider/distance_settings_provider.dart';
 import 'package:departures/provider/favorites_provider.dart';
 import 'package:departures/provider/theme_settings_provider.dart';
 import 'package:departures/provider/time_display_settings_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

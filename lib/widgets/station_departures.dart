@@ -6,7 +6,7 @@ import 'package:departures/widgets/bus_display.dart';
 import 'package:departures/enums/line_types.dart';
 import 'package:departures/services/departure.dart';
 import 'package:departures/services/api.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:departures/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
